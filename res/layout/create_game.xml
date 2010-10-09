@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:padding="7px">
+
+	<TextView android:layout_width="wrap_content"
+		android:textStyle="bold" android:layout_marginBottom="2px"
+		android:textSize="14px" android:textColor="#eeeeee"
+		android:layout_height="wrap_content" android:text=" Time:  " />
+
+	<Spinner android:id="@+id/spTime" android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:drawSelectorOnTop="true"
+		android:layout_marginBottom="10px" />
+
+	<TextView android:layout_width="wrap_content"
+		android:layout_marginBottom="2px" android:textSize="14px"
+		android:textStyle="bold" android:textColor="#eeeeee"
+		android:layout_height="wrap_content" android:text=" Time bonus per move:  " />
+
+	<Spinner android:id="@+id/spIncrement" android:layout_height="wrap_content"
+		android:layout_width="fill_parent" android:drawSelectorOnTop="true"
+		android:layout_marginBottom="10px" />
+
+	<RadioGroup android:id="@+id/rdgRated" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:layout_marginBottom="15px" android:visibility="gone">
+
+		<TextView android:layout_width="wrap_content"
+			android:textSize="14px" android:textStyle="bold" android:textColor="#eeeeee"
+			android:layout_height="wrap_content" android:text=" Rated:  " />
+
+		<RadioButton android:id="@+id/rdYes"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text=" Yes  " />
+
+		<RadioButton android:id="@+id/rdNo"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text=" No" />
+
+	</RadioGroup>
+
+	<Button android:id="@+id/btCreateGameOK" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_gravity="right"
+		android:text="Create Game " />
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:padding="10px">
+
+	<TextView android:id="@+id/tvAboutURL" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_marginTop="10px"
+		android:autoLink="web" android:textSize="18px"
+		android:text="http://androidchess.appspot.com" />
+
+	<TextView android:id="@+id/tvAboutInfo" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_below="@id/tvAboutURL"
+		android:layout_marginTop="25px" android:autoLink="email"
+		android:textSize="18px"
+		android:text="Please send questions, ideas, bug reports or any other feedback at fhucho+chw@gmail.com" />
+
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_below="@id/tvAboutInfo"
+		android:layout_marginTop="25px" android:textSize="18px"
+		android:text="Thanks for using Chess Walk!" />
+
+</RelativeLayout>

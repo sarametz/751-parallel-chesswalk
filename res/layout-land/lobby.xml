@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<LinearLayout android:layout_width="fill_parent"
+		android:layout_height="fill_parent" android:paddingLeft="10dp"
+		android:paddingRight="10dp" android:paddingTop="10dp"
+		android:orientation="vertical">
+
+		<TextView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_marginBottom="10dp"
+			android:background="@drawable/logo" />
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:padding="10dp" android:background="@drawable/box2">
+
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_marginBottom="2dp"
+				android:paddingLeft="3dp" android:textStyle="bold" android:text="@string/timeSettings" />
+
+			<Spinner android:id="@+id/spTimeSettings"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:drawSelectorOnTop="true" />
+
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:paddingBottom="2dp"
+				android:paddingLeft="3dp" android:paddingTop="10dp"
+				android:textStyle="bold" android:text="@string/color" />
+
+			<LinearLayout android:orientation="horizontal"
+				android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+				<Button android:id="@+id/btColorWhite" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:layout_weight="1"
+					android:drawableLeft="@drawable/wpawn2" android:background="@drawable/btn_left"
+					android:text="@string/btColorWhite" />
+
+				<Button android:id="@+id/btColorAuto" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:layout_weight="1"
+					android:background="@drawable/btn_center" android:text="@string/btColorAuto" />
+
+				<Button android:id="@+id/btColorBlack" android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:layout_weight="1"
+					android:drawableRight="@drawable/bpawn2" android:background="@drawable/btn_right"
+					android:text="@string/btColorBlack" />
+
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/llRated"
+				android:orientation="vertical" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:visibility="gone">
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:paddingBottom="2dp"
+					android:paddingLeft="3dp" android:paddingTop="10dp"
+					android:textStyle="bold" android:text="@string/rated" />
+
+				<RadioGroup android:layout_width="fill_parent"
+					android:layout_height="wrap_content" android:orientation="horizontal">
+
+					<RadioButton android:id="@+id/rbRatedYes"
+						android:checked="false" android:text="@string/yes" />
+
+					<RadioButton android:id="@+id/rbRatedNo"
+						android:layout_marginLeft="10dp" android:checked="false"
+						android:text="@string/no" />
+
+				</RadioGroup>
+
+			</LinearLayout>
+
+			<Button android:id="@+id/btCreateGameOffer"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:layout_marginTop="6dp" android:layout_gravity="center"
+				android:paddingLeft="30dp" android:paddingRight="30dp"
+				android:textStyle="bold" android:text="@string/createGameOffer" />
+
+		</LinearLayout>
+
+		<LinearLayout android:id="@+id/llRatings"
+			android:orientation="vertical" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_marginTop="5dp"
+			android:layout_marginLeft="3dp" android:layout_marginRight="3dp"
+			android:padding="6dp" android:background="#ffffff"
+			android:visibility="gone">
+
+			<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:paddingBottom="6dp"
+				android:paddingLeft="3dp" android:paddingTop="3dp" android:textSize="16dp"
+				android:textStyle="bold" android:textColor="#323232" android:text="@string/ratings" />
+
+			<LinearLayout android:id="@+id/llRatingStandard"
+				android:orientation="horizontal" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:paddingBottom="2dp"
+				android:paddingLeft="3dp" android:textSize="15dp"
+				android:visibility="gone">
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:paddingRight="7dp"
+					android:text="@string/ratingStandard" />
+
+				<TextView android:id="@+id/tvRatingStandard"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textStyle="bold" />
+
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/llRatingBlitz"
+				android:orientation="horizontal" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:paddingBottom="2dp"
+				android:paddingLeft="3dp" android:textSize="15dp"
+				android:visibility="gone">
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:paddingRight="7dp"
+					android:text="@string/ratingBlitz" />
+
+				<TextView android:id="@+id/tvRatingBlitz"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textStyle="bold" />
+
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/llRatingLightning"
+				android:orientation="horizontal" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:paddingBottom="2dp"
+				android:paddingLeft="3dp" android:textSize="15dp"
+				android:visibility="gone">
+
+				<TextView android:layout_width="wrap_content"
+					android:layout_height="wrap_content" android:paddingRight="7dp"
+					android:text="@string/ratingLightning" />
+
+				<TextView android:id="@+id/tvRatingLightning"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:textStyle="bold" />
+
+			</LinearLayout>
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</ScrollView>

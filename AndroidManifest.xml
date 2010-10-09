@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="cz.hejl.chesswalk" android:versionName="1.4"
+	android:versionCode="6">
+	<application android:icon="@drawable/icon" android:label="@string/appName"
+		android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
+		<activity android:name=".MainActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name=".About" />
+		<activity android:name=".GameOffersActivity" />
+		<activity android:name=".LoginActivity" />
+		<activity android:name=".LobbyActivity"
+			android:screenOrientation="portrait" />
+		<activity android:name=".OnlineGameActivity"
+			android:screenOrientation="portrait" />
+		<activity android:name=".OfflineGame"
+			android:screenOrientation="portrait" />
+		<activity android:name=".Settings" />
+		<activity android:name=".NewGame" />
+		<activity android:name=".TimeSettingsActivity" android:theme="@android:style/Theme.Dialog" />
+	</application>
+	<supports-screens android:smallScreens="true"
+		android:normalScreens="true" android:largeScreens="true"
+		android:anyDensity="true" />
+	<uses-sdk android:minSdkVersion="3" android:targetSdkVersion="4" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+</manifest> 

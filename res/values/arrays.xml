@@ -1,0 +1,14 @@
+<resources>
+
+	<string-array name="color">
+		<item>Auto</item>
+		<item>White</item>
+		<item>Black</item>
+	</string-array>
+
+	<string-array name="rated">
+		<item>Rated</item>
+		<item>Unrated</item>
+	</string-array>
+
+</resources>

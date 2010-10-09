@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:gravity="center_horizontal"
+	android:padding="15dp">
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_weight="1" />
+
+	<Button android:id="@+id/btPlayOnline" android:text="@string/play_online"
+		android:layout_marginBottom="2dp" style="@style/main_menu_button" />
+
+	<Button android:id="@+id/btPlayOffline" android:text="@string/play_offline"
+		android:layout_marginBottom="2dp" style="@style/main_menu_button" />
+
+	<Button android:id="@+id/btSettings" android:text="@string/settings"
+		android:layout_marginBottom="2dp" style="@style/main_menu_button" />
+
+	<Button android:id="@+id/btAbout" android:text="@string/about"
+		style="@style/main_menu_button" />
+
+</LinearLayout>

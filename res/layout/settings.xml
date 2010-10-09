@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:padding="10px">
+
+	<CheckBox android:id="@+id/cbAutoLoginSettings"
+		android:layout_marginBottom="10px" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="  Auto login" />
+
+	<RadioGroup android:id="@+id/rgLoginType"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_below="@id/cbAutoLoginSettings" android:orientation="vertical">
+
+		<RadioButton android:id="@+id/rbGuest"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text=" Guest" />
+
+		<RadioButton android:id="@+id/rbRegistered"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:text=" Registered user" />
+
+	</RadioGroup>
+
+	<EditText android:id="@+id/edUsernameSettings"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_below="@id/rgLoginType" android:layout_marginLeft="30px"
+		android:hint="Username" />
+
+	<EditText android:id="@+id/edPasswordSettings"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_below="@id/edUsernameSettings"
+		android:layout_marginLeft="30px" android:layout_marginTop="3px"
+		android:password="true" android:hint="Password" />
+
+	<TextView android:id="@+id/tvSettingsCreateAccount" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_below="@+id/edPasswordSettings"
+		android:layout_marginLeft="32px" android:layout_marginTop="4px"
+		android:textSize="16px" android:text="Create freechess.org account" />
+
+</RelativeLayout>

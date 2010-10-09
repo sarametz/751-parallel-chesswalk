@@ -1,0 +1,14 @@
+<resources>
+
+	<string-array name="color">
+		<item>Automaticky</item>
+		<item>Bílá</item>
+		<item>Černá</item>
+	</string-array>
+
+	<string-array name="rated">
+		<item>Hodnoceno</item>
+		<item>Nehodnoceno</item>
+	</string-array>
+
+</resources>

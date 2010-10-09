@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/game_background">
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:padding="7dp" android:gravity="center_vertical">
+
+		<ProgressBar android:id="@+id/pbThinking"
+			android:layout_width="20dp" android:layout_height="20dp"
+			android:layout_marginRight="7dp" android:indeterminateOnly="true"
+			android:visibility="gone" />
+
+		<TextView android:id="@+id/tvOfflineTopInfo"
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:textStyle="bold" android:textSize="14dp" />
+
+	</LinearLayout>
+
+	<cz.hejl.chesswalk.ChessBoardView
+		android:id="@+id/offlineChessBoard" android:layout_height="320dp"
+		android:layout_width="320dp" android:layout_gravity="center_horizontal" />
+
+	<TextView android:id="@+id/tvOfflineGameInfo"
+		android:layout_height="fill_parent" android:layout_width="wrap_content"
+		android:padding="5dp" android:layout_marginLeft="3dp"
+		android:layout_marginTop="10dp" android:textStyle="bold"
+		android:layout_weight="1" android:textSize="14dp" />
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:gravity="center" android:paddingTop="2dp" android:background="@drawable/bottom_bar">
+
+		<Button android:id="@+id/btNewGame" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:paddingLeft="16dp"
+			android:paddingRight="16dp" android:text="@string/btNewGame" />
+
+		<Button android:id="@+id/btUndo" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_marginLeft="2dp"
+			android:paddingLeft="16dp" android:paddingRight="16dp" android:text="@string/btUndo" />
+
+		<Button android:id="@+id/btFlip" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_marginLeft="2dp"
+			android:paddingLeft="16dp" android:paddingRight="16dp" android:text="@string/btFlip" />
+
+	</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	android:padding="10dp">
+
+	<TextView android:id="@+id/tvTime" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:text="@string/time" />
+
+	<TextView android:id="@+id/tvTimeValue" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_toRightOf="@id/tvTime"
+		android:textColor="#eeeeee" android:textStyle="bold" android:text="15 min" />
+
+	<SeekBar android:id="@+id/skTime" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_below="@id/tvTime"
+		android:max="59" />
+
+	<TextView android:id="@+id/tvIncrement" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_below="@id/skTime"
+		android:layout_marginTop="10dp" android:text="@string/timeBonusPerMove" />
+
+	<TextView android:id="@+id/tvIncrementValue"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/tvIncrement"
+		android:layout_alignBaseline="@id/tvIncrement" android:textColor="#eeeeee"
+		android:textStyle="bold" android:text="5 seconds  " />
+
+	<SeekBar android:id="@+id/skIncrement" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:layout_below="@id/tvIncrement"
+		android:max="30" />
+
+	<Button android:id="@+id/btTimeSettingsDone"
+		android:layout_width="150dp" android:layout_height="wrap_content"
+		android:layout_below="@id/skIncrement"
+		android:layout_centerHorizontal="true" android:layout_marginTop="15dp"
+		android:text="@string/btTimeSettingsDone" />
+
+</RelativeLayout>

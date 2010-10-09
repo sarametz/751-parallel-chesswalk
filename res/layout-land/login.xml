@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:padding="10dp">
+
+	<TextView android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_marginBottom="10dp"
+		android:background="@drawable/logo" />
+
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:padding="10dp" android:background="@drawable/box2">
+
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:paddingLeft="3dp"
+			android:paddingTop="7dp" android:textSize="16dp" android:textStyle="bold"
+			android:textColor="#323232" android:text="@string/loginTitle" />
+
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="1dp" android:layout_marginBottom="12dp"
+			android:layout_marginTop="12dp" android:background="#cccccc" />
+
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+			<Button android:id="@+id/btGuestLogin" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:paddingLeft="17dp"
+				android:paddingRight="17dp" android:text="@string/btGuestLogin" />
+
+			<TextView android:id="@+id/tvCreateAccount"
+				android:layout_width="fill_parent" android:layout_height="wrap_content"
+				android:gravity="center" android:textColorLink="#3333ff"
+				android:text="@string/tvCreateAccount" />
+
+		</LinearLayout>
+
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="1dp" android:layout_marginBottom="12dp"
+			android:layout_marginTop="12dp" android:background="#cccccc" />
+
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+			<EditText android:id="@+id/edUsername" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:layout_marginRight="3dp" android:hint="@string/edUsername"
+				android:inputType="text" />
+
+			<EditText android:id="@+id/edPassword" android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:layout_marginLeft="3dp" android:inputType="text"
+				android:password="true" android:hint="@string/edPassword" />
+
+		</LinearLayout>
+
+		<Button android:id="@+id/btLogin" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_marginTop="3dp"
+			android:paddingLeft="17dp" android:paddingRight="17dp"
+			android:layout_gravity="right" android:text="@string/btLogIn" />
+
+	</LinearLayout>
+
+</LinearLayout>
