@@ -44,7 +44,7 @@
 	<string name="gameEnded">Game ended</string>
 	<string name="gameOfferUnrated">Unrated</string>
 	<string name="waitingFor">Waiting for</string>
-	<string name="waitingForOpponent">Waiting for your oponent</string>
+	<string name="waitingForOpponent">Waiting for your opponent</string>
 	<string name="white">White</string>
 	<string name="edUsername">Username</string>
 	<string name="loginWrong">Password or username is incorrect</string>
