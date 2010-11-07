@@ -1,0 +1,373 @@
+# Translations template for PROJECT.
+# Copyright (C) 2010 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2010-11-06 23:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.0dev\n"
+
+msgctxt "about"
+msgid "About"
+msgstr ""
+
+msgctxt "appName"
+msgid "Chess Walk"
+msgstr ""
+
+msgctxt "black"
+msgid "Black"
+msgstr ""
+
+msgctxt "btChat"
+msgid "Send"
+msgstr ""
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr ""
+
+msgctxt "compVsCompToast"
+msgid "At least one of the players has to be human"
+msgstr ""
+
+msgctxt "btNewGame"
+msgid "New game"
+msgstr ""
+
+msgctxt "btNewGamePlay"
+msgid "Play"
+msgstr ""
+
+msgctxt "btUndo"
+msgid "Undo"
+msgstr ""
+
+msgctxt "btFlip"
+msgid "Flip"
+msgstr ""
+
+msgctxt "btShowChat"
+msgid "Chat"
+msgstr ""
+
+msgctxt "color"
+msgid "Color"
+msgstr ""
+
+msgctxt "computer"
+msgid "Computer"
+msgstr ""
+
+msgctxt "computerStrength"
+msgid "Computer strength: {0}s per move"
+msgstr ""
+
+msgctxt "tvCreateAccount"
+msgid "Create account"
+msgstr ""
+
+msgctxt "createGameOffer"
+msgid "Play"
+msgstr ""
+
+msgctxt "gameOffers"
+msgid "Game offers"
+msgstr ""
+
+msgctxt "btGuestLogin"
+msgid "Log in as guest"
+msgstr ""
+
+msgctxt "btLogIn"
+msgid "Log in"
+msgstr ""
+
+msgctxt "loginTitle"
+msgid "Log in to freechess.org"
+msgstr ""
+
+msgctxt "loggingIn"
+msgid "Logging in"
+msgstr ""
+
+msgctxt "loggingIn1"
+msgid "Contacting freechess.org"
+msgstr ""
+
+msgctxt "loggingIn2"
+msgid "Connected"
+msgstr ""
+
+msgctxt "loggingIn3"
+msgid "Sending username"
+msgstr ""
+
+msgctxt "loggingIn4"
+msgid "Sending password"
+msgstr ""
+
+msgctxt "loggingIn5"
+msgid "Done"
+msgstr ""
+
+msgctxt "edPassword"
+msgid "Password"
+msgstr ""
+
+msgctxt "human"
+msgid "Human"
+msgstr ""
+
+msgctxt "me"
+msgid "Me"
+msgstr ""
+
+msgctxt "newGameBlack"
+msgid "Black"
+msgstr ""
+
+msgctxt "newGameWhite"
+msgid "White"
+msgstr ""
+
+msgctxt "newGameTitle"
+msgid "New game"
+msgstr ""
+
+msgctxt "play_offline"
+msgid "Play Offline"
+msgstr ""
+
+msgctxt "play_online"
+msgid "Play Online"
+msgstr ""
+
+msgctxt "rated"
+msgid "Rated"
+msgstr ""
+
+msgctxt "gameOfferRated"
+msgid "Rated"
+msgstr ""
+
+msgctxt "secPerMove"
+msgid "sec bonus every move"
+msgstr ""
+
+msgctxt "seekUnavailable"
+msgid "This player is no longer available"
+msgstr ""
+
+msgctxt "settings"
+msgid "Settings"
+msgstr ""
+
+msgctxt "timeSettings"
+msgid "Time settings"
+msgstr ""
+
+msgctxt "gameEnded"
+msgid "Game ended"
+msgstr ""
+
+msgctxt "gameOfferUnrated"
+msgid "Unrated"
+msgstr ""
+
+msgctxt "waitingFor"
+msgid "Waiting for"
+msgstr ""
+
+msgctxt "waitingForOpponent"
+msgid "Waiting for your opponent"
+msgstr ""
+
+msgctxt "white"
+msgid "White"
+msgstr ""
+
+msgctxt "edUsername"
+msgid "Username"
+msgstr ""
+
+msgctxt "loginWrong"
+msgid "Password or username is incorrect"
+msgstr ""
+
+msgctxt "loginIoError"
+msgid "Some error happened while connecting to freechess.org"
+msgstr ""
+
+msgctxt "chessclientError"
+msgid ""
+"Some error while talking to freechess.org. Try to go back to home screen "
+"and choose Play online again"
+msgstr ""
+
+msgctxt "btColorWhite"
+msgid "White"
+msgstr ""
+
+msgctxt "btColorBlack"
+msgid "Black"
+msgstr ""
+
+msgctxt "btColorAuto"
+msgid "Auto"
+msgstr ""
+
+msgctxt "yes"
+msgid "Yes"
+msgstr ""
+
+msgctxt "no"
+msgid "No"
+msgstr ""
+
+msgctxt "customTime"
+msgid "Custom..."
+msgstr ""
+
+msgctxt "min"
+msgid "min"
+msgstr ""
+
+msgctxt "minutes"
+msgid "minutes"
+msgstr ""
+
+msgctxt "seconds"
+msgid "seconds"
+msgstr ""
+
+msgctxt "btTimeSettingsDone"
+msgid "Done"
+msgstr ""
+
+msgctxt "timeBonusPerMove"
+msgid "Time bonus per move:"
+msgstr ""
+
+msgctxt "time"
+msgid "Time:"
+msgstr ""
+
+msgctxt "ratings"
+msgid "Your ratings"
+msgstr ""
+
+msgctxt "ratingBlitz"
+msgid "Blitz:"
+msgstr ""
+
+msgctxt "ratingLightning"
+msgid "Lightning:"
+msgstr ""
+
+msgctxt "ratingStandard"
+msgid "Standard:"
+msgstr ""
+
+msgctxt "gameOfferSPerMove"
+msgid "s)"
+msgstr ""
+
+msgctxt "tvGameOffersEmpty"
+msgid "No game offers, please wait"
+msgstr ""
+
+msgctxt "conectionLost"
+msgid "Connection with freechess.org lost"
+msgstr ""
+
+msgctxt "ok"
+msgid "Ok"
+msgstr ""
+
+msgctxt "btOfferDraw"
+msgid "Draw"
+msgstr ""
+
+msgctxt "btResign"
+msgid "Resign"
+msgstr ""
+
+msgctxt "yourMove"
+msgid "Your move"
+msgstr ""
+
+msgctxt "matchEndIResigned"
+msgid "You resigned."
+msgstr ""
+
+msgctxt "matchEndHeResigned"
+msgid "{0} resignes. You win."
+msgstr ""
+
+msgctxt "matchEndStalemate"
+msgid "Game drawn by stalemate."
+msgstr ""
+
+msgctxt "matchEnd50"
+msgid "Game drawn by 50 move rule."
+msgstr ""
+
+msgctxt "matchEndAgreement"
+msgid "Game drawn by agreement."
+msgstr ""
+
+msgctxt "matchEndICheckmated"
+msgid "Checkmate! You win!"
+msgstr ""
+
+msgctxt "matchEndHeCheckmated"
+msgid "Checkmate! {0} wins."
+msgstr ""
+
+msgctxt "matchEndIDisconnected"
+msgid "You lose by disconnection."
+msgstr ""
+
+msgctxt "matchEndHeDisconnected"
+msgid "You win. {0} loses by disconnection."
+msgstr ""
+
+msgctxt "matchEndRepetition"
+msgid "Game drawn by 3 fold repetition."
+msgstr ""
+
+msgctxt "matchEndIOutOfTime"
+msgid "{0} wins. You ran out of time."
+msgstr ""
+
+msgctxt "matchEndHeOutOfTime"
+msgid "You win. {0} ran out of time."
+msgstr ""
+
+msgctxt "youOfferedDraw"
+msgid "You offered a draw."
+msgstr ""
+
+msgctxt "acceptsDraw"
+msgid "{0} accpets draw."
+msgstr ""
+
+msgctxt "delinesDraw"
+msgid "{0} declines draw."
+msgstr ""
+
+msgctxt "doYouWantToResign"
+msgid "Do you want to resign?"
+msgstr ""
+

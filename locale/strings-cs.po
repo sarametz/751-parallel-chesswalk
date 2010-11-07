@@ -1,0 +1,375 @@
+# Translations template for PROJECT.
+# Copyright (C) 2010 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2010-11-06 23:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 1.0dev\n"
+
+msgctxt "about"
+msgid "About"
+msgstr "O aplikaci"
+
+msgctxt "appName"
+msgid "Chess Walk"
+msgstr "Chess Walk"
+
+msgctxt "black"
+msgid "Black"
+msgstr "Černá"
+
+msgctxt "btChat"
+msgid "Send"
+msgstr "Odeslat"
+
+msgctxt "cancel"
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgctxt "compVsCompToast"
+msgid "At least one of the players has to be human"
+msgstr "Alespoň jeden z hráčů musí být člověk"
+
+msgctxt "btNewGame"
+msgid "New game"
+msgstr "Nová hra"
+
+msgctxt "btNewGamePlay"
+msgid "Play"
+msgstr "Hrát"
+
+msgctxt "btUndo"
+msgid "Undo"
+msgstr "Vrátit"
+
+msgctxt "btFlip"
+msgid "Flip"
+msgstr "Otočit"
+
+msgctxt "btShowChat"
+msgid "Chat"
+msgstr "Chat"
+
+msgctxt "color"
+msgid "Color"
+msgstr "Barva"
+
+msgctxt "computer"
+msgid "Computer"
+msgstr "Počítač"
+
+msgctxt "computerStrength"
+msgid "Computer strength: {0}s per move"
+msgstr "Inteligence počítače: {0}s na tah"
+
+msgctxt "tvCreateAccount"
+msgid "Create account"
+msgstr "Vytvořit účet"
+
+msgctxt "createGameOffer"
+msgid "Play"
+msgstr "Hrát"
+
+msgctxt "gameOffers"
+msgid "Game offers"
+msgstr "Nabídky ke hře"
+
+msgctxt "btGuestLogin"
+msgid "Log in as guest"
+msgstr "Přihlásit se bez hesla"
+
+msgctxt "btLogIn"
+msgid "Log in"
+msgstr "Přihlásit se"
+
+msgctxt "loginTitle"
+msgid "Log in to freechess.org"
+msgstr "Přihlásit se na freechess.org"
+
+msgctxt "loggingIn"
+msgid "Logging in"
+msgstr "Přihlašování"
+
+msgctxt "loggingIn1"
+msgid "Contacting freechess.org"
+msgstr "Spojuji se s freechess.org"
+
+msgctxt "loggingIn2"
+msgid "Connected"
+msgstr "Spojení navázáno"
+
+msgctxt "loggingIn3"
+msgid "Sending username"
+msgstr "Posílám už. jméno"
+
+msgctxt "loggingIn4"
+msgid "Sending password"
+msgstr "Posílám heslo"
+
+msgctxt "loggingIn5"
+msgid "Done"
+msgstr "Hotovo"
+
+msgctxt "edPassword"
+msgid "Password"
+msgstr "Heslo"
+
+msgctxt "human"
+msgid "Human"
+msgstr "Člověk"
+
+msgctxt "me"
+msgid "Me"
+msgstr "Já"
+
+msgctxt "newGameBlack"
+msgid "Black"
+msgstr "Černý"
+
+msgctxt "newGameWhite"
+msgid "White"
+msgstr "Bílý"
+
+msgctxt "newGameTitle"
+msgid "New game"
+msgstr "Nová hra"
+
+msgctxt "play_offline"
+msgid "Play Offline"
+msgstr "Hrát offline"
+
+msgctxt "play_online"
+msgid "Play Online"
+msgstr "Hrát online"
+
+msgctxt "rated"
+msgid "Rated"
+msgstr "Započítat hru do hodnocení"
+
+msgctxt "gameOfferRated"
+msgid "Rated"
+msgstr "Hodnoceno"
+
+msgctxt "secPerMove"
+msgid "sec bonus every move"
+msgstr "s navíc každý tah"
+
+msgctxt "seekUnavailable"
+msgid "This player is no longer available"
+msgstr "Tento hráč už není dostupný"
+
+msgctxt "settings"
+msgid "Settings"
+msgstr "Nastavení"
+
+msgctxt "timeSettings"
+msgid "Time settings"
+msgstr "Časový limit"
+
+msgctxt "gameEnded"
+msgid "Game ended"
+msgstr "Hra skončila"
+
+msgctxt "gameOfferUnrated"
+msgid "Unrated"
+msgstr "Nehodnoceno"
+
+msgctxt "waitingFor"
+msgid "Waiting for"
+msgstr "Čekám na"
+
+msgctxt "waitingForOpponent"
+msgid "Waiting for your opponent"
+msgstr "Čeká se na protihráče"
+
+msgctxt "white"
+msgid "White"
+msgstr "Bílá"
+
+msgctxt "edUsername"
+msgid "Username"
+msgstr "Jméno"
+
+msgctxt "loginWrong"
+msgid "Password or username is incorrect"
+msgstr "Špatné heslo nebo jméno"
+
+msgctxt "loginIoError"
+msgid "Some error happened while connecting to freechess.org"
+msgstr "Připojení k freechess.org se nezdařilo"
+
+msgctxt "chessclientError"
+msgid ""
+"Some error while talking to freechess.org. Try to go back to home screen "
+"and choose Play online again"
+msgstr ""
+"Chyba při komunikaci s freechess.org. Zkuste jít zpět na hlavní obrazovku"
+" a zvolte znovu Hrát online."
+
+msgctxt "btColorWhite"
+msgid "White"
+msgstr "Bílá"
+
+msgctxt "btColorBlack"
+msgid "Black"
+msgstr "Černá"
+
+msgctxt "btColorAuto"
+msgid "Auto"
+msgstr "Auto"
+
+msgctxt "yes"
+msgid "Yes"
+msgstr "Ano"
+
+msgctxt "no"
+msgid "No"
+msgstr "Ne"
+
+msgctxt "customTime"
+msgid "Custom..."
+msgstr "Jiný..."
+
+msgctxt "min"
+msgid "min"
+msgstr "min"
+
+msgctxt "minutes"
+msgid "minutes"
+msgstr "minut"
+
+msgctxt "seconds"
+msgid "seconds"
+msgstr "sekund"
+
+msgctxt "btTimeSettingsDone"
+msgid "Done"
+msgstr "Hotovo"
+
+msgctxt "timeBonusPerMove"
+msgid "Time bonus per move:"
+msgstr "Přídavek po každém tahu:"
+
+msgctxt "time"
+msgid "Time:"
+msgstr "Čas:"
+
+msgctxt "ratings"
+msgid "Your ratings"
+msgstr "Tvé hodnocení"
+
+msgctxt "ratingBlitz"
+msgid "Blitz:"
+msgstr "Rychlovky (blitz):"
+
+msgctxt "ratingLightning"
+msgid "Lightning:"
+msgstr "Bleskovky (lightning):"
+
+msgctxt "ratingStandard"
+msgid "Standard:"
+msgstr "Standartní (standard):"
+
+msgctxt "gameOfferSPerMove"
+msgid "s)"
+msgstr "s)"
+
+msgctxt "tvGameOffersEmpty"
+msgid "No game offers, please wait"
+msgstr "Žádné nábídky ke hře, čekejte prosím"
+
+msgctxt "conectionLost"
+msgid "Connection with freechess.org lost"
+msgstr "Spojenís freechess.org přerušeno"
+
+msgctxt "ok"
+msgid "Ok"
+msgstr "Ok"
+
+msgctxt "btOfferDraw"
+msgid "Draw"
+msgstr "Remíza"
+
+msgctxt "btResign"
+msgid "Resign"
+msgstr "Vzdát se"
+
+msgctxt "yourMove"
+msgid "Your move"
+msgstr "Jsi na tahu"
+
+msgctxt "matchEndIResigned"
+msgid "You resigned."
+msgstr "Vzdal jsi se."
+
+msgctxt "matchEndHeResigned"
+msgid "{0} resignes. You win."
+msgstr "{0} se vzdal, vyhráls."
+
+msgctxt "matchEndStalemate"
+msgid "Game drawn by stalemate."
+msgstr "Pat, remíza."
+
+msgctxt "matchEnd50"
+msgid "Game drawn by 50 move rule."
+msgstr "Remíza, podle pravidla 50ti tahů."
+
+msgctxt "matchEndAgreement"
+msgid "Game drawn by agreement."
+msgstr "Remíza."
+
+msgctxt "matchEndICheckmated"
+msgid "Checkmate! You win!"
+msgstr "Mat, vyhráls!"
+
+msgctxt "matchEndHeCheckmated"
+msgid "Checkmate! {0} wins."
+msgstr "Mat! {0} vyhrál."
+
+msgctxt "matchEndIDisconnected"
+msgid "You lose by disconnection."
+msgstr "Prohráls (přerušil jsi spojení se serverem)."
+
+msgctxt "matchEndHeDisconnected"
+msgid "You win. {0} loses by disconnection."
+msgstr "Vyhráls, {0} se odpojil."
+
+msgctxt "matchEndRepetition"
+msgid "Game drawn by 3 fold repetition."
+msgstr "Remíza, trojnásobné opakování stejné situace."
+
+msgctxt "matchEndIOutOfTime"
+msgid "{0} wins. You ran out of time."
+msgstr "{0} vyhrál, došel ti čas."
+
+msgctxt "matchEndHeOutOfTime"
+msgid "You win. {0} ran out of time."
+msgstr "Vyhráls, {0} přesáhl časový limit."
+
+msgctxt "youOfferedDraw"
+msgid "You offered a draw."
+msgstr "Nabídl jsi remízu."
+
+msgctxt "acceptsDraw"
+msgid "{0} accpets draw."
+msgstr "{0} přijmul remízu."
+
+msgctxt "delinesDraw"
+msgid "{0} declines draw."
+msgstr "{0} odmítnul remízu."
+
+msgctxt "doYouWantToResign"
+msgid "Do you want to resign?"
+msgstr "Chceš se vzdát?"
+
