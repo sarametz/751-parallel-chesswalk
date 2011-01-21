@@ -16,14 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  *
-*/
+ */
 
 package cz.hejl.chesswalk;
 
 @SuppressWarnings("serial")
 public class LoginException extends Exception {
-	public LoginException(){}
-	public LoginException(String message){
-		super(message);
-	}
+    public LoginException() {
+    }
+
+    public LoginException(String message) {
+        super(message);
+    }
 }

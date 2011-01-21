@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  *
-*/
+ */
 
 package cz.hejl.chesswalk;
 
@@ -26,44 +26,43 @@ import cz.hejl.chesswalk.FicsParser.Rating;
 import cz.hejl.chesswalk.OnlineGameActivity.MatchEnd;
 
 public class Listeners {
-	
-	public static interface GameOffersListener {
-		public void onConnException();
-		
-		public void onMatchStarted(OnlineGameState onlineGameState);
-				
-		public void onSeekUnavailable();
-		
-		public void onUpdate(ArrayList<GameOffer> games);
-	}
-	
-	public interface MoveListener {
-		public void pieceMoved(Move move);
-	}
-	
-	public interface OnlineGameListener {
-		public void onChat(String message);
-		
-		public void onConnException();
 
-		public void onDrawOffer();
+    public static interface GameOffersListener {
+        public void onConnException();
 
-		public void onDrawAnswer(int answer);
+        public void onMatchStarted(OnlineGameState onlineGameState);
 
-		public void onMatchEnd(MatchEnd matchEnd);
-		
-		public void onOnlineMove(OnlineGameState onlineGameState);
+        public void onSeekUnavailable();
 
-		public void onRatingChange(int[] ratings);
-	}
+        public void onUpdate(ArrayList<GameOffer> games);
+    }
 
-	
-	public static interface SeekListener {
-		public void onConnException();
-		
-		public void onMatchStarted(OnlineGameState onlineGameState);
-		
-		public void onRating(Rating rating);
-	}
-	
+    public interface MoveListener {
+        public void pieceMoved(Move move);
+    }
+
+    public interface OnlineGameListener {
+        public void onChat(String message);
+
+        public void onConnException();
+
+        public void onDrawOffer();
+
+        public void onDrawAnswer(int answer);
+
+        public void onMatchEnd(MatchEnd matchEnd);
+
+        public void onOnlineMove(OnlineGameState onlineGameState);
+
+        public void onRatingChange(int[] ratings);
+    }
+
+    public static interface SeekListener {
+        public void onConnException();
+
+        public void onMatchStarted(OnlineGameState onlineGameState);
+
+        public void onRating(Rating rating);
+    }
+
 }
