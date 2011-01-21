@@ -47,14 +47,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_menu);
 		getWindow().setBackgroundDrawableResource(R.drawable.background);
-		CrashReporter.getInstance().init(this);
-		Thread sendCrashThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				CrashReporter.getInstance().checkErrorAndSend(MainActivity.this);
-			}
-		});
-		sendCrashThread.start();
 
 		// set up button listeners
 		Button btPlayOnline = (Button) findViewById(R.id.btPlayOnline);
