@@ -36,6 +36,7 @@ public class FicsParser {
     private Matcher ratingChange;
     private Matcher ratingLine;
     private Matcher seekUnavailable;
+    private Matcher resumeUnavailable;
     private Matcher soughtLine;
     private Matcher soughtEnd;
     private Matcher style12;
@@ -56,6 +57,9 @@ public class FicsParser {
         ratingChange = Pattern.compile("rating adjustment.*?(\\d+).*?(\\d+)")
                 .matcher("");
         seekUnavailable = Pattern.compile("That seek is not available")
+                .matcher("");
+        resumeUnavailable = Pattern.compile(
+                "Your opponents are either not logged in or not available.")
                 .matcher("");
         // 1 - id
         // 2 - rating
@@ -213,6 +217,15 @@ public class FicsParser {
             return false;
     }
 
+    // -------------------------------------------------------------------------------------------------------
+
+    public boolean parseResumeUnavailable(String line) {
+        resumeUnavailable.reset(line);
+        if (resumeUnavailable.find())
+            return true;
+        else
+            return false;
+    }
     // -------------------------------------------------------------------------------------------------------
 
     public GameOffer parseSoughtLine(String line) {

@@ -53,9 +53,10 @@ public class ChessClient {
     private static final int CHAT_MESSAGE = 6;
     private static final int MATCH_END = 7;
     private static final int SEEK_UNAVAILABLE = 8;
-    private static final int RATING_CHANGE = 9;
-    private static final int CREATING_MATCH = 10;
-    private static final int RATING = 11;
+    private static final int RESUME_UNAVAILABLE = 9;
+    private static final int RATING_CHANGE = 10;
+    private static final int CREATING_MATCH = 11;
+    private static final int RATING = 12;
     private static ChessClient instance;
 
     private AsyncTask<Void, Object, Integer> ficsListenerTask;
@@ -300,6 +301,12 @@ public class ChessClient {
 
     // -------------------------------------------------------------------------------------------------------
 
+    public void resumeGame() {
+        write("resume\n");
+    }
+    
+    // -------------------------------------------------------------------------------------------------------
+
     public void setSeekListener(SeekListener l) {
         seekListener = l;
         if (ficsListenerTask == null)
@@ -364,6 +371,8 @@ public class ChessClient {
                             publishProgress(CREATING_MATCH, o);
                         } else if ((o = (Object) ficsParser.parseStyle12(line)) != null) {
                             publishProgress(MATCH_STARTED, o);
+                        } else if (ficsParser.parseResumeUnavailable(line)) {
+                                publishProgress(RESUME_UNAVAILABLE);
                         } else if ((o = (Object) ficsParser
                                 .parseRatingLine(line)) != null) {
                             publishProgress(RATING, o);
@@ -443,6 +452,9 @@ public class ChessClient {
                     seekListener.onMatchStarted((OnlineGameState) o[1]);
                 else if (gameOffersListener != null)
                     gameOffersListener.onMatchStarted((OnlineGameState) o[1]);
+            } else if (what == RESUME_UNAVAILABLE) {
+                if (seekListener != null)
+                    seekListener.onResumeUnavailable();                
             } else if (what == ONLINE_MOVE) {
                 onlineGameListener.onOnlineMove(onlineGameState);
             } else if (what == DRAW_OFFER) {

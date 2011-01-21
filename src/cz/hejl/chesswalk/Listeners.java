@@ -62,6 +62,8 @@ public class Listeners {
 
         public void onMatchStarted(OnlineGameState onlineGameState);
 
+        public void onResumeUnavailable();
+
         public void onRating(Rating rating);
     }
 

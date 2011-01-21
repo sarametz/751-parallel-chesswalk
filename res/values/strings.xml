@@ -91,4 +91,7 @@
 	<string name="acceptsDraw">{0} accpets draw.</string>
 	<string name="delinesDraw">{0} declines draw.</string>
 	<string name="doYouWantToResign">Do you want to resign?</string>
+<string name="resumeGame">Resume game</string>
+<string name="resuming">Attempting to resume a game</string>
+<string name="resumeUnavailable">All your opponents are offline or unavailable</string>
 </resources>

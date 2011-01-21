@@ -56,6 +56,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 import cz.hejl.chesswalk.FicsParser.Rating;
 import cz.hejl.chesswalk.Listeners.SeekListener;
@@ -66,8 +67,13 @@ public class LobbyActivity extends Activity implements SeekListener,
     private static final int COLOR_WHITE = 0;
     private static final int COLOR_AUTO = 1;
     private static final int COLOR_BLACK = 2;
+
     private static final int DIALOG_SEEKING = 0;
+    private static final int DIALOG_RESUMING = 1;
+
     private static final int MENU_GAME_OFFERS = 0;
+    private static final int MENU_RESUME_GAME = 1;
+
     private static final int REQUEST_TIME_SETTINGS = 0;
     private static final int REQUEST_ONLINE_GAME = 1;
     private static final int REQUEST_GAME_OFFERS = 2;
@@ -255,8 +261,9 @@ public class LobbyActivity extends Activity implements SeekListener,
 
     @Override
     protected Dialog onCreateDialog(int dialogId) {
+        ProgressDialog progressDialog;
         if (dialogId == DIALOG_SEEKING) {
-            ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog = new ProgressDialog(this);
             progressDialog.setMessage(getText(R.string.waitingForOpponent));
             progressDialog.setCancelable(true);
             progressDialog.setOnCancelListener(new OnCancelListener() {
@@ -268,6 +275,22 @@ public class LobbyActivity extends Activity implements SeekListener,
             });
 
             return progressDialog;
+
+        } else if (dialogId == DIALOG_RESUMING) {
+
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage(getText(R.string.resuming));
+            progressDialog.setCancelable(true);
+            progressDialog.setOnCancelListener(new OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    chessClient.cancelSeek();
+                    removeDialog(DIALOG_RESUMING);
+                }
+            });
+
+            return progressDialog;
+
         } else
             return null;
     }
@@ -278,6 +301,9 @@ public class LobbyActivity extends Activity implements SeekListener,
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, MENU_GAME_OFFERS, Menu.NONE,
                 getString(R.string.gameOffers)).setIcon(
+                R.drawable.menu_game_offers);
+        menu.add(Menu.NONE, MENU_RESUME_GAME, Menu.NONE,
+                getString(R.string.resumeGame)).setIcon(
                 R.drawable.menu_game_offers);
         return true;
     }
@@ -309,6 +335,19 @@ public class LobbyActivity extends Activity implements SeekListener,
         Log.d(Common.TAG, "  Lobby.onMatchStarted() finished");
     }
 
+    @Override
+    public void onResumeUnavailable() {
+
+        try {
+            removeDialog(DIALOG_RESUMING);
+        } catch (IllegalArgumentException e) {
+            // dialog was not previously shown
+        }
+
+        Toast.makeText(this, R.string.resumeUnavailable, Toast.LENGTH_SHORT)
+        .show();
+    }
+
     // -------------------------------------------------------------------------------------------------------
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -317,6 +356,10 @@ public class LobbyActivity extends Activity implements SeekListener,
             chessClient.removeSeekListener();
             startActivityForResult(new Intent(this, GameOffersActivity.class),
                     REQUEST_GAME_OFFERS);
+            return true;
+        case MENU_RESUME_GAME:
+            showDialog(DIALOG_RESUMING);
+            chessClient.resumeGame();
             return true;
         }
         return false;
