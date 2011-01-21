@@ -362,6 +362,10 @@ public class OnlineGameActivity extends Activity implements MoveListener,
         startTime = SystemClock.uptimeMillis();
 
         if (onlineGameState.moveToBeMade == 1 && onlineGameState.whiteToMove) {
+            // First move - set up board...
+            chessBoard.setBoard(onlineGameState.getBoard());
+        } else if(!chessBoard.hasBoard()) {
+            // Must be resuming - set up board...
             chessBoard.setBoard(onlineGameState.getBoard());
         } else if (onlineGameState.sideToMove == 1) {
             if (lastOnlineGameState.moveToBeMade != onlineGameState.moveToBeMade

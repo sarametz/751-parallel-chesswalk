@@ -629,6 +629,12 @@ public class ChessBoardView extends SurfaceView implements
 
     // -------------------------------------------------------------------------------------------------------
 
+    public boolean hasBoard() {
+        return this.board!=null;
+    }
+    
+    // -------------------------------------------------------------------------------------------------------
+
     public void setColorToMove(int color) {
         if (color == 1) {
             blackEnabled = false;

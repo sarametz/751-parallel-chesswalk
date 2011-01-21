@@ -328,6 +328,11 @@ public class LobbyActivity extends Activity implements SeekListener,
         } catch (IllegalArgumentException e) {
             // dialog was not previously shown
         }
+        try {
+            removeDialog(DIALOG_RESUMING);
+        } catch (IllegalArgumentException e) {
+            // dialog was not previously shown
+        }
         chessClient.removeSeekListener();
         Intent intent = new Intent(this, OnlineGameActivity.class);
         intent.putExtra("onlineGameState", onlineGameState);
