@@ -155,7 +155,7 @@ public class GameOffersActivity extends Activity implements GameOffersListener {
 
     @Override
     public void onSeekUnavailable() {
-        Log.d(Common.TAG, "GameOffers.onSeekUnavailabe");
+        Log.d(Common.TAG, "GameOffers.onSeekUnavailable");
         try {
             removeDialog(DIALOG_WAITING);
         } catch (IllegalArgumentException e) {
@@ -165,6 +165,17 @@ public class GameOffersActivity extends Activity implements GameOffersListener {
                 .show();
     }
 
+    @Override
+    public void onTooManyAdjourned() {
+        Log.d(Common.TAG, "GameOffers.onTooManyAdjourned");
+        try {
+            removeDialog(DIALOG_WAITING);
+        } catch (IllegalArgumentException e) {
+            // dialog was not previously shown
+        }
+        Toast.makeText(this, R.string.tooManyAdjourned, Toast.LENGTH_SHORT)
+                .show();
+    }
     // -------------------------------------------------------------------------------------------------------
 
     @Override

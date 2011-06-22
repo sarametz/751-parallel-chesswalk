@@ -393,8 +393,12 @@ public class ChessClient {
                         if (ficsParser.parseSoughtEnd(line) > 0) {
                             publishProgress(UPDATE_SOUGHT);
                             continue;
-                        } else
-                            onlineGameState = ficsParser.parseStyle12(line);
+                        } else if (ficsParser.parseTooManyAdjourned(line)) {
+                            publishProgress(TOO_MANY_ADJOURNED);
+                            continue;
+                        }
+
+                        onlineGameState = ficsParser.parseStyle12(line);
 
                         if (onlineGameState != null) {
                             publishProgress(MATCH_STARTED, onlineGameState);
@@ -457,10 +461,12 @@ public class ChessClient {
                     gameOffersListener.onMatchStarted((OnlineGameState) o[1]);
             } else if (what == RESUME_UNAVAILABLE) {
                 if (seekListener != null)
-                    seekListener.onResumeUnavailable();                
+                    seekListener.onResumeUnavailable();
             } else if (what == TOO_MANY_ADJOURNED) {
                 if (seekListener != null)
                     seekListener.onTooManyAdjourned();                
+                else if(gameOffersListener != null)
+                    gameOffersListener.onTooManyAdjourned();
             } else if (what == ONLINE_MOVE) {
                 onlineGameListener.onOnlineMove(onlineGameState);
             } else if (what == DRAW_OFFER) {

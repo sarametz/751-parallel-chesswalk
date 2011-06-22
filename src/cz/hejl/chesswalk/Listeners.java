@@ -32,6 +32,7 @@ public class Listeners {
 
         public void onMatchStarted(OnlineGameState onlineGameState);
 
+        public void onTooManyAdjourned();
         public void onSeekUnavailable();
 
         public void onUpdate(ArrayList<GameOffer> games);
