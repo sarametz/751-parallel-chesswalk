@@ -94,4 +94,5 @@
 <string name="resumeGame">Resume game</string>
 <string name="resuming">Attempting to resume a game</string>
 <string name="resumeUnavailable">All your opponents are offline or unavailable</string>
+<string name="tooManyAdjourned">Too many adjourned games. Resume one first.</string>
 </resources>

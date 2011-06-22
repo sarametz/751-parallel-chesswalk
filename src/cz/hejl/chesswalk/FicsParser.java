@@ -37,6 +37,7 @@ public class FicsParser {
     private Matcher ratingLine;
     private Matcher seekUnavailable;
     private Matcher resumeUnavailable;
+    private Matcher tooManyAdjourned;
     private Matcher soughtLine;
     private Matcher soughtEnd;
     private Matcher style12;
@@ -60,6 +61,9 @@ public class FicsParser {
                 .matcher("");
         resumeUnavailable = Pattern.compile(
                 "Your opponents are either not logged in or not available.")
+                .matcher("");
+        tooManyAdjourned = Pattern.compile(
+                "You may not start a new match if you have more than [0-9]* adjourned games.")
                 .matcher("");
         // 1 - id
         // 2 - rating
@@ -226,6 +230,15 @@ public class FicsParser {
         else
             return false;
     }
+
+    public boolean parseTooManyAdjourned(String line) {
+        tooManyAdjourned.reset(line);
+        if (tooManyAdjourned.find())
+            return true;
+        else
+            return false;
+    }
+
     // -------------------------------------------------------------------------------------------------------
 
     public GameOffer parseSoughtLine(String line) {

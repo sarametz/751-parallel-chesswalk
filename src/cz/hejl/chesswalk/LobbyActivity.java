@@ -353,6 +353,18 @@ public class LobbyActivity extends Activity implements SeekListener,
         .show();
     }
 
+    @Override
+    public void onTooManyAdjourned() {
+
+        try {
+            removeDialog(DIALOG_SEEKING);
+        } catch (IllegalArgumentException e) {
+            // dialog was not previously shown
+        }
+
+        Toast.makeText(this, R.string.tooManyAdjourned, Toast.LENGTH_SHORT)
+        .show();
+    }
     // -------------------------------------------------------------------------------------------------------
 
     public boolean onOptionsItemSelected(MenuItem item) {
