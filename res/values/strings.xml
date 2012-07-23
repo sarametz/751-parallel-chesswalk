@@ -73,6 +73,7 @@
 	<string name="conectionLost">Connection with freechess.org lost</string>
 	<string name="ok">Ok</string>
 	<string name="btOfferDraw">Draw</string>
+	<string name="btRequestAbort">Abort</string>
 	<string name="btResign">Resign</string>
 	<string name="yourMove">Your move</string>
 	<string name="matchEndIResigned">You resigned.</string>
@@ -88,8 +89,11 @@
 	<string name="matchEndIOutOfTime">{0} wins. You ran out of time.</string>
 	<string name="matchEndHeOutOfTime">You win. {0} ran out of time.</string>
 	<string name="youOfferedDraw">You offered a draw.</string>
-	<string name="acceptsDraw">{0} accpets draw.</string>
-	<string name="delinesDraw">{0} declines draw.</string>
+	<string name="acceptsDraw">{0} accepts the draw.</string>
+	<string name="declinesDraw">{0} declines the draw.</string>
+	<string name="youRequestedAbort">You requested an abort.</string>
+	<string name="acceptsAbort">{0} accepts the abort.</string>
+	<string name="declinesAbort">{0} declines to abort.</string>
 	<string name="doYouWantToResign">Do you want to resign?</string>
 <string name="resumeGame">Resume game</string>
 <string name="resuming">Attempting to resume a game</string>

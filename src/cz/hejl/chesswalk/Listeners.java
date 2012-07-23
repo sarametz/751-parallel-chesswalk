@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2012 Ciaran Gultnieks, ciaran@ciarang.com
  * Copyright (C) 2010 František Hejl
  *
  * This file is part of Chesswalk.
@@ -50,6 +51,10 @@ public class Listeners {
         public void onDrawOffer();
 
         public void onDrawAnswer(int answer);
+
+        public void onAbortOffer();
+
+        public void onAbortAnswer(int answer);
 
         public void onMatchEnd(MatchEnd matchEnd);
 

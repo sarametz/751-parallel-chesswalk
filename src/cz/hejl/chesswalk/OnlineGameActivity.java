@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2012 Ciaran Gultnieks, ciaran@ciarang.com
  * Copyright (C) 2010 František Hejl
  *
  * This file is part of Chesswalk.
@@ -78,6 +79,7 @@ public class OnlineGameActivity extends Activity implements MoveListener,
     private long startTime;
     private Button btShowChat;
     private Button btOfferDraw;
+    private Button btRequestAbort;
     private Button btResign;
     private ChatAdapter chatAdapter;
     private ChatDialog chatDialog;
@@ -108,6 +110,13 @@ public class OnlineGameActivity extends Activity implements MoveListener,
     private void draw() {
         chessClient.write("draw\n");
         showMessage(getString(R.string.youOfferedDraw));
+    }
+
+    // -------------------------------------------------------------------------------------------------------
+
+    private void abort() {
+        chessClient.write("abort\n");
+        showMessage(getString(R.string.youRequestedAbort));
     }
 
     // -------------------------------------------------------------------------------------------------------
@@ -155,6 +164,8 @@ public class OnlineGameActivity extends Activity implements MoveListener,
             showDialog(DIALOG_CHAT);
         } else if (v.getId() == R.id.btOfferDraw) {
             draw();
+        } else if (v.getId() == R.id.btRequestAbort) {
+            abort();
         } else if (v.getId() == R.id.btResign) {
             resign();
         }
@@ -220,6 +231,8 @@ public class OnlineGameActivity extends Activity implements MoveListener,
         btShowChat.setOnClickListener(this);
         btOfferDraw = (Button) findViewById(R.id.btOfferDraw);
         btOfferDraw.setOnClickListener(this);
+        btRequestAbort = (Button) findViewById(R.id.btRequestAbort);
+        btRequestAbort.setOnClickListener(this);
         btResign = (Button) findViewById(R.id.btResign);
         btResign.setOnClickListener(this);
 
@@ -262,7 +275,7 @@ public class OnlineGameActivity extends Activity implements MoveListener,
                     getString(R.string.acceptsDraw), opponentName));
         else if (answer == FicsParser.DECLINE)
             tvInfo.setText(MessageFormat.format(
-                    getString(R.string.delinesDraw), opponentName));
+                    getString(R.string.declinesDraw), opponentName));
     }
 
     // -------------------------------------------------------------------------------------------------------
@@ -274,6 +287,36 @@ public class OnlineGameActivity extends Activity implements MoveListener,
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         chessClient.write("accept\n");
+                    }
+                }).setNegativeButton("Decline",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        chessClient.write("decline\n");
+                    }
+                }).show();
+    }
+
+    // -------------------------------------------------------------------------------------------------------
+
+    public void onAbortAnswer(int answer) {
+        if (answer == FicsParser.ACCEPT)
+            tvInfo.setText(MessageFormat.format(
+                    getString(R.string.acceptsAbort), opponentName));
+        else if (answer == FicsParser.DECLINE)
+            tvInfo.setText(MessageFormat.format(
+                    getString(R.string.declinesAbort), opponentName));
+    }
+
+    // -------------------------------------------------------------------------------------------------------
+
+    public void onAbortOffer() {
+        new AlertDialog.Builder(this).setMessage(
+                opponentName + " wants to abort.").setPositiveButton(
+                "Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        chessClient.write("abort\n");
                     }
                 }).setNegativeButton("Decline",
                 new DialogInterface.OnClickListener() {
@@ -349,6 +392,7 @@ public class OnlineGameActivity extends Activity implements MoveListener,
         disableChessboard();
         // disable buttons
         btOfferDraw.setEnabled(false);
+        btRequestAbort.setEnabled(false);
         btResign.setEnabled(false);
         // show message
         showMessage(matchEnd.getMessage(flipped, this));

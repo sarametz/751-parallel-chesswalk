@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2012 Ciaran Gultnieks, ciaran@ciarang.com
  * Copyright (C) 2010 František Hejl
  *
  * This file is part of Chesswalk.
@@ -32,6 +33,8 @@ public class FicsParser {
     private Matcher creatingMatch;
     private Matcher drawAnswer;
     private Matcher drawOffer;
+    private Matcher abortAnswer;
+    private Matcher abortOffer;
     private Matcher matchEnd;
     private Matcher ratingChange;
     private Matcher ratingLine;
@@ -50,6 +53,9 @@ public class FicsParser {
         drawAnswer = Pattern.compile("(accepts|declines) the draw request")
                 .matcher("");
         drawOffer = Pattern.compile("\\w+ offers you a draw").matcher("");
+        abortAnswer = Pattern.compile("(accepts|declines) the abort request")
+                .matcher("");
+        abortOffer = Pattern.compile("\\w+ would like to abort").matcher("");
         ratingLine = Pattern.compile("(Blitz|Standard|Lightning)\\s+([0-9+]+)")
                 .matcher("");
         matchEnd = Pattern
@@ -175,6 +181,28 @@ public class FicsParser {
             return false;
     }
 
+    // -------------------------------------------------------------------------------------------------------
+
+    public int parseAbortAnswer(String line) {
+        abortAnswer.reset(line);
+        if (abortAnswer.find())
+            if (abortAnswer.group(1).equals("accept"))
+                return ACCEPT;
+            else
+                return DECLINE;
+        else
+            return NULL;
+    }
+
+    // -------------------------------------------------------------------------------------------------------
+
+    public boolean parseAbortOffer(String line) {
+        abortOffer.reset(line);
+        if (abortOffer.find())
+            return true;
+        else
+            return false;
+    }
     // -------------------------------------------------------------------------------------------------------
 
     public OnlineGameActivity.MatchEnd parseMatchEnd(String line) {

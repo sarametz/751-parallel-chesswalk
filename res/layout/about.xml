@@ -9,7 +9,7 @@
 		android:text="http://gitorious.org/chesswalk" />
 
 	<TextView android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:layout_below="@id/tvAboutInfo"
+		android:layout_height="wrap_content"
 		android:layout_marginTop="25px" android:textSize="18px"
 		android:text="Chess Walk is Free Software released under the GNU GPLv3 license." />
 

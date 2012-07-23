@@ -91,6 +91,6 @@
 	<string name="matchEndHeOutOfTime">Vyhráls, {0} přesáhl časový limit.</string>
 	<string name="youOfferedDraw">Nabídl jsi remízu.</string>
 	<string name="acceptsDraw">{0} přijmul remízu.</string>
-	<string name="delinesDraw">{0} odmítnul remízu.</string>
+	<string name="declinesDraw">{0} odmítnul remízu.</string>
 	<string name="doYouWantToResign">Chceš se vzdát?</string>
 </resources>

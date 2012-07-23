@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2012 Ciaran Gultnieks, ciaran@ciarang.com
  * Copyright (C) 2010 František Hejl
  *
  * This file is part of Chesswalk.
@@ -58,6 +59,8 @@ public class ChessClient {
     private static final int CREATING_MATCH = 11;
     private static final int RATING = 12;
     private static final int TOO_MANY_ADJOURNED = 13;
+    private static final int ABORT_OFFER = 14;
+    private static final int ABORT_ANSWER = 15;
     private static ChessClient instance;
 
     private AsyncTask<Void, Object, Integer> ficsListenerTask;
@@ -255,6 +258,12 @@ public class ChessClient {
 
     // -------------------------------------------------------------------------------------------------------
 
+    public void abort() {
+        write("abort\n");
+    }
+
+    // -------------------------------------------------------------------------------------------------------
+
     public void say(String message) {
         write("say " + message + "\n");
     }
@@ -417,10 +426,16 @@ public class ChessClient {
                             publishProgress(ONLINE_MOVE);
                         } else if (ficsParser.parseDrawOffer(line)) {
                             publishProgress(DRAW_OFFER);
+                        } else if (ficsParser.parseAbortOffer(line)) {
+                            publishProgress(ABORT_OFFER);
                         } else if ((Integer) (o = (Object) ficsParser
                                 .parseDrawAnswer(line)) != FicsParser.NULL) {
                             int answer = (Integer) o;
                             publishProgress(DRAW_ANSWER, answer);
+                        } else if ((Integer) (o = (Object) ficsParser
+                                .parseAbortAnswer(line)) != FicsParser.NULL) {
+                            int answer = (Integer) o;
+                            publishProgress(ABORT_ANSWER, answer);
                         } else if ((o = (Object) ficsParser.parseMatchEnd(line)) != null) {
                             publishProgress(MATCH_END, o);
                         } else if ((o = ficsParser.parseChat(line)) != null) {
@@ -474,6 +489,11 @@ public class ChessClient {
             } else if (what == DRAW_ANSWER) {
                 int answer = (Integer) o[1];
                 onlineGameListener.onDrawAnswer(answer);
+            } else if (what == ABORT_OFFER) {
+                onlineGameListener.onAbortOffer();
+            } else if (what == ABORT_ANSWER) {
+                int answer = (Integer) o[1];
+                onlineGameListener.onAbortAnswer(answer);
             } else if (what == CHAT_MESSAGE) {
                 onlineGameListener.onChat((String) o[1]);
             } else if (what == MATCH_END) {
