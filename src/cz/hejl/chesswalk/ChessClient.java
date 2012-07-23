@@ -297,7 +297,7 @@ public class ChessClient {
     public void seek(int minutes, int seconds, String colorSymbol,
             String ratedSymbol) {
         write("seek " + minutes + " " + seconds + " " + colorSymbol + " "
-                + ratedSymbol + " \n");
+                + ratedSymbol + " formula\n");
     }
 
     // -------------------------------------------------------------------------------------------------------
