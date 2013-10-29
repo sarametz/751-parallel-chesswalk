@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="color">
+    <item>خودکار</item>
+    <item>سفید</item>
+    <item>سیاه</item>
+  </string-array>
+  <string-array name="rated">
+    <item>رتبه‌دهی‌شده</item>
+    <item>رتبه‌دهی‌نشده</item>
+  </string-array>
+</resources>
