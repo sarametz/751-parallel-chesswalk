@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="cancel">Abrechen</string>
+  <string name="btNewGame">Neues Spiel</string>
+  <string name="play_online">Online Spielen</string>
+</resources>

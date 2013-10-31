@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="btNewGame">Новая игра</string>
+  <string name="color">Цвет</string>
+  <string name="loggingIn4">Отсылка пароля</string>
+  <string name="newGameBlack">Чёрные</string>
+  <string name="newGameTitle">Новая игра</string>
+  <string name="edUsername">Имя</string>
+  <string name="loginIoError">Ошибка при подключении к
+		freechess.org</string>
+  <string name="btColorWhite">Белые</string>
+  <string name="ratings">Ваш рейтинг</string>
+  <string name="gameOfferSPerMove">с)</string>
+  <string name="conectionLost">Соединение с freechess.org оборвалось</string>
+  <string name="btOfferDraw">Ничья</string>
+  <string name="matchEndAgreement">Матч закончился ничьёй.</string>
+  <string name="matchEndIOutOfTime">{0} побеждает. У вас закончилось время.</string>
+  <string name="youRequestedAbort">Вы запрашиваете повтор хода.</string>
+  <string name="declinesAbort">{0} отказывается.</string>
+  <string name="tooManyAdjourned">Слишком много игр. Продолжите одну из них.</string>
+</resources>
