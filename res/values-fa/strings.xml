@@ -15,6 +15,7 @@
   <string name="computer">رایانه</string>
   <string name="computerStrength">قدرت رایانه: {0} بر هر حرکت</string>
   <string name="tvCreateAccount">ساخت حساب</string>
+  <string name="createGameOffer">بازی‌کردن</string>
   <string name="gameOffers">پیشنهادهای بازی</string>
   <string name="btGuestLogin">ورود به‌عنوان مهمان</string>
   <string name="btLogIn">ورود</string>
@@ -62,6 +63,7 @@
   <string name="time">زمان:</string>
   <string name="ratings">رتبه‌بندی شما</string>
   <string name="ratingBlitz">حملهٔ رعد آسا:</string>
+  <string name="ratingLightning">نوردهی:</string>
   <string name="ratingStandard">استاندارد:</string>
   <string name="gameOfferSPerMove">s)</string>
   <string name="tvGameOffersEmpty">هیچ پیشنهاد بازی، لطفاً منتظر بمانید</string>
