@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="color">
+    <item>Auto</item>
+    <item>Bianco</item>
+    <item>Nero</item>
+  </string-array>
+  <string-array name="rated">
+    <item>Classificata</item>
+    <item>Non classificata</item>
+  </string-array>
+</resources>
