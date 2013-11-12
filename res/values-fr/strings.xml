@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="about">A propos</string>
+  <string name="btChat">Envoyer</string>
+  <string name="cancel">Annuler</string>
+  <string name="compVsCompToast">Au moins un des joueurs doit être humain</string>
+  <string name="btNewGamePlay">Jouer</string>
+  <string name="btUndo">Annuler</string>
+  <string name="btShowChat">Chat</string>
+  <string name="computer">Ordinateur</string>
+  <string name="tvCreateAccount">Créer un compte</string>
+  <string name="btGuestLogin">Se connecter en tant qu\'invité</string>
+  <string name="btLogIn">Se connecter</string>
+  <string name="loginTitle">Se connecter sur freechess.org</string>
+  <string name="loggingIn">Connexion</string>
+  <string name="loggingIn2">Connecté</string>
+  <string name="loggingIn3">Envoi du pseudonyme</string>
+  <string name="loggingIn4">Envoi du mot de passe</string>
+  <string name="loggingIn5">Fait</string>
+  <string name="edPassword">Mot de passe</string>
+  <string name="human">Humain</string>
+  <string name="me">Moi</string>
+  <string name="play_offline">Jouer hors-ligne</string>
+  <string name="play_online">Jouer en ligne</string>
+  <string name="settings">Paramètres</string>
+  <string name="waitingFor">En attente de</string>
+  <string name="loginWrong">Mot de passe ou pseudonyme incorrect</string>
+  <string name="loginIoError">Erreur lors de la connection à freechness.org</string>
+  <string name="yes">Oui</string>
+  <string name="no">Non</string>
+  <string name="customTime">Paramétrer</string>
+  <string name="minutes">minutes</string>
+  <string name="seconds">secondes</string>
+  <string name="time">Temps:</string>
+  <string name="ratings">Vos évaluations</string>
+  <string name="conectionLost">Connexion avec freechness.org perdue</string>
+  <string name="ok">Ok</string>
+  <string name="btOfferDraw">Dessiner</string>
+  <string name="btRequestAbort">Annuler</string>
+  <string name="matchEndIDisconnected">Vous avez perdu (déconnecté).</string>
+  <string name="resumeGame">Continuer</string>
+</resources>
