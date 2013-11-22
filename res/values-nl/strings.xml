@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="about">Over</string>
+  <string name="cancel">Annuleren</string>
+  <string name="compVsCompToast">Minstens een speler moet menselijk zijn</string>
+  <string name="btNewGame">Nieuw spel</string>
+  <string name="color">Kleur</string>
+  <string name="computer">Computer</string>
+  <string name="loggingIn1">Contacteren van freechess.org</string>
+  <string name="newGameTitle">Nieuw spel</string>
+  <string name="timeSettings">Tijdsinstellingen</string>
+  <string name="edUsername">Gebruikersnaam</string>
+  <string name="loginIoError">Een error is opgetreden tijdens het verbinden met
+	freechess.org</string>
+  <string name="btColorWhite">Wit</string>
+  <string name="ratings">Uw standen</string>
+  <string name="ratingStandard">Standaard:</string>
+  <string name="matchEndAgreement">Gelijkspel bij overeenstemming.</string>
+  <string name="matchEndHeOutOfTime">U wint. {0} was over tijd.</string>
+  <string name="declinesAbort">{0} heeft besloten af te breken.</string>
+</resources>
