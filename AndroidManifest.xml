@@ -13,12 +13,9 @@
 		<activity android:name=".About" />
 		<activity android:name=".GameOffersActivity" />
 		<activity android:name=".LoginActivity" />
-		<activity android:name=".LobbyActivity"
-			android:screenOrientation="portrait" />
-		<activity android:name=".OnlineGameActivity"
-			android:screenOrientation="portrait" />
-		<activity android:name=".OfflineGame"
-			android:screenOrientation="portrait" />
+		<activity android:name=".LobbyActivity"/>
+		<activity android:name=".OnlineGameActivity"/>
+		<activity android:name=".OfflineGame"/>
 		<activity android:name=".Settings" />
 		<activity android:name=".NewGame" />
 		<activity android:name=".TimeSettingsActivity" android:theme="@android:style/Theme.Dialog" />
