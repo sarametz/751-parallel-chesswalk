@@ -3,5 +3,6 @@
   <string-array name="color">
     <item>Branco</item>
     <item>Negro</item>
+    <item>Negro</item>
   </string-array>
 </resources>
