@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="color">
+    <item>자동</item>
+    <item>화이트</item>
+    <item>블랙</item>
+  </string-array>
+  <string-array name="rated">
+    <item>평가를 받음</item>
+    <item>등급이 지정되지 않음</item>
+  </string-array>
+</resources>

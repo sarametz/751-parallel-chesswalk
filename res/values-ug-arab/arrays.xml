@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="color">
+    <item>ئاپتوماتىك</item>
+    <item>ئاق</item>
+    <item>قارا</item>
+  </string-array>
+  <string-array name="rated">
+    <item>باھالانغان</item>
+    <item>باھالانمىغان</item>
+  </string-array>
+</resources>

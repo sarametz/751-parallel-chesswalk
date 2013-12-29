@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="about">Sobre</string>
+  <string name="black">Negro</string>
+  <string name="cancel">Cancelar</string>
+  <string name="color">Cor</string>
+  <string name="computer">Computador</string>
+  <string name="tvCreateAccount">Crear conta</string>
+  <string name="loggingIn1">Conectando con freechess.org</string>
+  <string name="loggingIn2">Conectado</string>
+  <string name="loggingIn3">Enviando nome de usuario</string>
+  <string name="loggingIn4">Enviando contrasinal</string>
+  <string name="edPassword">Contrasinal</string>
+  <string name="newGameWhite">Branco</string>
+  <string name="settings">Preferencias</string>
+  <string name="timeSettings">Preferencias da hora</string>
+  <string name="white">Branco</string>
+  <string name="edUsername">Nome de usuario</string>
+  <string name="btColorWhite">Branco</string>
+  <string name="btColorBlack">Negro</string>
+  <string name="yes">Si</string>
+  <string name="no">Non</string>
+  <string name="minutes">minutos</string>
+  <string name="seconds">segundos</string>
+  <string name="time">Hora:</string>
+  <string name="ratingStandard">Estándar:</string>
+  <string name="conectionLost">Perdeuse a conexión con freechess.org</string>
+</resources>

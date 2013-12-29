@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="btChat">Wyślij</string>
+  <string name="cancel">Anuluj</string>
+  <string name="btNewGame">Nowa gra</string>
+  <string name="btNewGamePlay">Graj</string>
+  <string name="btUndo">Cofnij</string>
+  <string name="btShowChat">Czat</string>
+  <string name="color">Kolor</string>
+  <string name="tvCreateAccount">Utwórz konto</string>
+  <string name="btGuestLogin">Zaloguj się jako gość</string>
+  <string name="btLogIn">Zaloguj się</string>
+  <string name="loggingIn">Logowanie</string>
+  <string name="loggingIn1">Trwa łączenie z freechess.org</string>
+  <string name="edPassword">Hasło:</string>
+  <string name="me">Ja</string>
+  <string name="newGameTitle">Nowa gra</string>
+  <string name="play_offline">Graj Offline</string>
+  <string name="play_online">Graj Online</string>
+  <string name="settings">Ustawienia</string>
+  <string name="timeSettings">Ustawienia czasu</string>
+  <string name="gameEnded">Gra skończona</string>
+  <string name="loginIoError">Przy próbie połączenia z freechess.org wystąpił błąd</string>
+  <string name="btColorBlack">Czarne</string>
+  <string name="yes">Tak</string>
+  <string name="no">Nie</string>
+  <string name="min">min</string>
+  <string name="minutes">minut</string>
+  <string name="seconds">sekund</string>
+  <string name="time">Czas:</string>
+  <string name="ratings">
+przy próbie połDroidFire</string>
+  <string name="yourMove">Twój ruch</string>
+  <string name="matchEndICheckmated">Szach mat! Wygrałeś!</string>
+  <string name="matchEndHeCheckmated">Szach mat! {0} wygrywa.</string>
+  <string name="matchEndIDisconnected">Straciłeś połączenie</string>
+  <string name="matchEndHeDisconnected">Wygrałeś. {0} stracił połączenie.</string>
+  <string name="resumeGame">Wróć do gry</string>
+  <string name="resumeUnavailable">Wszyscy przeciwnicy są niedostępni</string>
+</resources>
