@@ -70,7 +70,6 @@
   <string name="yourMove">Votre mouvement</string>
   <string name="matchEndIResigned">Vous vous êtes désisté.</string>
   <string name="matchEndHeResigned">{0} se retire. Vous gagnez.</string>
-  <string name="matchEndAgreement"/>
   <string name="matchEndICheckmated">Échec et mat! Vous gagnez!</string>
   <string name="matchEndHeCheckmated">Échec et mat ! {0} gagne.</string>
   <string name="matchEndIDisconnected">Vous avez perdu (déconnecté).</string>

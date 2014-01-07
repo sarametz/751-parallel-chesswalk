@@ -5,4 +5,8 @@
     <item>Brancas</item>
     <item>Pretas</item>
   </string-array>
+  <string-array name="rated">
+    <item>Rated</item>
+    <item>Unrated</item>
+  </string-array>
 </resources>
