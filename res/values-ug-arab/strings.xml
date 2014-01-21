@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about">ھەققىدە</string>
+  <string name="appName">خەلقئارا شاھمات</string>
   <string name="black">قارا</string>
   <string name="btChat">يوللا</string>
   <string name="cancel">ۋاز كەچ</string>
@@ -8,11 +9,14 @@
   <string name="btNewGame">يېڭى ئويۇن</string>
   <string name="btNewGamePlay">ئوينا</string>
   <string name="btUndo">يېنىۋال</string>
+  <string name="btFlip">يەڭگۈشلە</string>
   <string name="btShowChat">سۆھبەت</string>
   <string name="color">رەڭ</string>
   <string name="computer">كومپيۇتېر</string>
+  <string name="computerStrength">كومپيۇتېر كۈچلۈكلۈكى: ھەر قەدەم {0} سېكۇنت</string>
   <string name="tvCreateAccount">ھېسابات قۇر</string>
   <string name="createGameOffer">ئوينا</string>
+  <string name="gameOffers">ئويۇن تۆھپە</string>
   <string name="btGuestLogin">مېھمان سۈپىتىدە تىزىمغا كىر</string>
   <string name="btLogIn">تىزىمغا كىرىڭ</string>
   <string name="loginTitle">freechess.org غا تىزىمغا كىر</string>
@@ -32,6 +36,7 @@
   <string name="play_online">توردا ئوينا</string>
   <string name="rated">باھالانغان</string>
   <string name="gameOfferRated">باھالانغان</string>
+  <string name="secPerMove">ھەر قەدەمنىڭ سېكۇنت مۇكاپاتى</string>
   <string name="seekUnavailable">بۇ ئويۇنچىنى ئىشلەتكىلى بولمايدۇ</string>
   <string name="settings">تەڭشەكلەر</string>
   <string name="timeSettings">ۋاقىت تەڭشەكلەر</string>
@@ -54,21 +59,30 @@
   <string name="minutes">مىنۇت</string>
   <string name="seconds">سېكۇنت</string>
   <string name="btTimeSettingsDone">تامام</string>
+  <string name="timeBonusPerMove">ھەر قەدەمنىڭ ۋاقىت مۇكاپاتى:</string>
   <string name="time">ۋاقىت:</string>
   <string name="ratings">باھايىڭىز</string>
+  <string name="ratingBlitz">چاقماق ئۇرۇشى:</string>
+  <string name="ratingLightning">چاقنىتىش:</string>
   <string name="ratingStandard">ئۆلچەملىك:</string>
+  <string name="gameOfferSPerMove">سېكۇنت)</string>
   <string name="tvGameOffersEmpty">ھېچقانداق ئويۇن تەمىنلەنمىگەن، سەل كۈتۈڭ</string>
   <string name="conectionLost">freechess.org بىلەن باغلىنىشى ئۈزۈلدى</string>
   <string name="ok">جەزملە</string>
+  <string name="btOfferDraw">تەڭ ئويۇن</string>
   <string name="btRequestAbort">چېكىن</string>
   <string name="btResign">ۋاز كەچ</string>
   <string name="yourMove">يۆتكىشىڭىز</string>
   <string name="matchEndIResigned">ۋاز كەچتىڭىز.</string>
   <string name="matchEndHeResigned">{0} ۋاز كەچتى. سىز يەڭدىڭىز.</string>
+  <string name="matchEndStalemate">پات بولغاچقا تەڭ ئويۇن.</string>
+  <string name="matchEnd50">50 قەدەم مېڭىش قائىدىسى بويىچە تەڭ ئويۇن.</string>
+  <string name="matchEndAgreement">كېلىشىم بويىچە تەڭ ئويۇن.</string>
   <string name="matchEndICheckmated">شاھ مات! سىز يەڭدىڭىز.</string>
   <string name="matchEndHeCheckmated">شاھ مات! {0} يەڭدى.</string>
   <string name="matchEndIDisconnected">تور ئۈزۈلگەنلىكتىن سىن يېڭىلدىڭىز.</string>
   <string name="matchEndHeDisconnected">سىز يەڭدىڭىز. تور ئۈزۈلگەنلىكتىن {0} يېڭىلدى.</string>
+  <string name="matchEndRepetition">3 قەدەم تەكرارلانغاچقا تەڭ ئويۇن.</string>
   <string name="matchEndIOutOfTime">{0} يەڭدى. مېڭىش ۋاقتىڭىز توشتى.</string>
   <string name="matchEndHeOutOfTime">سىز يەڭدىڭىز. {0} نىڭ مېڭىش ۋاقتى توشتى.</string>
   <string name="youOfferedDraw">تەڭ ئويۇن تەمىنلىدىڭىز.</string>

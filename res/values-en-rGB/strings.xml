@@ -5,6 +5,7 @@
   <string name="black">Black</string>
   <string name="btChat">Send</string>
   <string name="cancel">Cancel</string>
+  <string name="compVsCompToast">At least one of the players has to be human</string>
   <string name="btNewGame">New game</string>
   <string name="btNewGamePlay">Play</string>
   <string name="btUndo">Undo</string>
