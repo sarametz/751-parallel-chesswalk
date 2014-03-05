@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="about">Om</string>
+  <string name="appName">Chess Walk</string>
   <string name="black">Svart</string>
   <string name="btChat">Skicka</string>
   <string name="cancel">Avbryt</string>
@@ -25,6 +26,7 @@
   <string name="loggingIn5">Klar</string>
   <string name="edPassword">Lösenord</string>
   <string name="human">Människa</string>
+  <string name="me">Jag</string>
   <string name="newGameBlack">Svart</string>
   <string name="newGameWhite">Vit</string>
   <string name="newGameTitle">Nytt spel</string>
@@ -43,9 +45,11 @@
   <string name="chessclientError">Ett fel uppstod vid anslutning till freechess.org. Försök gå tillbaka till hemskärmen och välj Spela online igen</string>
   <string name="btColorWhite">Vit</string>
   <string name="btColorBlack">Svart</string>
+  <string name="btColorAuto">Automatisk</string>
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="customTime">Anpassad...</string>
+  <string name="min">min</string>
   <string name="minutes">minuter</string>
   <string name="seconds">sekunder</string>
   <string name="btTimeSettingsDone">Klar</string>
@@ -55,15 +59,24 @@
   <string name="conectionLost">Anslutning till freechess.org förlorad</string>
   <string name="ok">Ok</string>
   <string name="btOfferDraw">Remi</string>
+  <string name="btResign">Ge upp</string>
   <string name="yourMove">Ditt drag</string>
+  <string name="matchEndIResigned">Du gav upp.</string>
+  <string name="matchEndHeResigned">{0} ger upp. Du vinner.</string>
+  <string name="matchEndStalemate">Spel i remi genom patt.</string>
+  <string name="matchEnd50">Spel i remi enligt 50-dragsregeln.</string>
+  <string name="matchEndAgreement">Spel i remi enligt överenskommelse.</string>
   <string name="matchEndICheckmated">Schack matt! Du vinner!</string>
   <string name="matchEndHeCheckmated">Schack matt! {0} vinner.</string>
   <string name="matchEndIDisconnected">Du förlorar genom frånkoppling.</string>
   <string name="matchEndHeDisconnected">Du vinner. {0} förlorar genom frånkoppling.</string>
+  <string name="matchEndRepetition">Spel i remi efter trefaldig upprepning.</string>
   <string name="matchEndIOutOfTime">{0} vinner. Du fick slut tid.</string>
   <string name="matchEndHeOutOfTime">Du vinner. {0} fick slut tid.</string>
   <string name="youOfferedDraw">Du erbjöd remi.</string>
   <string name="acceptsDraw">{0} accepterar remi.</string>
+  <string name="declinesDraw">{0} avböjer remi.</string>
+  <string name="doYouWantToResign">Vill du ge upp?</string>
   <string name="resumeGame">Fortsätt spel</string>
   <string name="resuming">Försöker återuppta ett spel</string>
   <string name="resumeUnavailable">Alla dina motståndare är offline eller otillgängliga</string>
