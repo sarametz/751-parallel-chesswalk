@@ -13,7 +13,7 @@
   <string name="btShowChat">Unterhaltung</string>
   <string name="color">Farbe</string>
   <string name="computer">Rechner</string>
-  <string name="computerStrength">Rechner Stärke: {0}s pro Zug</string>
+  <string name="computerStrength">Rechnerstärke: {0}s pro Zug</string>
   <string name="tvCreateAccount">Konto erstellen</string>
   <string name="createGameOffer">Spielen</string>
   <string name="gameOffers">Spielangebote</string>
