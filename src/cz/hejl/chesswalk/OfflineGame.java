@@ -54,11 +54,15 @@ public class OfflineGame extends Activity implements MoveListener,
     private TextView tvOfflineGameInfo;
     private TextView tvOfflineTopInfo;
 
-    static {
-        System.loadLibrary("chesswalk");
-    }
+//    static {
+//        System.loadLibrary("chesswalk");
+//    }
 
-    public native int getBestMove(String fen, int depth, int moveTime);
+    public Move getBestMove(String fen, int depth, int moveTime){
+    	Engine engine = new Engine();
+    	engine.board.fromFEN(fen);
+    	return engine.bestMove(depth, moveTime);
+    }
 
     private void computerMove() {
         if (gameEnded) {
@@ -309,12 +313,12 @@ public class OfflineGame extends Activity implements MoveListener,
         }
     }
 
-    private class EngineTask extends AsyncTask<Void, Void, Integer> {
+    private class EngineTask extends AsyncTask<Void, Void, Move> {
         @Override
-        protected Integer doInBackground(Void... nothing) {
-            int intMove = getBestMove(chessBoard.board.toFEN(), 10,
+        protected Move doInBackground(Void... nothing) {
+            Move move = getBestMove(chessBoard.board.toFEN(), 10,
                     strength * 1000);
-            return intMove;
+            return move;
             /*
              * engine.board = new Board();
              * engine.board.fromFEN(chessBoard.board.toFEN()); return
@@ -327,9 +331,9 @@ public class OfflineGame extends Activity implements MoveListener,
         }
 
         @Override
-        protected void onPostExecute(Integer intMove) {
-            Move move = new Move(chessBoard.board, intMove & 127,
-                    (intMove >> 7) & 127);
+        protected void onPostExecute(Move move) {
+//            Move move = new Move(chessBoard.board, intMove & 127,
+//                    (intMove >> 7) & 127);
 
             chessBoard.movePiece(move.from, move.to);
 

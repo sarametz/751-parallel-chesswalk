@@ -166,7 +166,7 @@ public class Engine {
 
     public Move bestMove(int depth, int time, boolean verbose) {
         nodeCounter = 0;
-        bestMoveTimeLimit = time * 100;
+        bestMoveTimeLimit = time;
 
         int eval = 0;
         bestLine = new ArrayList<Move>();
@@ -203,7 +203,7 @@ public class Engine {
             currentDepth++;
             if (currentDepth > depth)
                 break;
-            if (System.currentTimeMillis() - bestMoveStart > time * 100)
+            if (System.currentTimeMillis() - bestMoveStart > time)
                 break;
         }
 
