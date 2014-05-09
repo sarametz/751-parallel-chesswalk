@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 František Hejl
+ * Copyright (C) 2010 Franti��ek Hejl
  *
  * This file is part of Chesswalk.
  *
@@ -22,6 +22,8 @@ package cz.hejl.chesswalk;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class Board {
     public static final String STARTING_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
@@ -42,8 +44,18 @@ public class Board {
     private int[] rookDeltas = { 1, -16, -1, 16 };
     private Evaluation evaluation;
     private Zobrist zobrist = new Zobrist();
+    
+    private static AtomicLong executionTime;
+    private static AtomicInteger numOfExecutionTimes;
+    
+    static{
+    	executionTime = new AtomicLong((long) 0.00);
+    	numOfExecutionTimes = new AtomicInteger(0);
+    	
+    }
 
     public Board() {
+    
         evaluation = new Evaluation(this);
         init();
     }
@@ -249,14 +261,28 @@ public class Board {
         hashHistory = new ArrayList<Long>();
         hashHistory.add(hash);
     }
+    
 
+    
     public ArrayList<Move> generateAllMoves() {
         ArrayList<Move> moves = new ArrayList<Move>();
+        
+        
+        long startTime = System.nanoTime();
         for (int i = 0; i < 128; i++) {
             if ((i & 0x88) != 0)
                 continue;
             generateMoves(board0x88[i], i, moves);
         }
+        
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+        int count = numOfExecutionTimes.incrementAndGet();
+        long time = executionTime.addAndGet(duration);
+        
+        System.out.println("Non parallelised execution time is: "+ (time/count));
+        System.out.println("Total time is: "+time);
 
         removeIllegalMoves(moves);
 
