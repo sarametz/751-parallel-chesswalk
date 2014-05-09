@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 František Hejl
+ * Copyright (C) 2010 Franti��ek Hejl
  *
  * This file is part of Chesswalk.
  *
@@ -21,7 +21,7 @@
 package cz.hejl.chesswalk;
 
 import java.util.ArrayList;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -503,7 +503,8 @@ public class ChessBoardView extends SurfaceView implements
 
     // -------------------------------------------------------------------------------------------------------
 
-    private Bitmap loadScaledBitmap(Resources resources, int resourceId) {
+    @SuppressLint("NewApi")
+	private Bitmap loadScaledBitmap(Resources resources, int resourceId) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inScaled = false;
         Bitmap bitmap = BitmapFactory.decodeResource(resources, resourceId,
@@ -602,6 +603,7 @@ public class ChessBoardView extends SurfaceView implements
                         currentTime, 100));
                 addSprite(legalSquareSprite);
                 legalSquareSprites.add(legalSquareSprite);
+                System.out.println("got legal");
             }
         }
 
