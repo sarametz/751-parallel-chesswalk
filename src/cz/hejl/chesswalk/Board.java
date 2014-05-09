@@ -268,21 +268,17 @@ public class Board {
         ArrayList<Move> moves = new ArrayList<Move>();
         
         
-        long startTime = System.nanoTime();
+       // long startTime = System.nanoTime();
         for (int i = 0; i < 128; i++) {
             if ((i & 0x88) != 0)
                 continue;
             generateMoves(board0x88[i], i, moves);
         }
         
-        long endTime = System.nanoTime();
-
-        long duration = endTime - startTime;
-        int count = numOfExecutionTimes.incrementAndGet();
-        long time = executionTime.addAndGet(duration);
+        //
         
-        System.out.println("Non parallelised execution time is: "+ (time/count));
-        System.out.println("Total time is: "+time);
+        //System.out.println("Non parallelised execution time is: "+ (time/count));
+        //System.out.println("Total time is: "+time);
 
         removeIllegalMoves(moves);
 
@@ -290,6 +286,7 @@ public class Board {
     }
 
     private void generateMoves(int piece, int from, ArrayList<Move> moves) {
+    	long start = System.currentTimeMillis();
         if (toMove * piece < 0)
             return;
         int pieceType = Math.abs(piece);
@@ -305,6 +302,9 @@ public class Board {
         else if (pieceType >= 3 && pieceType <= 5) {
             generateSlidingMoves(piece, from, moves);
         }
+        
+        long fin = System.currentTimeMillis();
+        System.out.println(start-fin);
     }
 
     private void generateNonSlidingMoves(int piece, int from,
