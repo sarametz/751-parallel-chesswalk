@@ -236,902 +236,906 @@ public class Board {//####[27]####
 //####[259]####
     public ArrayList<Move> generateAllMoves() {//####[259]####
         ArrayList<Move> moves = new ArrayList<Move>();//####[260]####
-        for (int i = 0; i < 128; i++) //####[261]####
-        {//####[261]####
-            if ((i & 0x88) != 0) //####[264]####
-            continue;//####[265]####
-            generateMoves(board0x88[i], i, moves);//####[266]####
-        }//####[267]####
-        removeIllegalMoves(moves);//####[269]####
-        return moves;//####[271]####
-    }//####[272]####
-//####[274]####
-    private static volatile Method __pt__generateMoves_int_int_ArrayListMove_method = null;//####[274]####
-    private synchronized static void __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet() {//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            try {//####[274]####
-                __pt__generateMoves_int_int_ArrayListMove_method = ParaTaskHelper.getDeclaredMethod(new ParaTaskHelper.ClassGetter().getCurrentClass(), "__pt__generateMoves", new Class[] {//####[274]####
-                    int.class, int.class, ArrayList.class//####[274]####
-                });//####[274]####
-            } catch (Exception e) {//####[274]####
-                e.printStackTrace();//####[274]####
-            }//####[274]####
-        }//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, int from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, int from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setTaskIdArgIndexes(0);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setTaskIdArgIndexes(1);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setTaskIdArgIndexes(0, 1);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(1);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(1);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(1);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(0);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, ArrayList<Move> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0, 1);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, int from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, int from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setTaskIdArgIndexes(2);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setTaskIdArgIndexes(0, 2);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(2);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setTaskIdArgIndexes(1, 2);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setTaskIdArgIndexes(0, 1, 2);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(1, 2);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(1);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(2);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(1);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(0, 2);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0, 1);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(2);//####[274]####
-        taskinfo.addDependsOn(moves);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, int from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, int from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(0);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0, 2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(1);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(0, 1);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0, 2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(1);//####[274]####
-        taskinfo.addDependsOn(from);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(1, 2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(1, 2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setTaskIdArgIndexes(0);//####[274]####
-        taskinfo.addDependsOn(piece);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[274]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[274]####
-        return generateMoves(piece, from, moves, new TaskInfo());//####[274]####
-    }//####[274]####
-    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[274]####
-        // ensure Method variable is set//####[274]####
-        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[274]####
-            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[274]####
-        }//####[274]####
-        taskinfo.setQueueArgIndexes(0, 1, 2);//####[274]####
-        taskinfo.setIsPipeline(true);//####[274]####
-        taskinfo.setParameters(piece, from, moves);//####[274]####
-        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[274]####
-        taskinfo.setInstance(this);//####[274]####
-        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[274]####
-    }//####[274]####
-    public void __pt__generateMoves(int piece, int from, ArrayList<Move> moves) {//####[274]####
-        if (toMove * piece < 0) //####[275]####
-        return;//####[276]####
-        int pieceType = Math.abs(piece);//####[277]####
-        if (pieceType == 1) //####[279]####
-        {//####[279]####
-            generatePawnMoves(piece, from, moves);//####[280]####
-        } else if (pieceType == 2 || pieceType == 6) //####[283]####
-        {//####[283]####
-            generateNonSlidingMoves(piece, from, moves);//####[284]####
-        } else if (pieceType >= 3 && pieceType <= 5) //####[287]####
+        long startTime = System.nanoTime();//####[262]####
+        for (int i = 0; i < 128; i++) //####[266]####
+        {//####[266]####
+            if ((i & 0x88) != 0) //####[269]####
+            continue;//####[270]####
+            generateMoves(board0x88[i], i, moves);//####[271]####
+        }//####[272]####
+        long endTime = System.nanoTime();//####[273]####
+        long duration = endTime - startTime;//####[274]####
+        System.out.println("Execution time is: " + duration);//####[276]####
+        removeIllegalMoves(moves);//####[277]####
+        return moves;//####[279]####
+    }//####[280]####
+//####[282]####
+    private static volatile Method __pt__generateMoves_int_int_ArrayListMove_method = null;//####[282]####
+    private synchronized static void __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet() {//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            try {//####[282]####
+                __pt__generateMoves_int_int_ArrayListMove_method = ParaTaskHelper.getDeclaredMethod(new ParaTaskHelper.ClassGetter().getCurrentClass(), "__pt__generateMoves", new Class[] {//####[282]####
+                    int.class, int.class, ArrayList.class//####[282]####
+                });//####[282]####
+            } catch (Exception e) {//####[282]####
+                e.printStackTrace();//####[282]####
+            }//####[282]####
+        }//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, int from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, int from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setTaskIdArgIndexes(0);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setTaskIdArgIndexes(1);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setTaskIdArgIndexes(0, 1);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(1);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(1);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(1);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(0);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, ArrayList<Move> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, ArrayList<Move> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0, 1);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, int from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, int from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setTaskIdArgIndexes(2);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setTaskIdArgIndexes(0, 2);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(2);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setTaskIdArgIndexes(1, 2);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setTaskIdArgIndexes(0, 1, 2);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(1, 2);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(1);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(2);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(1);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(0, 2);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, TaskID<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0, 1);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(2);//####[282]####
+        taskinfo.addDependsOn(moves);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, int from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, int from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, int from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(0);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, int from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0, 2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(1);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(0, 1);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, TaskID<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0, 2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(1);//####[282]####
+        taskinfo.addDependsOn(from);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(int piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(1, 2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(TaskID<Integer> piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(1, 2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setTaskIdArgIndexes(0);//####[282]####
+        taskinfo.addDependsOn(piece);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves) {//####[282]####
+        //-- execute asynchronously by enqueuing onto the taskpool//####[282]####
+        return generateMoves(piece, from, moves, new TaskInfo());//####[282]####
+    }//####[282]####
+    private TaskIDGroup<Void> generateMoves(BlockingQueue<Integer> piece, BlockingQueue<Integer> from, BlockingQueue<ArrayList<Move>> moves, TaskInfo taskinfo) {//####[282]####
+        // ensure Method variable is set//####[282]####
+        if (__pt__generateMoves_int_int_ArrayListMove_method == null) {//####[282]####
+            __pt__generateMoves_int_int_ArrayListMove_ensureMethodVarSet();//####[282]####
+        }//####[282]####
+        taskinfo.setQueueArgIndexes(0, 1, 2);//####[282]####
+        taskinfo.setIsPipeline(true);//####[282]####
+        taskinfo.setParameters(piece, from, moves);//####[282]####
+        taskinfo.setMethod(__pt__generateMoves_int_int_ArrayListMove_method);//####[282]####
+        taskinfo.setInstance(this);//####[282]####
+        return TaskpoolFactory.getTaskpool().enqueueMulti(taskinfo, -1);//####[282]####
+    }//####[282]####
+    public void __pt__generateMoves(int piece, int from, ArrayList<Move> moves) {//####[282]####
+        if (toMove * piece < 0) //####[283]####
+        return;//####[284]####
+        int pieceType = Math.abs(piece);//####[285]####
+        if (pieceType == 1) //####[287]####
         {//####[287]####
-            generateSlidingMoves(piece, from, moves);//####[288]####
-        }//####[289]####
-    }//####[290]####
-//####[290]####
-//####[292]####
-    private void generateNonSlidingMoves(int piece, int from, ArrayList<Move> moves) {//####[293]####
-        int[] deltas;//####[294]####
-        if (piece == 2 || piece == -2) //####[295]####
-        deltas = knightDeltas; else deltas = kingDeltas;//####[296]####
-        for (int i = 0; i < deltas.length; i++) //####[300]####
-        {//####[300]####
-            int to = from + deltas[i];//####[301]####
-            if ((to & 0x88) != 0) //####[302]####
-            continue;//####[303]####
-            if (board0x88[to] > 0 && piece > 0) //####[304]####
-            continue;//####[305]####
-            if (board0x88[to] < 0 && piece < 0) //####[306]####
-            continue;//####[307]####
-            moves.add(new Move(this, from, to));//####[308]####
-        }//####[309]####
-        if (piece == 6) //####[312]####
-        {//####[312]####
-            if (castlingRights[0]) //####[313]####
-            {//####[313]####
-                if (board0x88[5] == 0 && board0x88[6] == 0) //####[314]####
-                {//####[314]####
-                    if (squareAttacked(4, -1) == false && squareAttacked(5, -1) == false && squareAttacked(6, -1) == false) //####[315]####
-                    {//####[317]####
-                        moves.add(new Move(this, from, from + 2));//####[318]####
-                    }//####[319]####
-                }//####[320]####
-            }//####[321]####
-            if (castlingRights[1]) //####[322]####
-            {//####[322]####
-                if (board0x88[1] == 0 && board0x88[2] == 0 && board0x88[3] == 0) //####[323]####
-                {//####[323]####
-                    if (squareAttacked(2, -1) == false && squareAttacked(3, -1) == false && squareAttacked(4, -1) == false) //####[324]####
-                    {//####[326]####
-                        moves.add(new Move(this, from, from - 2));//####[327]####
-                    }//####[328]####
-                }//####[329]####
-            }//####[330]####
-        } else if (piece == -6) //####[331]####
-        {//####[331]####
-            if (castlingRights[2]) //####[332]####
-            {//####[332]####
-                if (board0x88[117] == 0 && board0x88[118] == 0) //####[333]####
-                {//####[333]####
-                    if (squareAttacked(116, 1) == false && squareAttacked(117, 1) == false && squareAttacked(118, 1) == false) //####[334]####
-                    {//####[336]####
-                        moves.add(new Move(this, from, from + 2));//####[337]####
-                    }//####[338]####
-                }//####[339]####
-            }//####[340]####
-            if (castlingRights[3]) //####[341]####
-            {//####[341]####
-                if (board0x88[113] == 0 && board0x88[114] == 0 && board0x88[115] == 0) //####[342]####
-                {//####[343]####
-                    if (squareAttacked(114, 1) == false && squareAttacked(115, 1) == false && squareAttacked(116, 1) == false) //####[344]####
-                    {//####[346]####
-                        moves.add(new Move(this, from, from - 2));//####[347]####
-                    }//####[348]####
-                }//####[349]####
-            }//####[350]####
-        }//####[351]####
-    }//####[352]####
-//####[354]####
-    private void generateSlidingMoves(int piece, int from, ArrayList<Move> moves) {//####[354]####
-        int[] deltas;//####[355]####
-        if (piece == 3 || piece == -3) //####[356]####
-        deltas = bishopDeltas; else if (piece == 4 || piece == -4) //####[358]####
-        deltas = rookDeltas; else deltas = queenDeltas;//####[359]####
-        for (int i = 0; i < deltas.length; i++) //####[363]####
-        {//####[363]####
-            int delta = deltas[i];//####[364]####
-            int to = from;//####[365]####
-            while (true) //####[366]####
-            {//####[366]####
-                to += delta;//####[367]####
-                if ((to & 0x88) != 0) //####[368]####
-                break;//####[369]####
-                if (board0x88[to] > 0 && piece > 0 || board0x88[to] < 0 && piece < 0) //####[370]####
-                break;//####[372]####
-                if (board0x88[to] > 0 && piece < 0 || board0x88[to] < 0 && piece > 0) //####[373]####
-                {//####[374]####
-                    moves.add(new Move(this, from, to));//####[375]####
-                    break;//####[376]####
-                }//####[377]####
-                moves.add(new Move(this, from, to));//####[378]####
-            }//####[379]####
-        }//####[380]####
-    }//####[381]####
-//####[383]####
-    private void generatePawnMoves(int piece, int from, ArrayList<Move> moves) {//####[383]####
-        if (piece == 1) //####[385]####
-        {//####[385]####
-            if (board0x88[from + 16] == 0) //####[387]####
-            moves.add(new Move(this, from, from + 16));//####[388]####
-            if (from / 16 == 1 && board0x88[from + 16] == 0 && board0x88[from + 2 * 16] == 0) //####[390]####
-            moves.add(new Move(this, from, from + 2 * 16));//####[392]####
-            if (board0x88[from + 15] < 0 && ((from + 15) & 0x88) == 0) //####[394]####
-            moves.add(new Move(this, from, from + 15));//####[395]####
-            if (board0x88[from + 17] < 0 && ((from + 17) & 0x88) == 0) //####[396]####
-            moves.add(new Move(this, from, from + 17));//####[397]####
-            if (enPassant != -1 && enPassant / 16 == 5) //####[399]####
-            {//####[399]####
-                if (from + 15 == enPassant || from + 17 == enPassant) //####[400]####
-                moves.add(new Move(this, from, enPassant));//####[401]####
-            }//####[402]####
-        } else if (piece == -1) //####[406]####
-        {//####[406]####
-            if (board0x88[from - 16] == 0) //####[408]####
-            moves.add(new Move(this, from, from - 16));//####[409]####
-            if (from / 16 == 6 && board0x88[from - 16] == 0 && board0x88[from - 2 * 16] == 0) //####[411]####
-            moves.add(new Move(this, from, from - 2 * 16));//####[413]####
-            if (((from - 15) & 0x88) == 0 && board0x88[from - 15] > 0) //####[415]####
-            moves.add(new Move(this, from, from - 15));//####[416]####
-            if (((from - 17) & 0x88) == 0 && board0x88[from - 17] > 0) //####[417]####
-            moves.add(new Move(this, from, from - 17));//####[418]####
-            if (enPassant != -1 && enPassant / 16 == 2) //####[420]####
-            {//####[420]####
-                if (from - 15 == enPassant || from - 17 == enPassant) //####[421]####
-                moves.add(new Move(this, from, enPassant));//####[422]####
-            }//####[423]####
-        }//####[424]####
-    }//####[425]####
-//####[428]####
-    /** color can be 1 for white or -1 for black *///####[428]####
-    public boolean inCheck(int color) {//####[428]####
-        int king = -1;//####[430]####
-        for (int i = 0; i < 128; i++) //####[431]####
-        {//####[431]####
-            if ((i & 0x88) != 0) //####[432]####
-            continue;//####[433]####
-            if (board0x88[i] == 6 * color) //####[434]####
-            {//####[434]####
-                king = i;//####[435]####
-                break;//####[436]####
-            }//####[437]####
-        }//####[438]####
-        return squareAttacked(king, color * -1);//####[440]####
-    }//####[441]####
-//####[443]####
-    public boolean isCheckmate() {//####[443]####
-        if (generateAllMoves().size() == 0 && inCheck(toMove)) //####[444]####
-        {//####[444]####
-            return true;//####[445]####
-        } else return false;//####[446]####
-    }//####[448]####
-//####[450]####
-    public boolean isDraw50Move() {//####[450]####
-        if (halfmoves >= 100) //####[451]####
-        return true; else return false;//####[452]####
-    }//####[455]####
-//####[457]####
-    public boolean isEndgame() {//####[457]####
-        boolean wQueen = false;//####[458]####
-        boolean bQueen = false;//####[459]####
-        int wRooks = 0;//####[460]####
-        int bRooks = 0;//####[461]####
-        int wMinors = 0;//####[462]####
-        int bMinors = 0;//####[463]####
-        for (int i = 0; i < 128; i++) //####[465]####
-        {//####[465]####
-            if ((i & 0x88) != 0) //####[466]####
-            continue;//####[467]####
-            int piece = board0x88[i];//####[468]####
-            switch(piece) {//####[469]####
-                case 5://####[469]####
-                    wQueen = true;//####[471]####
-                case -5://####[471]####
-                    bQueen = true;//####[473]####
-                case 4://####[473]####
-                    wRooks++;//####[475]####
-                case -4://####[475]####
-                    bRooks++;//####[477]####
-                case 3://####[477]####
-                    wMinors--;//####[479]####
-                case -3://####[479]####
-                    bMinors--;//####[481]####
-                case 2://####[481]####
-                    wMinors--;//####[483]####
-                case -2://####[483]####
-                    bMinors--;//####[485]####
-            }//####[485]####
-        }//####[487]####
-        boolean endgame = true;//####[489]####
-        if (wQueen && (wMinors > 1 || wRooks > 0)) //####[490]####
-        endgame = false;//####[491]####
-        if (bQueen && (bMinors > 1 || bRooks > 0)) //####[492]####
-        endgame = false;//####[493]####
-        return endgame;//####[495]####
-    }//####[496]####
-//####[498]####
-    public boolean isRepetition() {//####[498]####
-        int hits = 1;//####[499]####
-        for (int i = hashHistory.size() - 2; i >= 0; i--) //####[500]####
-        {//####[500]####
-            if (hashHistory.get(i) == hash) //####[501]####
-            hits++;//####[502]####
-        }//####[503]####
-        if (hits >= 3) //####[505]####
-        {//####[505]####
-            return true;//####[506]####
-        } else return false;//####[507]####
-    }//####[509]####
-//####[511]####
-    public boolean isStalemate() {//####[511]####
-        if (generateAllMoves().size() == 0 && !inCheck(toMove)) //####[512]####
-        {//####[512]####
-            return true;//####[513]####
-        } else return false;//####[514]####
-    }//####[516]####
-//####[518]####
-    public void init() {//####[518]####
-        fromFEN(STARTING_FEN);//####[519]####
-        enPassant = -1;//####[522]####
-        for (int i = 0; i < 4; i++) //####[525]####
-        castlingRights[i] = true;//####[526]####
-        toMove = 1;//####[528]####
-        moveN = 0;//####[530]####
-    }//####[531]####
-//####[533]####
-    public boolean[] legalMovesMap(int from) {//####[533]####
-        ArrayList<Move> moves = new ArrayList<Move>();//####[534]####
-        generateMoves(board0x88[from], from, moves);//####[535]####
-        removeIllegalMoves(moves);//####[536]####
-        boolean[] map = new boolean[128];//####[538]####
-        for (int i = 0; i < moves.size(); i++) //####[539]####
-        {//####[539]####
-            map[moves.get(i).to] = true;//####[540]####
-        }//####[541]####
-        return map;//####[543]####
-    }//####[544]####
-//####[546]####
-    private void removeIllegalMoves(ArrayList<Move> moves) {//####[546]####
-        Iterator<Move> iter = moves.iterator();//####[547]####
-        while (iter.hasNext()) //####[548]####
-        {//####[548]####
-            int color = toMove;//####[549]####
-            Move move = (Move) iter.next();//####[550]####
-            doMove(move);//####[551]####
-            boolean illegalMove = false;//####[552]####
-            if (inCheck(color)) //####[553]####
-            illegalMove = true;//####[554]####
-            undoMove(move);//####[555]####
-            if (illegalMove) //####[556]####
-            iter.remove();//####[557]####
-        }//####[558]####
-    }//####[559]####
-//####[565]####
+            generatePawnMoves(piece, from, moves);//####[288]####
+        } else if (pieceType == 2 || pieceType == 6) //####[291]####
+        {//####[291]####
+            generateNonSlidingMoves(piece, from, moves);//####[292]####
+        } else if (pieceType >= 3 && pieceType <= 5) //####[295]####
+        {//####[295]####
+            generateSlidingMoves(piece, from, moves);//####[296]####
+        }//####[297]####
+    }//####[298]####
+//####[298]####
+//####[300]####
+    private void generateNonSlidingMoves(int piece, int from, ArrayList<Move> moves) {//####[301]####
+        int[] deltas;//####[302]####
+        if (piece == 2 || piece == -2) //####[303]####
+        deltas = knightDeltas; else deltas = kingDeltas;//####[304]####
+        for (int i = 0; i < deltas.length; i++) //####[308]####
+        {//####[308]####
+            int to = from + deltas[i];//####[309]####
+            if ((to & 0x88) != 0) //####[310]####
+            continue;//####[311]####
+            if (board0x88[to] > 0 && piece > 0) //####[312]####
+            continue;//####[313]####
+            if (board0x88[to] < 0 && piece < 0) //####[314]####
+            continue;//####[315]####
+            moves.add(new Move(this, from, to));//####[316]####
+        }//####[317]####
+        if (piece == 6) //####[320]####
+        {//####[320]####
+            if (castlingRights[0]) //####[321]####
+            {//####[321]####
+                if (board0x88[5] == 0 && board0x88[6] == 0) //####[322]####
+                {//####[322]####
+                    if (squareAttacked(4, -1) == false && squareAttacked(5, -1) == false && squareAttacked(6, -1) == false) //####[323]####
+                    {//####[325]####
+                        moves.add(new Move(this, from, from + 2));//####[326]####
+                    }//####[327]####
+                }//####[328]####
+            }//####[329]####
+            if (castlingRights[1]) //####[330]####
+            {//####[330]####
+                if (board0x88[1] == 0 && board0x88[2] == 0 && board0x88[3] == 0) //####[331]####
+                {//####[331]####
+                    if (squareAttacked(2, -1) == false && squareAttacked(3, -1) == false && squareAttacked(4, -1) == false) //####[332]####
+                    {//####[334]####
+                        moves.add(new Move(this, from, from - 2));//####[335]####
+                    }//####[336]####
+                }//####[337]####
+            }//####[338]####
+        } else if (piece == -6) //####[339]####
+        {//####[339]####
+            if (castlingRights[2]) //####[340]####
+            {//####[340]####
+                if (board0x88[117] == 0 && board0x88[118] == 0) //####[341]####
+                {//####[341]####
+                    if (squareAttacked(116, 1) == false && squareAttacked(117, 1) == false && squareAttacked(118, 1) == false) //####[342]####
+                    {//####[344]####
+                        moves.add(new Move(this, from, from + 2));//####[345]####
+                    }//####[346]####
+                }//####[347]####
+            }//####[348]####
+            if (castlingRights[3]) //####[349]####
+            {//####[349]####
+                if (board0x88[113] == 0 && board0x88[114] == 0 && board0x88[115] == 0) //####[350]####
+                {//####[351]####
+                    if (squareAttacked(114, 1) == false && squareAttacked(115, 1) == false && squareAttacked(116, 1) == false) //####[352]####
+                    {//####[354]####
+                        moves.add(new Move(this, from, from - 2));//####[355]####
+                    }//####[356]####
+                }//####[357]####
+            }//####[358]####
+        }//####[359]####
+    }//####[360]####
+//####[362]####
+    private void generateSlidingMoves(int piece, int from, ArrayList<Move> moves) {//####[362]####
+        int[] deltas;//####[363]####
+        if (piece == 3 || piece == -3) //####[364]####
+        deltas = bishopDeltas; else if (piece == 4 || piece == -4) //####[366]####
+        deltas = rookDeltas; else deltas = queenDeltas;//####[367]####
+        for (int i = 0; i < deltas.length; i++) //####[371]####
+        {//####[371]####
+            int delta = deltas[i];//####[372]####
+            int to = from;//####[373]####
+            while (true) //####[374]####
+            {//####[374]####
+                to += delta;//####[375]####
+                if ((to & 0x88) != 0) //####[376]####
+                break;//####[377]####
+                if (board0x88[to] > 0 && piece > 0 || board0x88[to] < 0 && piece < 0) //####[378]####
+                break;//####[380]####
+                if (board0x88[to] > 0 && piece < 0 || board0x88[to] < 0 && piece > 0) //####[381]####
+                {//####[382]####
+                    moves.add(new Move(this, from, to));//####[383]####
+                    break;//####[384]####
+                }//####[385]####
+                moves.add(new Move(this, from, to));//####[386]####
+            }//####[387]####
+        }//####[388]####
+    }//####[389]####
+//####[391]####
+    private void generatePawnMoves(int piece, int from, ArrayList<Move> moves) {//####[391]####
+        if (piece == 1) //####[393]####
+        {//####[393]####
+            if (board0x88[from + 16] == 0) //####[395]####
+            moves.add(new Move(this, from, from + 16));//####[396]####
+            if (from / 16 == 1 && board0x88[from + 16] == 0 && board0x88[from + 2 * 16] == 0) //####[398]####
+            moves.add(new Move(this, from, from + 2 * 16));//####[400]####
+            if (board0x88[from + 15] < 0 && ((from + 15) & 0x88) == 0) //####[402]####
+            moves.add(new Move(this, from, from + 15));//####[403]####
+            if (board0x88[from + 17] < 0 && ((from + 17) & 0x88) == 0) //####[404]####
+            moves.add(new Move(this, from, from + 17));//####[405]####
+            if (enPassant != -1 && enPassant / 16 == 5) //####[407]####
+            {//####[407]####
+                if (from + 15 == enPassant || from + 17 == enPassant) //####[408]####
+                moves.add(new Move(this, from, enPassant));//####[409]####
+            }//####[410]####
+        } else if (piece == -1) //####[414]####
+        {//####[414]####
+            if (board0x88[from - 16] == 0) //####[416]####
+            moves.add(new Move(this, from, from - 16));//####[417]####
+            if (from / 16 == 6 && board0x88[from - 16] == 0 && board0x88[from - 2 * 16] == 0) //####[419]####
+            moves.add(new Move(this, from, from - 2 * 16));//####[421]####
+            if (((from - 15) & 0x88) == 0 && board0x88[from - 15] > 0) //####[423]####
+            moves.add(new Move(this, from, from - 15));//####[424]####
+            if (((from - 17) & 0x88) == 0 && board0x88[from - 17] > 0) //####[425]####
+            moves.add(new Move(this, from, from - 17));//####[426]####
+            if (enPassant != -1 && enPassant / 16 == 2) //####[428]####
+            {//####[428]####
+                if (from - 15 == enPassant || from - 17 == enPassant) //####[429]####
+                moves.add(new Move(this, from, enPassant));//####[430]####
+            }//####[431]####
+        }//####[432]####
+    }//####[433]####
+//####[436]####
+    /** color can be 1 for white or -1 for black *///####[436]####
+    public boolean inCheck(int color) {//####[436]####
+        int king = -1;//####[438]####
+        for (int i = 0; i < 128; i++) //####[439]####
+        {//####[439]####
+            if ((i & 0x88) != 0) //####[440]####
+            continue;//####[441]####
+            if (board0x88[i] == 6 * color) //####[442]####
+            {//####[442]####
+                king = i;//####[443]####
+                break;//####[444]####
+            }//####[445]####
+        }//####[446]####
+        return squareAttacked(king, color * -1);//####[448]####
+    }//####[449]####
+//####[451]####
+    public boolean isCheckmate() {//####[451]####
+        if (generateAllMoves().size() == 0 && inCheck(toMove)) //####[452]####
+        {//####[452]####
+            return true;//####[453]####
+        } else return false;//####[454]####
+    }//####[456]####
+//####[458]####
+    public boolean isDraw50Move() {//####[458]####
+        if (halfmoves >= 100) //####[459]####
+        return true; else return false;//####[460]####
+    }//####[463]####
+//####[465]####
+    public boolean isEndgame() {//####[465]####
+        boolean wQueen = false;//####[466]####
+        boolean bQueen = false;//####[467]####
+        int wRooks = 0;//####[468]####
+        int bRooks = 0;//####[469]####
+        int wMinors = 0;//####[470]####
+        int bMinors = 0;//####[471]####
+        for (int i = 0; i < 128; i++) //####[473]####
+        {//####[473]####
+            if ((i & 0x88) != 0) //####[474]####
+            continue;//####[475]####
+            int piece = board0x88[i];//####[476]####
+            switch(piece) {//####[477]####
+                case 5://####[477]####
+                    wQueen = true;//####[479]####
+                case -5://####[479]####
+                    bQueen = true;//####[481]####
+                case 4://####[481]####
+                    wRooks++;//####[483]####
+                case -4://####[483]####
+                    bRooks++;//####[485]####
+                case 3://####[485]####
+                    wMinors--;//####[487]####
+                case -3://####[487]####
+                    bMinors--;//####[489]####
+                case 2://####[489]####
+                    wMinors--;//####[491]####
+                case -2://####[491]####
+                    bMinors--;//####[493]####
+            }//####[493]####
+        }//####[495]####
+        boolean endgame = true;//####[497]####
+        if (wQueen && (wMinors > 1 || wRooks > 0)) //####[498]####
+        endgame = false;//####[499]####
+        if (bQueen && (bMinors > 1 || bRooks > 0)) //####[500]####
+        endgame = false;//####[501]####
+        return endgame;//####[503]####
+    }//####[504]####
+//####[506]####
+    public boolean isRepetition() {//####[506]####
+        int hits = 1;//####[507]####
+        for (int i = hashHistory.size() - 2; i >= 0; i--) //####[508]####
+        {//####[508]####
+            if (hashHistory.get(i) == hash) //####[509]####
+            hits++;//####[510]####
+        }//####[511]####
+        if (hits >= 3) //####[513]####
+        {//####[513]####
+            return true;//####[514]####
+        } else return false;//####[515]####
+    }//####[517]####
+//####[519]####
+    public boolean isStalemate() {//####[519]####
+        if (generateAllMoves().size() == 0 && !inCheck(toMove)) //####[520]####
+        {//####[520]####
+            return true;//####[521]####
+        } else return false;//####[522]####
+    }//####[524]####
+//####[526]####
+    public void init() {//####[526]####
+        fromFEN(STARTING_FEN);//####[527]####
+        enPassant = -1;//####[530]####
+        for (int i = 0; i < 4; i++) //####[533]####
+        castlingRights[i] = true;//####[534]####
+        toMove = 1;//####[536]####
+        moveN = 0;//####[538]####
+    }//####[539]####
+//####[541]####
+    public boolean[] legalMovesMap(int from) {//####[541]####
+        ArrayList<Move> moves = new ArrayList<Move>();//####[542]####
+        generateMoves(board0x88[from], from, moves);//####[543]####
+        removeIllegalMoves(moves);//####[544]####
+        boolean[] map = new boolean[128];//####[546]####
+        for (int i = 0; i < moves.size(); i++) //####[547]####
+        {//####[547]####
+            map[moves.get(i).to] = true;//####[548]####
+        }//####[549]####
+        return map;//####[551]####
+    }//####[552]####
+//####[554]####
+    private void removeIllegalMoves(ArrayList<Move> moves) {//####[554]####
+        Iterator<Move> iter = moves.iterator();//####[555]####
+        while (iter.hasNext()) //####[556]####
+        {//####[556]####
+            int color = toMove;//####[557]####
+            Move move = (Move) iter.next();//####[558]####
+            doMove(move);//####[559]####
+            boolean illegalMove = false;//####[560]####
+            if (inCheck(color)) //####[561]####
+            illegalMove = true;//####[562]####
+            undoMove(move);//####[563]####
+            if (illegalMove) //####[564]####
+            iter.remove();//####[565]####
+        }//####[566]####
+    }//####[567]####
+//####[573]####
     /**
      * by - if caller is asking whether the square is attacked by white(1) or
      * black(-1)
-     *///####[565]####
-    private boolean squareAttacked(int square, int by) {//####[565]####
-        for (int i = 0; i < knightDeltas.length; i++) //####[567]####
-        {//####[567]####
-            int square2 = square + knightDeltas[i];//####[568]####
-            if ((square2 & 0x88) == 0 && board0x88[square2] == 2 * by) //####[569]####
-            return true;//####[570]####
-        }//####[571]####
-        if (by == -1 && (validSquare(square + 15) && board0x88[square + 15] == -1 || validSquare(square + 17) && board0x88[square + 17] == -1)) //####[574]####
-        return true; else if (by == 1 && (validSquare(square - 15) && board0x88[square - 15] == 1 || validSquare(square - 17) && board0x88[square - 17] == 1)) //####[578]####
-        return true;//####[581]####
-        for (int i = 0; i < queenDeltas.length; i++) //####[584]####
-        {//####[584]####
-            int delta = queenDeltas[i];//####[585]####
-            if (((square + delta) & 0x88) == 0 && board0x88[square + delta] == 6 * by) //####[588]####
-            return true;//####[590]####
-            int square2 = square;//####[592]####
-            while (true) //####[593]####
-            {//####[593]####
-                square2 += delta;//####[594]####
-                if ((square2 & 0x88) != 0) //####[595]####
-                break;//####[596]####
-                if (board0x88[square2] == 0) //####[597]####
-                continue;//####[598]####
-                if (board0x88[square2] * by < 0) //####[599]####
-                break;//####[600]####
-                if (board0x88[square2] * by > 0 && Math.abs(board0x88[square2]) >= 3 && Math.abs(board0x88[square2]) <= 5) //####[601]####
-                {//####[603]####
-                    if (Math.abs(board0x88[square2]) == 5) //####[604]####
-                    return true;//####[605]####
-                    if (i <= 3 && Math.abs(board0x88[square2]) == 4) //####[606]####
-                    return true;//####[607]####
-                    if (i >= 4 && Math.abs(board0x88[square2]) == 3) //####[608]####
-                    return true;//####[609]####
-                }//####[610]####
-                break;//####[611]####
-            }//####[612]####
-        }//####[613]####
-        return false;//####[615]####
-    }//####[616]####
-//####[618]####
-    public String toFEN() {//####[618]####
-        String[] symbols = { "", "P", "N", "B", "R", "Q", "K", "p", "n", "b", "r", "q", "k" };//####[619]####
-        String[] fileSymbols = { "a", "b", "c", "d", "e", "f", "g", "h" };//####[621]####
-        StringBuffer FEN = new StringBuffer(100);//####[623]####
-        for (int i = 7; i >= 0; i--) //####[624]####
-        {//####[624]####
-            int counter = 0;//####[625]####
-            for (int j = 0; j <= 7; j++) //####[626]####
-            {//####[626]####
-                if (board0x88[i * 16 + j] == 0) //####[627]####
-                {//####[627]####
-                    counter++;//####[628]####
-                    continue;//####[629]####
-                } else {//####[630]####
-                    if (counter > 0) //####[631]####
-                    FEN.append(Integer.toString(counter));//####[632]####
-                    counter = 0;//####[633]####
-                    int index = -1;//####[634]####
-                    if (board0x88[i * 16 + j] < 0) //####[635]####
-                    index = board0x88[i * 16 + j] * -1 + 6; else if (board0x88[i * 16 + j] > 0) //####[637]####
-                    index = board0x88[i * 16 + j];//####[638]####
-                    FEN.append(symbols[index]);//####[639]####
-                }//####[640]####
-            }//####[641]####
-            if (counter > 0) //####[642]####
-            FEN.append(Integer.toString(counter));//####[643]####
-            if (i != 0) //####[644]####
-            FEN.append("/");//####[645]####
-        }//####[646]####
-        if (toMove == 1) //####[649]####
-        FEN.append(" w "); else FEN.append(" b ");//####[650]####
-        String[] castlingSymbols = { "K", "Q", "k", "q" };//####[655]####
-        boolean noCastling = true;//####[656]####
-        for (int i = 0; i < 4; i++) //####[657]####
-        {//####[657]####
-            if (castlingRights[i]) //####[658]####
-            {//####[658]####
-                FEN.append(castlingSymbols[i]);//####[659]####
-                noCastling = false;//####[660]####
-            }//####[661]####
-        }//####[662]####
-        if (noCastling) //####[663]####
-        FEN.append("-");//####[664]####
-        FEN.append(" ");//####[665]####
-        if (enPassant == -1) //####[668]####
-        FEN.append("- "); else FEN.append(fileSymbols[enPassant & 7] + Integer.toString(enPassant / 16 + 1) + " ");//####[669]####
-        FEN.append(Integer.toString(halfmoves) + " ");//####[675]####
-        FEN.append(Integer.toString(moveN));//####[678]####
-        return FEN.toString();//####[680]####
-    }//####[681]####
-//####[683]####
-    public void undoMove(Move move) {//####[683]####
-        zobrist.undoMove(this, move);//####[685]####
-        hashHistory.remove(hashHistory.size() - 1);//####[686]####
-        if (toMove == -1) //####[688]####
-        moveN--;//####[689]####
-        toMove *= -1;//####[690]####
-        if (move.piece == 1 && board0x88[move.to] != 1) //####[693]####
-        board0x88[move.to] = 1; else if (move.piece == -1 && board0x88[move.to] != -1) //####[695]####
-        board0x88[move.to] = -1;//####[696]####
-        board0x88[move.from] = move.piece;//####[699]####
-        board0x88[move.to] = move.capture;//####[700]####
-        if (move.from == 4 && move.to == 6 && move.piece == 6) //####[703]####
-        {//####[703]####
-            board0x88[7] = 4;//####[704]####
-            board0x88[5] = 0;//####[705]####
-        } else if (move.from == 4 && move.to == 2 && move.piece == 6) //####[706]####
-        {//####[706]####
-            board0x88[0] = 4;//####[707]####
-            board0x88[3] = 0;//####[708]####
-        } else if (move.from == 116 && move.to == 118 && move.piece == -6) //####[709]####
-        {//####[709]####
-            board0x88[119] = -4;//####[710]####
-            board0x88[117] = 0;//####[711]####
-        } else if (move.from == 116 && move.to == 114 && move.piece == -6) //####[712]####
-        {//####[712]####
-            board0x88[112] = -4;//####[713]####
-            board0x88[115] = 0;//####[714]####
-        }//####[715]####
-        halfmoves = move.halfmoves;//####[718]####
-        enPassant = move.enPassant;//####[721]####
-        if ((move.piece == 1 || move.piece == -1) && (move.from & 7) != (move.to & 7) && move.capture == 0) //####[724]####
-        {//####[725]####
-            if (move.piece == 1) //####[726]####
-            board0x88[move.to - 16] = -1;//####[727]####
-            if (move.piece == -1) //####[728]####
-            board0x88[move.to + 16] = 1;//####[729]####
-        }//####[730]####
-        for (int i = 0; i < 4; i++) //####[733]####
-        castlingRights[i] = move.castlingRights[i];//####[734]####
-    }//####[735]####
-//####[737]####
-    private boolean validSquare(int square) {//####[737]####
-        if ((square & 0x88) == 0) //####[738]####
-        return true; else return false;//####[739]####
-    }//####[742]####
-//####[744]####
-    public void printBoard() {//####[744]####
-        for (int i = 0; i < board0x88.length; i++) //####[745]####
-        {//####[745]####
-            if ((i % 8) == 0) //####[746]####
-            {//####[746]####
-                System.out.println();//####[747]####
-            }//####[748]####
-            System.out.print(board0x88[i]);//####[749]####
-        }//####[750]####
-    }//####[751]####
-}//####[751]####
+     *///####[573]####
+    private boolean squareAttacked(int square, int by) {//####[573]####
+        for (int i = 0; i < knightDeltas.length; i++) //####[575]####
+        {//####[575]####
+            int square2 = square + knightDeltas[i];//####[576]####
+            if ((square2 & 0x88) == 0 && board0x88[square2] == 2 * by) //####[577]####
+            return true;//####[578]####
+        }//####[579]####
+        if (by == -1 && (validSquare(square + 15) && board0x88[square + 15] == -1 || validSquare(square + 17) && board0x88[square + 17] == -1)) //####[582]####
+        return true; else if (by == 1 && (validSquare(square - 15) && board0x88[square - 15] == 1 || validSquare(square - 17) && board0x88[square - 17] == 1)) //####[586]####
+        return true;//####[589]####
+        for (int i = 0; i < queenDeltas.length; i++) //####[592]####
+        {//####[592]####
+            int delta = queenDeltas[i];//####[593]####
+            if (((square + delta) & 0x88) == 0 && board0x88[square + delta] == 6 * by) //####[596]####
+            return true;//####[598]####
+            int square2 = square;//####[600]####
+            while (true) //####[601]####
+            {//####[601]####
+                square2 += delta;//####[602]####
+                if ((square2 & 0x88) != 0) //####[603]####
+                break;//####[604]####
+                if (board0x88[square2] == 0) //####[605]####
+                continue;//####[606]####
+                if (board0x88[square2] * by < 0) //####[607]####
+                break;//####[608]####
+                if (board0x88[square2] * by > 0 && Math.abs(board0x88[square2]) >= 3 && Math.abs(board0x88[square2]) <= 5) //####[609]####
+                {//####[611]####
+                    if (Math.abs(board0x88[square2]) == 5) //####[612]####
+                    return true;//####[613]####
+                    if (i <= 3 && Math.abs(board0x88[square2]) == 4) //####[614]####
+                    return true;//####[615]####
+                    if (i >= 4 && Math.abs(board0x88[square2]) == 3) //####[616]####
+                    return true;//####[617]####
+                }//####[618]####
+                break;//####[619]####
+            }//####[620]####
+        }//####[621]####
+        return false;//####[623]####
+    }//####[624]####
+//####[626]####
+    public String toFEN() {//####[626]####
+        String[] symbols = { "", "P", "N", "B", "R", "Q", "K", "p", "n", "b", "r", "q", "k" };//####[627]####
+        String[] fileSymbols = { "a", "b", "c", "d", "e", "f", "g", "h" };//####[629]####
+        StringBuffer FEN = new StringBuffer(100);//####[631]####
+        for (int i = 7; i >= 0; i--) //####[632]####
+        {//####[632]####
+            int counter = 0;//####[633]####
+            for (int j = 0; j <= 7; j++) //####[634]####
+            {//####[634]####
+                if (board0x88[i * 16 + j] == 0) //####[635]####
+                {//####[635]####
+                    counter++;//####[636]####
+                    continue;//####[637]####
+                } else {//####[638]####
+                    if (counter > 0) //####[639]####
+                    FEN.append(Integer.toString(counter));//####[640]####
+                    counter = 0;//####[641]####
+                    int index = -1;//####[642]####
+                    if (board0x88[i * 16 + j] < 0) //####[643]####
+                    index = board0x88[i * 16 + j] * -1 + 6; else if (board0x88[i * 16 + j] > 0) //####[645]####
+                    index = board0x88[i * 16 + j];//####[646]####
+                    FEN.append(symbols[index]);//####[647]####
+                }//####[648]####
+            }//####[649]####
+            if (counter > 0) //####[650]####
+            FEN.append(Integer.toString(counter));//####[651]####
+            if (i != 0) //####[652]####
+            FEN.append("/");//####[653]####
+        }//####[654]####
+        if (toMove == 1) //####[657]####
+        FEN.append(" w "); else FEN.append(" b ");//####[658]####
+        String[] castlingSymbols = { "K", "Q", "k", "q" };//####[663]####
+        boolean noCastling = true;//####[664]####
+        for (int i = 0; i < 4; i++) //####[665]####
+        {//####[665]####
+            if (castlingRights[i]) //####[666]####
+            {//####[666]####
+                FEN.append(castlingSymbols[i]);//####[667]####
+                noCastling = false;//####[668]####
+            }//####[669]####
+        }//####[670]####
+        if (noCastling) //####[671]####
+        FEN.append("-");//####[672]####
+        FEN.append(" ");//####[673]####
+        if (enPassant == -1) //####[676]####
+        FEN.append("- "); else FEN.append(fileSymbols[enPassant & 7] + Integer.toString(enPassant / 16 + 1) + " ");//####[677]####
+        FEN.append(Integer.toString(halfmoves) + " ");//####[683]####
+        FEN.append(Integer.toString(moveN));//####[686]####
+        return FEN.toString();//####[688]####
+    }//####[689]####
+//####[691]####
+    public void undoMove(Move move) {//####[691]####
+        zobrist.undoMove(this, move);//####[693]####
+        hashHistory.remove(hashHistory.size() - 1);//####[694]####
+        if (toMove == -1) //####[696]####
+        moveN--;//####[697]####
+        toMove *= -1;//####[698]####
+        if (move.piece == 1 && board0x88[move.to] != 1) //####[701]####
+        board0x88[move.to] = 1; else if (move.piece == -1 && board0x88[move.to] != -1) //####[703]####
+        board0x88[move.to] = -1;//####[704]####
+        board0x88[move.from] = move.piece;//####[707]####
+        board0x88[move.to] = move.capture;//####[708]####
+        if (move.from == 4 && move.to == 6 && move.piece == 6) //####[711]####
+        {//####[711]####
+            board0x88[7] = 4;//####[712]####
+            board0x88[5] = 0;//####[713]####
+        } else if (move.from == 4 && move.to == 2 && move.piece == 6) //####[714]####
+        {//####[714]####
+            board0x88[0] = 4;//####[715]####
+            board0x88[3] = 0;//####[716]####
+        } else if (move.from == 116 && move.to == 118 && move.piece == -6) //####[717]####
+        {//####[717]####
+            board0x88[119] = -4;//####[718]####
+            board0x88[117] = 0;//####[719]####
+        } else if (move.from == 116 && move.to == 114 && move.piece == -6) //####[720]####
+        {//####[720]####
+            board0x88[112] = -4;//####[721]####
+            board0x88[115] = 0;//####[722]####
+        }//####[723]####
+        halfmoves = move.halfmoves;//####[726]####
+        enPassant = move.enPassant;//####[729]####
+        if ((move.piece == 1 || move.piece == -1) && (move.from & 7) != (move.to & 7) && move.capture == 0) //####[732]####
+        {//####[733]####
+            if (move.piece == 1) //####[734]####
+            board0x88[move.to - 16] = -1;//####[735]####
+            if (move.piece == -1) //####[736]####
+            board0x88[move.to + 16] = 1;//####[737]####
+        }//####[738]####
+        for (int i = 0; i < 4; i++) //####[741]####
+        castlingRights[i] = move.castlingRights[i];//####[742]####
+    }//####[743]####
+//####[745]####
+    private boolean validSquare(int square) {//####[745]####
+        if ((square & 0x88) == 0) //####[746]####
+        return true; else return false;//####[747]####
+    }//####[750]####
+//####[752]####
+    public void printBoard() {//####[752]####
+        for (int i = 0; i < board0x88.length; i++) //####[753]####
+        {//####[753]####
+            if ((i % 8) == 0) //####[754]####
+            {//####[754]####
+                System.out.println();//####[755]####
+            }//####[756]####
+            System.out.print(board0x88[i]);//####[757]####
+        }//####[758]####
+    }//####[759]####
+}//####[759]####
