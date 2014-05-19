@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Franti��ek Hejl
+ * Copyright (C) 2010 Franti������ek Hejl
  *
  * This file is part of Chesswalk.
  *
@@ -304,7 +304,7 @@ public class Board {
         }
         
         long fin = System.currentTimeMillis();
-        System.out.println(start-fin);
+        //System.out.println(start-fin);
     }
 
     private void generateNonSlidingMoves(int piece, int from,

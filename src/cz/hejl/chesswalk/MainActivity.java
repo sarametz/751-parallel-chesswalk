@@ -1,5 +1,8 @@
 package cz.hejl.chesswalk;
 
+import pt.runtime.ParaTask;
+import pt.runtime.ParaTask.ScheduleType;
+import pt.runtime.ParaTask.ThreadPoolType;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -9,6 +12,7 @@ import android.content.DialogInterface.OnCancelListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -35,6 +39,9 @@ public class MainActivity extends Activity {
             ChessClient.getInstance().cancel();
         } else if (requestCode == REQUEST_OFFLINE_GAME) {
             Intent i = new Intent(MainActivity.this, OfflineGame.class);
+            ParaTask.init();
+            ParaTask.setScheduling(ScheduleType.WorkStealing);
+            Log.d("MAIN ACT","Thread pool size = "+ParaTask.getThreadPoolSize(ThreadPoolType.ALL));
             startActivity(i);
         }
     }
@@ -78,6 +85,10 @@ public class MainActivity extends Activity {
         Button btPlayOffline = (Button) findViewById(R.id.btPlayOffline);
         btPlayOffline.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
+            	ParaTask.init();
+                ParaTask.setScheduling(ScheduleType.WorkStealing);
+                Log.d("MAIN ACT","Thread pool size = "+ParaTask.getThreadPoolSize(ThreadPoolType.ALL));
+                
                 if (settings.contains("FEN")) {
                     Intent i = new Intent(MainActivity.this, OfflineGame.class);
                     startActivity(i);

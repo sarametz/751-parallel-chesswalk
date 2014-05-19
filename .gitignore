@@ -30,3 +30,5 @@ proguard.cfg
 #Project and classpath files
 .classpath
 .project
+
+.settings/
