@@ -91,7 +91,7 @@ public class Engine {
 			if (!board.inCheck(board.toMove)) {
 				board.toMove *= -1;
 				int eval = -alphaBeta(depth - 1 - 2, -beta, -beta + 1, locLine,
-						false, false, new Board(board),currentDepth + 1 );
+						false, false, board,currentDepth + 1 );
 
 				board.toMove *= -1;
 				if (eval == -1234567890)
@@ -117,14 +117,14 @@ public class Engine {
 						&& !board.inCheck(board.toMove)
 						&& moves.get(i).capture == 0) {
 					eval = -alphaBeta(depth - 2, -alpha - 1, -alpha, locLine,
-							false, true,new Board(board),currentDepth + 2);
+							false, true,board,currentDepth + 2);
 					if (eval > alpha){
 						eval = -alphaBeta(depth - 1, -beta, -alpha, locLine,
-								false, true,new Board(board), currentDepth + 1);
+								false, true,board, currentDepth + 1);
 					}
 				} else{
 					eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false,
-							true,new Board(board),currentDepth + 1);
+							true,board,currentDepth + 1);
 				}
 			}
 			board.undoMove(moves.get(i));

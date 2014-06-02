@@ -90,7 +90,7 @@ public class Engine {//####[34]####
             if (!board.inCheck(board.toMove)) //####[91]####
             {//####[91]####
                 board.toMove *= -1;//####[92]####
-                int eval = -alphaBeta(depth - 1 - 2, -beta, -beta + 1, locLine, false, false, new Board(board), currentDepth + 1);//####[93]####
+                int eval = -alphaBeta(depth - 1 - 2, -beta, -beta + 1, locLine, false, false, board, currentDepth + 1);//####[93]####
                 board.toMove *= -1;//####[96]####
                 if (eval == -1234567890) //####[97]####
                 return new Integer(1234567890);//####[98]####
@@ -110,13 +110,13 @@ public class Engine {//####[34]####
             eval = -50; else {//####[115]####
                 if (i >= 4 && currentDepth - depth >= 2 && !board.inCheck(board.toMove) && moves.get(i).capture == 0) //####[116]####
                 {//####[118]####
-                    eval = -alphaBeta(depth - 2, -alpha - 1, -alpha, locLine, false, true, new Board(board), currentDepth + 2);//####[119]####
+                    eval = -alphaBeta(depth - 2, -alpha - 1, -alpha, locLine, false, true, board, currentDepth + 2);//####[119]####
                     if (eval > alpha) //####[121]####
                     {//####[121]####
-                        eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false, true, new Board(board), currentDepth + 1);//####[122]####
+                        eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false, true, board, currentDepth + 1);//####[122]####
                     }//####[124]####
                 } else {//####[125]####
-                    eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false, true, new Board(board), currentDepth + 1);//####[126]####
+                    eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false, true, board, currentDepth + 1);//####[126]####
                 }//####[128]####
             }//####[129]####
             board.undoMove(moves.get(i));//####[130]####
