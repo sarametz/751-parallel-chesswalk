@@ -59,6 +59,16 @@ public class Board {
         evaluation = new Evaluation(this);
         init();
     }
+    
+    public Board(String FEN){
+    	evaluation = new Evaluation(this);
+    	fromFEN(FEN);
+    }
+    
+    public Board(Board b){
+    	evaluation = new Evaluation(this);
+    	fromFEN(b.toFEN());
+    }
 
     public void doMove(Move move) {
         if (toMove == 1)
