@@ -60,8 +60,7 @@ public class OfflineGame extends Activity implements MoveListener,
 
     public Move getBestMove(String fen, int depth, int moveTime){
     	Engine engine = new Engine();
-    	engine.board.fromFEN(fen);
-    	return engine.bestMove(depth, moveTime);
+    	return engine.bestMove(fen,depth, moveTime);
     }
 
     private void computerMove() {
@@ -195,7 +194,7 @@ public class OfflineGame extends Activity implements MoveListener,
         Board board = new Board();
         board.fromFEN(FEN);
         chessBoard.setBoard(board);
-        engine.board = chessBoard.board;
+        //engine.board = chessBoard.board;
         if (chessBoard.board.toMove == -1) {
             chessBoard.setBlackEnabled(true);
             chessBoard.setWhiteEnabled(false);
