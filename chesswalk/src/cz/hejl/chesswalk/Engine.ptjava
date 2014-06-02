@@ -29,7 +29,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import pt.runtime.CurrentTask;
 import pt.runtime.TaskID;
-import android.util.Log;
 
 public class Engine {
 	public AtomicInteger nodeCounter = new AtomicInteger(0);
@@ -51,7 +50,7 @@ public class Engine {
 
 	private Integer alphaBeta(int depth, int alpha, int beta, ArrayList<Move> line,
 			boolean root, boolean allowNull, Board board, int currentDepth) {
-		//		//Log.d("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
+		//		//System.out.println("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
 		if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit
 				&& !root)
 			return new Integer(1234567890);// ***
@@ -161,7 +160,7 @@ public class Engine {
 
 	private Integer PVSplit(int depth, int alpha, int beta, ArrayList<Move> line,
 			boolean root, boolean allowNull, Board board, int currentDepth) {
-		//		//Log.d("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
+		//		//System.out.println("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
 		if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit
 				&& !root)
 			return new Integer(1234567890);// ***
@@ -340,7 +339,7 @@ public class Engine {
 			bestLine.add(moves.get(0));
 		}
 
-		Log.d("ENGINE", "Depth = "+currentDepth+" , Nodes = "+nodeCounter);
+		System.out.println("ENGINE"+" : "+ "Depth = "+currentDepth+" , Nodes = "+nodeCounter);
 		return bestLine.get(0);
 	}
 
@@ -361,7 +360,7 @@ public class Engine {
 		}
 		s += " : " + (System.currentTimeMillis() - bestMoveStart) + " : "
 				+ bestLineEval;
-		Log.d(TAG, s);
+		System.out.println(TAG+" : "+ s);
 	}
 
 	// -----------------------------------------------------------------------------------------------------------

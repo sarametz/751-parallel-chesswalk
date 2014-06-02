@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import android.util.Log;
 
 public class SerialEngine {
     public int nodeCounter = 0;
@@ -212,7 +211,7 @@ public class SerialEngine {
             ArrayList<Move> moves = board.generateAllMoves();
             bestLine.add(moves.get(0));
         }
-        Log.d("DEBUG", "Number of nodes : "+nodeCounter + " depth :" + currentDepth);
+        System.out.println("DEBUG"+" : "+ "Number of nodes : "+nodeCounter + " depth :" + currentDepth);
         return bestLine.get(0);
     }
 
@@ -233,7 +232,7 @@ public class SerialEngine {
         }
         s += " : " + (System.currentTimeMillis() - bestMoveStart) + " : "
                 + bestLineEval;
-        Log.d(TAG, s);
+        System.out.println(TAG+" : "+ s);
     }
 
     // -----------------------------------------------------------------------------------------------------------
