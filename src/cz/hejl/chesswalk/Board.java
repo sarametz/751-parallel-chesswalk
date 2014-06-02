@@ -37,27 +37,34 @@ public class Board {
     public ArrayList<Long> hashHistory;
 
     private int moveN;
-    private int[] bishopDeltas = { 15, 17, -17, -15 };
-    private int[] kingDeltas = { 1, -16, -1, 16, 15, 17, -17, -15 };
-    private int[] knightDeltas = { 31, 33, 14, 18, -18, -14, -33, -31 };
-    private int[] queenDeltas = { 1, -16, -1, 16, 15, 17, -17, -15 };
-    private int[] rookDeltas = { 1, -16, -1, 16 };
+    private static int[] bishopDeltas = { 15, 17, -17, -15 };
+    private static int[] kingDeltas = { 1, -16, -1, 16, 15, 17, -17, -15 };
+    private static int[] knightDeltas = { 31, 33, 14, 18, -18, -14, -33, -31 };
+    private static int[] queenDeltas = { 1, -16, -1, 16, 15, 17, -17, -15 };
+    private static int[] rookDeltas = { 1, -16, -1, 16 };
+    private static String[] fileSymbols = { "a", "b", "c", "d", "e", "f", "g", "h" };
+    private static String[] symbols = { "","P", "N", "B", "R", "Q", "K", "p", "n", "b", "r",
+            "q", "k" };
+    private static int[] pieces = { 0, 1, 2, 3, 4, 5, 6, -1, -2, -3, -4, -5, -6 };
+    
     private Evaluation evaluation;
     private Zobrist zobrist = new Zobrist();
     
-    private static AtomicLong executionTime;
-    private static AtomicInteger numOfExecutionTimes;
-    
-    static{
-    	executionTime = new AtomicLong((long) 0.00);
-    	numOfExecutionTimes = new AtomicInteger(0);
-    	
-    }
 
     public Board() {
     
         evaluation = new Evaluation(this);
         init();
+    }
+    
+    public Board(String FEN){
+    	evaluation = new Evaluation(this);
+    	fromFEN(FEN);
+    }
+    
+    public Board(Board b){
+    	evaluation = new Evaluation(this);
+    	fromFEN(b.toFEN());
     }
 
     public void doMove(Move move) {
@@ -145,10 +152,6 @@ public class Board {
     }
 
     public void fromFEN(String FEN) {
-        String[] fileSymbols = { "a", "b", "c", "d", "e", "f", "g", "h" };
-        String[] symbols = { "P", "N", "B", "R", "Q", "K", "p", "n", "b", "r",
-                "q", "k" };
-        int[] pieces = { 1, 2, 3, 4, 5, 6, -1, -2, -3, -4, -5, -6 };
 
         int pos = -1;
         int file = 0;
@@ -634,9 +637,6 @@ public class Board {
     }
 
     public String toFEN() {
-        String[] symbols = { "", "P", "N", "B", "R", "Q", "K", "p", "n", "b",
-                "r", "q", "k" };
-        String[] fileSymbols = { "a", "b", "c", "d", "e", "f", "g", "h" };
 
         StringBuffer FEN = new StringBuffer(100);
         for (int i = 7; i >= 0; i--) {

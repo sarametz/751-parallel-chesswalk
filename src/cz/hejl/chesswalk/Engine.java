@@ -5,8 +5,9 @@ import java.util.Collections;//####[24]####
 import java.util.Comparator;//####[25]####
 import java.util.Currency;//####[26]####
 import java.util.concurrent.ExecutionException;//####[27]####
-import pt.runtime.CurrentTask;//####[29]####
-import pt.runtime.TaskID;//####[30]####
+import java.util.concurrent.atomic.AtomicInteger;//####[28]####
+import pt.runtime.CurrentTask;//####[30]####
+import pt.runtime.TaskID;//####[31]####
 import android.util.Log;//####[32]####
 //####[32]####
 //-- ParaTask related imports//####[32]####
@@ -31,357 +32,329 @@ public class Engine {//####[34]####
             m.invoke(instance, arg, interResult);//####[34]####
     }//####[34]####
 //####[35]####
-    public int nodeCounter = 0;//####[35]####
-//####[36]####
-    public Board board = new Board();//####[36]####
+    public AtomicInteger nodeCounter = new AtomicInteger(0);//####[35]####
+//####[37]####
+    private static final int WINDOW = 10;//####[37]####
 //####[38]####
-    private static final int WINDOW = 10;//####[38]####
-//####[39]####
-    private static final int[] PIECE_PRICES = { 0, 100, 300, 300, 500, 900, 1000 };//####[39]####
-//####[41]####
-    private static final String TAG = "Engine";//####[41]####
+    private static final int[] PIECE_PRICES = { 0, 100, 300, 300, 500, 900, 1000 };//####[38]####
+//####[40]####
+    private static final String TAG = "Engine";//####[40]####
+//####[42]####
+    private boolean allowNullGlobal = true;//####[42]####
 //####[43]####
-    private boolean allowNullGlobal = true;//####[43]####
+    private int bestLineDepth;//####[43]####
 //####[44]####
-    private int bestLineDepth;//####[44]####
+    private int bestLineEval;//####[44]####
 //####[45]####
-    private int bestLineEval;//####[45]####
+    private int bestMoveTimeLimit;//####[45]####
 //####[46]####
-    private int bestMoveTimeLimit;//####[46]####
+    private long bestMoveStart;//####[46]####
 //####[47]####
-    private int currentDepth;//####[47]####
+    private ArrayList<Move> bestLine;//####[47]####
 //####[48]####
-    private long bestMoveStart;//####[48]####
-//####[49]####
-    private ArrayList<Move> bestLine;//####[49]####
-//####[50]####
-    private MoveComparator moveComparator = new MoveComparator();//####[50]####
-//####[51]####
-    private Move[] primaryKillers = new Move[50];//####[51]####
+    private MoveComparator moveComparator = new MoveComparator();//####[48]####
 //####[52]####
-    private Move[] secondaryKillers = new Move[50];//####[52]####
-//####[56]####
-    private static volatile Method __pt__alphaBeta_int_int_int_ArrayListMove_boolean_boolean_method = null;//####[56]####
-    private synchronized static void __pt__alphaBeta_int_int_int_ArrayListMove_boolean_boolean_ensureMethodVarSet() {//####[56]####
-        if (__pt__alphaBeta_int_int_int_ArrayListMove_boolean_boolean_method == null) {//####[56]####
-            try {//####[56]####
-                __pt__alphaBeta_int_int_int_ArrayListMove_boolean_boolean_method = ParaTaskHelper.getDeclaredMethod(new ParaTaskHelper.ClassGetter().getCurrentClass(), "__pt__alphaBeta", new Class[] {//####[56]####
-                    int.class, int.class, int.class, ArrayList.class, boolean.class, boolean.class//####[56]####
-                });//####[56]####
-            } catch (Exception e) {//####[56]####
-                e.printStackTrace();//####[56]####
-            }//####[56]####
-        }//####[56]####
-    }//####[56]####
-    private TaskID<Integer> alphaBeta(Object depth, Object alpha, Object beta, Object line, Object root, Object allowNull) {//####[57]####
-        //-- execute asynchronously by enqueuing onto the taskpool//####[57]####
-        return alphaBeta(depth, alpha, beta, line, root, allowNull, new TaskInfo());//####[57]####
-    }//####[57]####
-    private TaskID<Integer> alphaBeta(Object depth, Object alpha, Object beta, Object line, Object root, Object allowNull, TaskInfo taskinfo) {//####[57]####
-        // ensure Method variable is set//####[57]####
-        if (__pt__alphaBeta_int_int_int_ArrayListMove_boolean_boolean_method == null) {//####[57]####
-            __pt__alphaBeta_int_int_int_ArrayListMove_boolean_boolean_ensureMethodVarSet();//####[57]####
-        }//####[57]####
-        List<Integer> __pt__taskIdIndexList = new ArrayList<Integer>();//####[57]####
-        List<Integer> __pt__queueIndexList = new ArrayList<Integer>();//####[57]####
-        if (depth instanceof BlockingQueue) {//####[57]####
-            __pt__queueIndexList.add(0);//####[57]####
-        }//####[57]####
-        if (depth instanceof TaskID) {//####[57]####
-            taskinfo.addDependsOn((TaskID)depth);//####[57]####
-            __pt__taskIdIndexList.add(0);//####[57]####
-        }//####[57]####
-        if (alpha instanceof BlockingQueue) {//####[57]####
-            __pt__queueIndexList.add(1);//####[57]####
-        }//####[57]####
-        if (alpha instanceof TaskID) {//####[57]####
-            taskinfo.addDependsOn((TaskID)alpha);//####[57]####
-            __pt__taskIdIndexList.add(1);//####[57]####
-        }//####[57]####
-        if (beta instanceof BlockingQueue) {//####[57]####
-            __pt__queueIndexList.add(2);//####[57]####
-        }//####[57]####
-        if (beta instanceof TaskID) {//####[57]####
-            taskinfo.addDependsOn((TaskID)beta);//####[57]####
-            __pt__taskIdIndexList.add(2);//####[57]####
-        }//####[57]####
-        if (line instanceof BlockingQueue) {//####[57]####
-            __pt__queueIndexList.add(3);//####[57]####
-        }//####[57]####
-        if (line instanceof TaskID) {//####[57]####
-            taskinfo.addDependsOn((TaskID)line);//####[57]####
-            __pt__taskIdIndexList.add(3);//####[57]####
-        }//####[57]####
-        if (root instanceof BlockingQueue) {//####[57]####
-            __pt__queueIndexList.add(4);//####[57]####
-        }//####[57]####
-        if (root instanceof TaskID) {//####[57]####
-            taskinfo.addDependsOn((TaskID)root);//####[57]####
-            __pt__taskIdIndexList.add(4);//####[57]####
-        }//####[57]####
-        if (allowNull instanceof BlockingQueue) {//####[57]####
-            __pt__queueIndexList.add(5);//####[57]####
-        }//####[57]####
-        if (allowNull instanceof TaskID) {//####[57]####
-            taskinfo.addDependsOn((TaskID)allowNull);//####[57]####
-            __pt__taskIdIndexList.add(5);//####[57]####
-        }//####[57]####
-        int[] __pt__queueIndexArray = new int[__pt__queueIndexList.size()];//####[57]####
-        for (int __pt__i = 0; __pt__i < __pt__queueIndexArray.length; __pt__i++) {//####[57]####
-            __pt__queueIndexArray[__pt__i] = __pt__queueIndexList.get(__pt__i);//####[57]####
-        }//####[57]####
-        taskinfo.setQueueArgIndexes(__pt__queueIndexArray);//####[57]####
-        if (__pt__queueIndexArray.length > 0) {//####[57]####
-            taskinfo.setIsPipeline(true);//####[57]####
-        }//####[57]####
-        int[] __pt__taskIdIndexArray = new int[__pt__taskIdIndexList.size()];//####[57]####
-        for (int __pt__i = 0; __pt__i < __pt__taskIdIndexArray.length; __pt__i++) {//####[57]####
-            __pt__taskIdIndexArray[__pt__i] = __pt__taskIdIndexList.get(__pt__i);//####[57]####
-        }//####[57]####
-        taskinfo.setTaskIdArgIndexes(__pt__taskIdIndexArray);//####[57]####
-        taskinfo.setParameters(depth, alpha, beta, line, root, allowNull);//####[57]####
-        taskinfo.setMethod(__pt__alphaBeta_int_int_int_ArrayListMove_boolean_boolean_method);//####[57]####
-        taskinfo.setInstance(this);//####[57]####
-        return TaskpoolFactory.getTaskpool().enqueue(taskinfo);//####[57]####
-    }//####[57]####
-    public Integer __pt__alphaBeta(int depth, int alpha, int beta, ArrayList<Move> line, boolean root, boolean allowNull) {//####[57]####
-        if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit && !root) //####[59]####
-        return new Integer(1234567890);//####[61]####
-        if (allowNullGlobal == false) //####[62]####
-        allowNull = false;//####[63]####
-        nodeCounter++;//####[64]####
-        int initialAlpha = alpha;//####[65]####
-        int initialLineSize = line.size();//####[67]####
-        ArrayList<Move> locLine = new ArrayList<Move>();//####[68]####
-        ArrayList<Move> moves = null;//####[69]####
-        moves = board.generateAllMoves();//####[70]####
-        moveComparator.ply = currentDepth - depth + 1;//####[71]####
-        Collections.sort(moves, moveComparator);//####[72]####
-        if (depth <= 0) //####[74]####
-        {//####[74]####
-            int eval = board.evaluate();//####[75]####
-            if (eval >= beta) //####[76]####
-            return new Integer(beta);//####[77]####
-            if (eval > alpha) //####[78]####
-            alpha = eval;//####[79]####
-            int capturesN = 0;//####[81]####
-            for (int i = 0; i < moves.size(); i++) //####[82]####
-            {//####[82]####
-                if (moves.get(i).capture == 0) //####[83]####
-                break;//####[84]####
-                capturesN++;//####[85]####
-            }//####[86]####
-            moves.subList(capturesN, moves.size()).clear();//####[87]####
-        }//####[88]####
-        if (moves.size() == 0) //####[90]####
-        return board.evaluate();//####[91]####
-        if (allowNull && depth > 0) //####[93]####
-        {//####[93]####
-            if (!board.inCheck(board.toMove)) //####[94]####
-            {//####[94]####
-                board.toMove *= -1;//####[95]####
-                TaskID<Integer> id1 = alphaBeta(depth - 1 - 2, -beta, -beta + 1, locLine, false, false);//####[96]####
-                int eval = 0;//####[98]####
-                try {//####[99]####
-                    eval = -((int) id1.getReturnResult());//####[100]####
-                } catch (InterruptedException e) {//####[101]####
-                    Log.e("Engine", "Interupted excpetion " + e.getMessage());//####[102]####
-                } catch (ExecutionException e) {//####[103]####
-                    Log.e("Engine", "Execution excpetion " + e.getMessage());//####[104]####
-                }//####[105]####
-                board.toMove *= -1;//####[106]####
-                if (eval == -1234567890) //####[107]####
-                return new Integer(1234567890);//####[108]####
-                if (eval >= beta) //####[110]####
-                {//####[110]####
-                    return new Integer(beta);//####[111]####
-                }//####[112]####
-            }//####[113]####
-        }//####[114]####
-        for (int i = 0; i < moves.size(); i++) //####[116]####
-        {//####[116]####
-            locLine.clear();//####[117]####
-            int eval;//####[118]####
-            board.doMove(moves.get(i));//####[120]####
-            if (board.isRepetition()) //####[121]####
-            eval = -50; else if (board.isDraw50Move()) //####[123]####
-            eval = -50; else {//####[125]####
-                if (i >= 4 && currentDepth - depth >= 2 && !board.inCheck(board.toMove) && moves.get(i).capture == 0) //####[126]####
-                {//####[128]####
-                    TaskID<Integer> id2 = alphaBeta(depth - 2, -alpha - 1, -alpha, locLine, false, true);//####[129]####
-                    eval = 0;//####[131]####
-                    try {//####[132]####
-                        eval = -((int) id2.getReturnResult());//####[133]####
-                    } catch (InterruptedException e) {//####[134]####
-                        Log.e("Engine", "Interupted excpetion " + e.getMessage());//####[135]####
-                    } catch (ExecutionException e) {//####[136]####
-                        Log.e("Engine", "Execution excpetion " + e.getMessage());//####[137]####
-                    }//####[138]####
-                    if (eval > alpha) //####[139]####
-                    {//####[139]####
-                        TaskID<Integer> id3 = alphaBeta(depth - 1, -beta, -alpha, locLine, false, true);//####[140]####
-                        try {//####[142]####
-                            eval = -((int) id3.getReturnResult());//####[143]####
-                        } catch (InterruptedException e) {//####[144]####
-                            Log.e("Engine", "Interupted excpetion " + e.getMessage());//####[145]####
-                        } catch (ExecutionException e) {//####[146]####
-                            Log.e("Engine", "Execution excpetion " + e.getMessage());//####[147]####
-                        }//####[148]####
-                    }//####[149]####
-                } else {//####[150]####
-                    TaskID<Integer> id4 = alphaBeta(depth - 1, -beta, -alpha, locLine, false, true);//####[151]####
-                    eval = 0;//####[153]####
-                    try {//####[154]####
-                        eval = -((int) id4.getReturnResult());//####[155]####
-                    } catch (InterruptedException e) {//####[156]####
-                        Log.e("Engine", "Interupted excpetion " + e.getMessage());//####[157]####
-                    } catch (ExecutionException e) {//####[158]####
-                        Log.e("Engine", "Execution excpetion " + e.getMessage());//####[159]####
-                    }//####[160]####
-                }//####[161]####
-            }//####[162]####
-            board.undoMove(moves.get(i));//####[163]####
-            if (eval == -1234567890) //####[164]####
-            return new Integer(1234567890);//####[165]####
-            if (eval >= beta) //####[167]####
-            {//####[167]####
-                if (primaryKillers[currentDepth - depth] != null) //####[169]####
-                secondaryKillers[currentDepth - depth] = primaryKillers[currentDepth - depth];//####[170]####
-                primaryKillers[currentDepth - depth] = moves.get(i);//####[172]####
-                return new Integer(beta);//####[174]####
-            }//####[175]####
-            if (eval > alpha) //####[177]####
-            {//####[177]####
-                alpha = eval;//####[178]####
-                line.subList(initialLineSize, line.size()).clear();//####[179]####
-                line.add(moves.get(i));//####[180]####
-                line.addAll(locLine);//####[181]####
-            }//####[182]####
-            if (root && (eval > bestLineEval || eval == bestLineEval && depth > bestLineDepth) && initialAlpha == -1000000) //####[185]####
-            {//####[188]####
-                updateBestLine(line, depth, eval);//####[189]####
-            }//####[190]####
-        }//####[191]####
-        if (root && alpha > initialAlpha) //####[193]####
-        {//####[193]####
-            updateBestLine(line, depth, alpha);//####[194]####
-        }//####[195]####
-        return new Integer(alpha);//####[197]####
-    }//####[198]####
-//####[198]####
-//####[202]####
-    public Move bestMove(int depth, int time) {//####[202]####
-        return bestMove(depth, time, false);//####[203]####
-    }//####[204]####
-//####[206]####
-    public Move bestMove(int depth, int time, boolean verbose) {//####[206]####
-        nodeCounter = 0;//####[207]####
-        bestMoveTimeLimit = time;//####[208]####
-        int eval = 0;//####[210]####
-        bestLine = new ArrayList<Move>();//####[211]####
-        bestLineDepth = 0;//####[212]####
-        bestLineEval = -100000;//####[213]####
-        bestMoveStart = System.currentTimeMillis();//####[214]####
-        currentDepth = 1;//####[215]####
-        int alpha = -1000000;//####[216]####
-        int beta = 1000000;//####[217]####
-        while (true) //####[218]####
+    private Integer alphaBeta(int depth, int alpha, int beta, ArrayList<Move> line, boolean root, boolean allowNull, Board board, int currentDepth) {//####[53]####
+        if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit && !root) //####[55]####
+        return new Integer(1234567890);//####[57]####
+        if (allowNullGlobal == false) //####[58]####
+        allowNull = false;//####[59]####
+        nodeCounter.incrementAndGet();//####[60]####
+        int initialAlpha = alpha;//####[61]####
+        int initialLineSize = line.size();//####[63]####
+        ArrayList<Move> locLine = new ArrayList<Move>();//####[64]####
+        ArrayList<Move> moves = null;//####[65]####
+        moves = board.generateAllMoves();//####[66]####
+        moveComparator.ply = currentDepth - depth + 1;//####[67]####
+        Collections.sort(moves, moveComparator);//####[68]####
+        if (depth <= 0) //####[70]####
+        {//####[70]####
+            int eval = board.evaluate();//####[71]####
+            if (eval >= beta) //####[72]####
+            return new Integer(beta);//####[73]####
+            if (eval > alpha) //####[74]####
+            alpha = eval;//####[75]####
+            int capturesN = 0;//####[77]####
+            for (int i = 0; i < moves.size(); i++) //####[78]####
+            {//####[78]####
+                if (moves.get(i).capture == 0) //####[79]####
+                break;//####[80]####
+                capturesN++;//####[81]####
+            }//####[82]####
+            moves.subList(capturesN, moves.size()).clear();//####[83]####
+        }//####[84]####
+        if (moves.size() == 0) //####[86]####
+        return board.evaluate();//####[87]####
+        if (allowNull && depth > 0) //####[90]####
+        {//####[90]####
+            if (!board.inCheck(board.toMove)) //####[91]####
+            {//####[91]####
+                board.toMove *= -1;//####[92]####
+                int eval = -alphaBeta(depth - 1 - 2, -beta, -beta + 1, locLine, false, false, board, currentDepth + 1);//####[93]####
+                board.toMove *= -1;//####[96]####
+                if (eval == -1234567890) //####[97]####
+                return new Integer(1234567890);//####[98]####
+                if (eval >= beta) //####[100]####
+                {//####[100]####
+                    return new Integer(beta);//####[101]####
+                }//####[102]####
+            }//####[103]####
+        }//####[104]####
+        for (int i = 0; i < moves.size(); i++) //####[106]####
+        {//####[106]####
+            locLine.clear();//####[107]####
+            int eval;//####[108]####
+            board.doMove(moves.get(i));//####[110]####
+            if (board.isRepetition()) //####[111]####
+            eval = -50; else if (board.isDraw50Move()) //####[113]####
+            eval = -50; else {//####[115]####
+                if (i >= 4 && currentDepth - depth >= 2 && !board.inCheck(board.toMove) && moves.get(i).capture == 0) //####[116]####
+                {//####[118]####
+                    eval = -alphaBeta(depth - 2, -alpha - 1, -alpha, locLine, false, true, board, currentDepth + 2);//####[119]####
+                    if (eval > alpha) //####[121]####
+                    {//####[121]####
+                        eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false, true, board, currentDepth + 1);//####[122]####
+                    }//####[124]####
+                } else {//####[125]####
+                    eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false, true, board, currentDepth + 1);//####[126]####
+                }//####[128]####
+            }//####[129]####
+            board.undoMove(moves.get(i));//####[130]####
+            if (eval == -1234567890) //####[131]####
+            return new Integer(1234567890);//####[132]####
+            if (eval >= beta) //####[134]####
+            {//####[134]####
+                return new Integer(beta);//####[135]####
+            }//####[136]####
+            if (eval > alpha) //####[138]####
+            {//####[138]####
+                alpha = eval;//####[139]####
+                line.subList(initialLineSize, line.size()).clear();//####[140]####
+                line.add(moves.get(i));//####[141]####
+                line.addAll(locLine);//####[142]####
+            }//####[143]####
+            if (root && (eval > bestLineEval || eval == bestLineEval && depth > bestLineDepth) && initialAlpha == -1000000) //####[146]####
+            {//####[149]####
+                updateBestLine(line, depth, eval);//####[150]####
+            }//####[151]####
+        }//####[152]####
+        if (root && alpha > initialAlpha) //####[154]####
+        {//####[154]####
+            updateBestLine(line, depth, alpha);//####[155]####
+        }//####[156]####
+        return new Integer(alpha);//####[158]####
+    }//####[159]####
+//####[162]####
+    private Integer PVSplit(int depth, int alpha, int beta, ArrayList<Move> line, boolean root, boolean allowNull, Board board, int currentDepth) {//####[163]####
+        if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit && !root) //####[165]####
+        return new Integer(1234567890);//####[167]####
+        if (allowNullGlobal == false) //####[168]####
+        allowNull = false;//####[169]####
+        int initialAlpha = alpha;//####[170]####
+        nodeCounter.incrementAndGet();//####[171]####
+        int initialLineSize = line.size();//####[172]####
+        ArrayList<Move> locLine = new ArrayList<Move>();//####[173]####
+        ArrayList<Move> moves = null;//####[174]####
+        moves = board.generateAllMoves();//####[175]####
+        moveComparator.ply = currentDepth - depth + 1;//####[176]####
+        Collections.sort(moves, moveComparator);//####[177]####
+        if (depth <= 0) //####[179]####
+        {//####[179]####
+            int eval = board.evaluate();//####[180]####
+            if (eval >= beta) //####[181]####
+            return new Integer(beta);//####[182]####
+            if (eval > alpha) //####[183]####
+            alpha = eval;//####[184]####
+            int capturesN = 0;//####[186]####
+            for (int i = 0; i < moves.size(); i++) //####[187]####
+            {//####[187]####
+                if (moves.get(i).capture == 0) //####[188]####
+                break;//####[189]####
+                capturesN++;//####[190]####
+            }//####[191]####
+            moves.subList(capturesN, moves.size()).clear();//####[192]####
+        }//####[193]####
+        if (moves.size() == 0) //####[195]####
+        return board.evaluate();//####[196]####
+        board.doMove(moves.get(0));//####[198]####
+        locLine.clear();//####[199]####
+        int evalOne;//####[200]####
+        if (board.isRepetition()) //####[202]####
+        evalOne = -50; else if (board.isDraw50Move()) //####[204]####
+        evalOne = -50; else {//####[206]####
+            evalOne = -PVSplit(depth - 1, -beta, -alpha, locLine, false, true, board, currentDepth + 1);//####[207]####
+        }//####[209]####
+        board.undoMove(moves.get(0));//####[210]####
+        if (evalOne == -1234567890) //####[211]####
+        return new Integer(1234567890);//####[212]####
+        if (evalOne >= beta) //####[214]####
+        {//####[214]####
+            return new Integer(beta);//####[215]####
+        }//####[216]####
+        if (evalOne > alpha) //####[218]####
         {//####[218]####
-            if (currentDepth == 1) //####[220]####
-            {//####[220]####
-                ArrayList<Move> moves = board.generateAllMoves();//####[221]####
-                if (moves.size() == 1) //####[222]####
-                {//####[222]####
-                    bestLine = new ArrayList<Move>();//####[223]####
-                    bestLine.add(moves.get(0));//####[224]####
-                    break;//####[225]####
-                }//####[226]####
-            }//####[227]####
-            TaskID<Integer> id5 = alphaBeta(currentDepth, alpha, beta, new ArrayList<Move>(), true, true);//####[228]####
-            try {//####[230]####
-                eval = (int) id5.getReturnResult();//####[231]####
-            } catch (InterruptedException e) {//####[232]####
-                Log.e("Engine", "Interupted excpetion " + e.getMessage());//####[233]####
-            } catch (ExecutionException e) {//####[234]####
-                Log.e("Engine", "Execution excpetion " + e.getMessage());//####[235]####
-            }//####[236]####
-            if (eval == 1234567890) //####[237]####
-            break;//####[238]####
-            if (eval <= alpha || eval >= beta) //####[239]####
-            {//####[239]####
-                alpha = -1000000;//####[240]####
-                beta = 1000000;//####[241]####
-                continue;//####[242]####
-            }//####[243]####
-            alpha = eval - WINDOW;//####[244]####
-            beta = eval + WINDOW;//####[245]####
-            currentDepth++;//####[247]####
-            if (currentDepth > depth) //####[248]####
-            break;//####[249]####
-            if (System.currentTimeMillis() - bestMoveStart > time) //####[250]####
-            break;//####[251]####
-        }//####[252]####
-        if (bestLine.size() == 0) //####[255]####
-        {//####[255]####
-            ArrayList<Move> moves = board.generateAllMoves();//####[256]####
-            bestLine.add(moves.get(0));//####[257]####
-        }//####[258]####
-        Log.d("ENGINE", "Depth = " + currentDepth + " , Nodes = " + nodeCounter);//####[260]####
-        return bestLine.get(0);//####[261]####
-    }//####[262]####
-//####[266]####
-    private void updateBestLine(ArrayList<Move> line, int depth, int eval) {//####[266]####
-        if (depth == bestLineDepth && eval == bestLineEval) //####[267]####
-        return;//####[268]####
-        bestLineDepth = depth;//####[269]####
-        bestLineEval = eval;//####[270]####
-        bestLine = line;//####[271]####
-        String s = bestLineDepth + " : ";//####[273]####
-        for (int i = 0; i < bestLine.size(); i++) //####[274]####
-        {//####[274]####
-            if (i == bestLineDepth) //####[275]####
-            s += "| ";//####[276]####
-            s += bestLine.get(i).toString() + " ";//####[277]####
-        }//####[278]####
-        s += " : " + (System.currentTimeMillis() - bestMoveStart) + " : " + bestLineEval;//####[279]####
-        Log.d(TAG, s);//####[281]####
-    }//####[282]####
-//####[286]####
-    private class MoveComparator implements Comparator<Move> {//####[286]####
-//####[286]####
-        /*  ParaTask helper method to access private/protected slots *///####[286]####
-        public void __pt__accessPrivateSlot(Method m, Object instance, TaskID arg, Object interResult ) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {//####[286]####
-            if (m.getParameterTypes().length == 0)//####[286]####
-                m.invoke(instance);//####[286]####
-            else if ((m.getParameterTypes().length == 1))//####[286]####
-                m.invoke(instance, arg);//####[286]####
-            else //####[286]####
-                m.invoke(instance, arg, interResult);//####[286]####
-        }//####[286]####
-//####[288]####
-        public int ply;//####[288]####
-//####[290]####
-        public int compare(Move move1, Move move2) {//####[290]####
-            int moveEval1 = moveEval(move1);//####[291]####
-            int moveEval2 = moveEval(move2);//####[292]####
-            if (moveEval1 > moveEval2) //####[293]####
-            return -1; else if (moveEval2 > moveEval1) //####[295]####
-            return 1; else return 0;//####[296]####
-        }//####[299]####
-//####[301]####
-        private int moveEval(Move move) {//####[301]####
-            if (bestLine != null && bestLine.size() >= ply) //####[302]####
-            {//####[302]####
-                Move lastBest = bestLine.get(ply - 1);//####[303]####
-                if (move.from == lastBest.from && move.to == lastBest.to && move.piece == lastBest.piece) //####[304]####
-                return 100000;//####[306]####
-            }//####[307]####
-            if (move.capture == 0) //####[321]####
-            return 0; else {//####[323]####
-                int capturePrice = PIECE_PRICES[Math.abs(move.capture)];//####[324]####
-                int piecePrice = PIECE_PRICES[Math.abs(move.piece)];//####[325]####
-                return capturePrice - piecePrice + 2000;//####[326]####
-            }//####[327]####
-        }//####[328]####
-    }//####[328]####
-}//####[328]####
+            alpha = evalOne;//####[219]####
+            line.subList(initialLineSize, line.size()).clear();//####[220]####
+            line.add(moves.get(0));//####[221]####
+            line.addAll(locLine);//####[222]####
+        }//####[223]####
+        if (root && (evalOne > bestLineEval || evalOne == bestLineEval && depth > bestLineDepth) && initialAlpha == -1000000) //####[226]####
+        {//####[229]####
+            updateBestLine(line, depth, evalOne);//####[230]####
+        }//####[231]####
+        for (int i = 1; i < moves.size(); i++) //####[234]####
+        {//####[234]####
+            Board b1 = new Board(board);//####[235]####
+            locLine.clear();//####[236]####
+            int eval;//####[237]####
+            b1.doMove(moves.get(i));//####[239]####
+            if (b1.isRepetition()) //####[240]####
+            eval = -50; else if (b1.isDraw50Move()) //####[242]####
+            eval = -50; else {//####[244]####
+                if (i >= 4 && currentDepth - depth >= 2 && !b1.inCheck(b1.toMove) && moves.get(i).capture == 0) //####[245]####
+                {//####[247]####
+                    eval = -alphaBeta(depth - 2, -alpha - 1, -alpha, locLine, false, true, b1, currentDepth + 2);//####[248]####
+                    if (eval > alpha) //####[250]####
+                    {//####[250]####
+                        eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false, true, b1, currentDepth + 1);//####[251]####
+                    }//####[253]####
+                } else {//####[254]####
+                    eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false, true, b1, currentDepth + 1);//####[255]####
+                }//####[257]####
+            }//####[258]####
+            b1.undoMove(moves.get(i));//####[259]####
+            if (eval == -1234567890) //####[260]####
+            return new Integer(1234567890);//####[261]####
+            if (eval >= beta) //####[263]####
+            {//####[263]####
+                return new Integer(beta);//####[264]####
+            }//####[265]####
+            if (eval > alpha) //####[267]####
+            {//####[267]####
+                alpha = eval;//####[268]####
+                line.subList(initialLineSize, line.size()).clear();//####[269]####
+                line.add(moves.get(i));//####[270]####
+                line.addAll(locLine);//####[271]####
+            }//####[272]####
+            if (root && (eval > bestLineEval || eval == bestLineEval && depth > bestLineDepth) && initialAlpha == -1000000) //####[275]####
+            {//####[278]####
+                updateBestLine(line, depth, eval);//####[279]####
+            }//####[280]####
+        }//####[281]####
+        if (root && alpha > initialAlpha) //####[283]####
+        {//####[283]####
+            updateBestLine(line, depth, alpha);//####[284]####
+        }//####[285]####
+        return new Integer(alpha);//####[287]####
+    }//####[288]####
+//####[291]####
+    public Move bestMove(String FEN, int depth, int time) {//####[291]####
+        return bestMove(FEN, depth, time, false);//####[292]####
+    }//####[293]####
+//####[295]####
+    public Move bestMove(String FEN, int depth, int time, boolean verbose) {//####[295]####
+        Board board = new Board(FEN);//####[296]####
+        nodeCounter.set(0);//####[297]####
+        ;//####[297]####
+        bestMoveTimeLimit = time;//####[298]####
+        int eval = 0;//####[300]####
+        bestLine = new ArrayList<Move>();//####[301]####
+        bestLineDepth = 0;//####[302]####
+        bestLineEval = -100000;//####[303]####
+        bestMoveStart = System.currentTimeMillis();//####[304]####
+        int currentDepth = 1;//####[305]####
+        int alpha = -1000000;//####[306]####
+        int beta = 1000000;//####[307]####
+        while (true) //####[308]####
+        {//####[308]####
+            if (currentDepth == 1) //####[310]####
+            {//####[310]####
+                ArrayList<Move> moves = board.generateAllMoves();//####[311]####
+                if (moves.size() == 1) //####[312]####
+                {//####[312]####
+                    bestLine = new ArrayList<Move>();//####[313]####
+                    bestLine.add(moves.get(0));//####[314]####
+                    break;//####[315]####
+                }//####[316]####
+            }//####[317]####
+            eval = PVSplit(currentDepth, alpha, beta, new ArrayList<Move>(), true, true, board, currentDepth);//####[318]####
+            if (eval == 1234567890) //####[320]####
+            break;//####[321]####
+            if (eval <= alpha || eval >= beta) //####[322]####
+            {//####[322]####
+                alpha = -1000000;//####[323]####
+                beta = 1000000;//####[324]####
+                continue;//####[325]####
+            }//####[326]####
+            alpha = eval - WINDOW;//####[327]####
+            beta = eval + WINDOW;//####[328]####
+            currentDepth++;//####[330]####
+            if (currentDepth > depth) //####[331]####
+            break;//####[332]####
+            if (System.currentTimeMillis() - bestMoveStart > time) //####[333]####
+            break;//####[334]####
+        }//####[335]####
+        if (bestLine.size() == 0) //####[338]####
+        {//####[338]####
+            ArrayList<Move> moves = board.generateAllMoves();//####[339]####
+            bestLine.add(moves.get(0));//####[340]####
+        }//####[341]####
+        Log.d("ENGINE", "Depth = " + currentDepth + " , Nodes = " + nodeCounter);//####[343]####
+        return bestLine.get(0);//####[344]####
+    }//####[345]####
+//####[349]####
+    private void updateBestLine(ArrayList<Move> line, int depth, int eval) {//####[349]####
+        if (depth == bestLineDepth && eval == bestLineEval) //####[350]####
+        return;//####[351]####
+        bestLineDepth = depth;//####[352]####
+        bestLineEval = eval;//####[353]####
+        bestLine = line;//####[354]####
+        String s = bestLineDepth + " : ";//####[356]####
+        for (int i = 0; i < bestLine.size(); i++) //####[357]####
+        {//####[357]####
+            if (i == bestLineDepth) //####[358]####
+            s += "| ";//####[359]####
+            s += bestLine.get(i).toString() + " ";//####[360]####
+        }//####[361]####
+        s += " : " + (System.currentTimeMillis() - bestMoveStart) + " : " + bestLineEval;//####[362]####
+        Log.d(TAG, s);//####[364]####
+    }//####[365]####
+//####[369]####
+    private class MoveComparator implements Comparator<Move> {//####[369]####
+//####[369]####
+        /*  ParaTask helper method to access private/protected slots *///####[369]####
+        public void __pt__accessPrivateSlot(Method m, Object instance, TaskID arg, Object interResult ) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {//####[369]####
+            if (m.getParameterTypes().length == 0)//####[369]####
+                m.invoke(instance);//####[369]####
+            else if ((m.getParameterTypes().length == 1))//####[369]####
+                m.invoke(instance, arg);//####[369]####
+            else //####[369]####
+                m.invoke(instance, arg, interResult);//####[369]####
+        }//####[369]####
+//####[371]####
+        public int ply;//####[371]####
+//####[373]####
+        public int compare(Move move1, Move move2) {//####[373]####
+            int moveEval1 = moveEval(move1);//####[374]####
+            int moveEval2 = moveEval(move2);//####[375]####
+            if (moveEval1 > moveEval2) //####[376]####
+            return -1; else if (moveEval2 > moveEval1) //####[378]####
+            return 1; else return 0;//####[379]####
+        }//####[382]####
+//####[384]####
+        private int moveEval(Move move) {//####[384]####
+            if (bestLine != null && bestLine.size() >= ply) //####[385]####
+            {//####[385]####
+                Move lastBest = bestLine.get(ply - 1);//####[386]####
+                if (move.from == lastBest.from && move.to == lastBest.to && move.piece == lastBest.piece) //####[387]####
+                return 100000;//####[389]####
+            }//####[390]####
+            if (move.capture == 0) //####[404]####
+            return 0; else {//####[406]####
+                int capturePrice = PIECE_PRICES[Math.abs(move.capture)];//####[407]####
+                int piecePrice = PIECE_PRICES[Math.abs(move.piece)];//####[408]####
+                return capturePrice - piecePrice + 2000;//####[409]####
+            }//####[410]####
+        }//####[411]####
+    }//####[411]####
+}//####[411]####
