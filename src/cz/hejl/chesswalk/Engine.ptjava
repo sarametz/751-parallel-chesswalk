@@ -232,30 +232,31 @@ public class Engine {
 
 		//this is now parallelizable
 		for (int i = 1; i < moves.size(); i++) {
+			Board b1 = new Board(board);
 			locLine.clear();
 			int eval;
 
-			board.doMove(moves.get(i));
-			if (board.isRepetition())
+			b1.doMove(moves.get(i));
+			if (b1.isRepetition())
 				eval = -50;
-			else if (board.isDraw50Move())
+			else if (b1.isDraw50Move())
 				eval = -50;
 			else {
 				if (i >= 4 && currentDepth - depth >= 2
-						&& !board.inCheck(board.toMove)
+						&& !b1.inCheck(b1.toMove)
 						&& moves.get(i).capture == 0) {
 					eval = -alphaBeta(depth - 2, -alpha - 1, -alpha, locLine,
-							false, true,new Board(board),currentDepth + 2);
+							false, true,b1,currentDepth + 2);
 					if (eval > alpha){
 						eval = -alphaBeta(depth - 1, -beta, -alpha, locLine,
-								false, true,new Board(board), currentDepth + 1);
+								false, true, b1, currentDepth + 1);
 					}
 				} else{
 					eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false,
-							true,new Board(board),currentDepth + 1);
+							true, b1,currentDepth + 1);
 				}
 			}
-			board.undoMove(moves.get(i));
+			b1.undoMove(moves.get(i));
 			if (eval == -1234567890)
 				return new Integer(1234567890); // ***
 
