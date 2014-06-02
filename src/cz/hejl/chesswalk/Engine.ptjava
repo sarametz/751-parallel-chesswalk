@@ -204,7 +204,7 @@ public class Engine {
 		else if (board.isDraw50Move())
 			evalOne = -50;
 		else {
-				evalOne = PVSplit(depth - 1, alpha, beta, locLine, false,
+				evalOne = -PVSplit(depth - 1, -beta, -alpha, locLine, false,
 						true,board,currentDepth + 1);
 		}
 		board.undoMove(moves.get(0));

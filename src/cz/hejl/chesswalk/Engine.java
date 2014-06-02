@@ -182,7 +182,7 @@ public class Engine {//####[34]####
         if (board.isRepetition()) //####[202]####
         evalOne = -50; else if (board.isDraw50Move()) //####[204]####
         evalOne = -50; else {//####[206]####
-            evalOne = PVSplit(depth - 1, alpha, beta, locLine, false, true, board, currentDepth + 1);//####[207]####
+            evalOne = -PVSplit(depth - 1, -beta, -alpha, locLine, false, true, board, currentDepth + 1);//####[207]####
         }//####[209]####
         board.undoMove(moves.get(0));//####[210]####
         if (evalOne == -1234567890) //####[211]####
