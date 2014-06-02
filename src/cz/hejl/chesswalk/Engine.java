@@ -212,7 +212,7 @@ public class Engine {
             ArrayList<Move> moves = board.generateAllMoves();
             bestLine.add(moves.get(0));
         }
-
+        Log.d("DEBUG", "Number of nodes : "+nodeCounter + " depth :" + currentDepth);
         return bestLine.get(0);
     }
 
