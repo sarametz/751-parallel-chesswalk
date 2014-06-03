@@ -468,9 +468,10 @@ public class Engine {
 
 		private synchronized void stop(){
 			if (!g.hasCompleted()){
-				while(g.groupMembers().hasNext())
+				Iterator<TaskID<Void>> grp = g.groupMembers();
+				while(grp.hasNext())
 				{
-					g.groupMembers().next().cancelAttempt();
+					grp.next();
 				}
 			}
 		}
