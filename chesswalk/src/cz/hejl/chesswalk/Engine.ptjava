@@ -439,13 +439,10 @@ public class Engine {
 			if (eval == -1234567890)
 				//return new Integer(1234567890); // ***
 				result.set(1234567890);
-			stop();
-			//stop all the other threads
 
 			if (eval >= beta.get()) {
 				//stop all the other threads
-				result.set(1234567890);
-				stop();  				//stop all the other threads
+				result.set(1234567890); 
 			}
 
 			if (eval > alpha.get()) {
@@ -464,16 +461,6 @@ public class Engine {
 				updateBestLine(line, depth, eval);
 			}
 			result.set(alpha.get());
-		}
-
-		private synchronized void stop(){
-			if (!g.hasCompleted()){
-				Iterator<TaskID<Void>> grp = g.groupMembers();
-				while(grp.hasNext())
-				{
-					grp.next();
-				}
-			}
 		}
 	}
 }

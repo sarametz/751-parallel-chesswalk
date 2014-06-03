@@ -482,35 +482,22 @@ public class Engine {//####[37]####
             b1.undoMove(moves.get(index));//####[438]####
             if (eval == -1234567890) //####[439]####
             result.set(1234567890);//####[441]####
-            stop();//####[442]####
-            if (eval >= beta.get()) //####[445]####
-            {//####[445]####
-                result.set(1234567890);//####[447]####
-                stop();//####[448]####
-            }//####[449]####
-            if (eval > alpha.get()) //####[451]####
-            {//####[451]####
-                alpha.set(eval);//####[452]####
-                line.subList(initialLineSize, line.size()).clear();//####[453]####
-                line.add(moves.get(index));//####[454]####
-                line.addAll(locLine);//####[455]####
-            }//####[457]####
-            if (root && (eval > bestLineEval || eval == bestLineEval && depth > bestLineDepth) && initialAlpha == -1000000) //####[460]####
-            {//####[463]####
-                updateBestLine(line, depth, eval);//####[464]####
-            }//####[465]####
-            result.set(alpha.get());//####[466]####
-        }//####[467]####
-//####[469]####
-        private synchronized void stop() {//####[469]####
-            if (!g.hasCompleted()) //####[470]####
-            {//####[470]####
-                Iterator<TaskID<Void>> grp = g.groupMembers();//####[471]####
-                while (grp.hasNext()) //####[472]####
-                {//####[473]####
-                    grp.next();//####[474]####
-                }//####[475]####
-            }//####[476]####
-        }//####[477]####
-    }//####[477]####
-}//####[477]####
+            if (eval >= beta.get()) //####[443]####
+            {//####[443]####
+                result.set(1234567890);//####[445]####
+            }//####[446]####
+            if (eval > alpha.get()) //####[448]####
+            {//####[448]####
+                alpha.set(eval);//####[449]####
+                line.subList(initialLineSize, line.size()).clear();//####[450]####
+                line.add(moves.get(index));//####[451]####
+                line.addAll(locLine);//####[452]####
+            }//####[454]####
+            if (root && (eval > bestLineEval || eval == bestLineEval && depth > bestLineDepth) && initialAlpha == -1000000) //####[457]####
+            {//####[460]####
+                updateBestLine(line, depth, eval);//####[461]####
+            }//####[462]####
+            result.set(alpha.get());//####[463]####
+        }//####[464]####
+    }//####[464]####
+}//####[464]####
