@@ -29,6 +29,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import pt.runtime.CurrentTask;
 import pt.runtime.TaskID;
+import android.os.AsyncTask;
+import android.util.Log;
 
 public class Engine {
 	public AtomicInteger nodeCounter = new AtomicInteger(0);
@@ -44,13 +46,14 @@ public class Engine {
 	private int bestMoveTimeLimit;
 	private long bestMoveStart;
 	private ArrayList<Move> bestLine;
-	private MoveComparator moveComparator = new MoveComparator();
+	//private MoveComparator moveComparator = new MoveComparator();
 
 	// -----------------------------------------------------------------------------------------------------------
 
 	private Integer alphaBeta(int depth, int alpha, int beta, ArrayList<Move> line,
 			boolean root, boolean allowNull, Board board, int currentDepth) {
-		//		//System.out.println("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
+		//		//Log.d("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
+		MoveComparator moveComparator = new MoveComparator();
 		if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit
 				&& !root)
 			return new Integer(1234567890);// ***
@@ -136,6 +139,7 @@ public class Engine {
 
 			if (eval > alpha) {
 				alpha = eval;
+				
 				line.subList(initialLineSize, line.size()).clear();
 				line.add(moves.get(i));
 				line.addAll(locLine);
@@ -160,7 +164,8 @@ public class Engine {
 
 	private Integer PVSplit(int depth, int alpha, int beta, ArrayList<Move> line,
 			boolean root, boolean allowNull, Board board, int currentDepth) {
-		//		//System.out.println("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
+		//Log.d("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
+		 MoveComparator moveComparator = new MoveComparator();
 		if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit
 				&& !root)
 			return new Integer(1234567890);// ***
@@ -230,60 +235,79 @@ public class Engine {
 		}
 
 		//this is now parallelizable
+		AtomicInteger atomicAlpha = new AtomicInteger(alpha);
+		AtomicInteger atomicBeta = new AtomicInteger(beta);
+		AtomicInteger atomicEval = new AtomicInteger(0);
+		ArrayList <Thread> threads = new ArrayList<Thread>();
 		for (int i = 1; i < moves.size(); i++) {
 			Board b1 = new Board(board);
-			locLine.clear();
-			int eval;
-
-			b1.doMove(moves.get(i));
-			if (b1.isRepetition())
-				eval = -50;
-			else if (b1.isDraw50Move())
-				eval = -50;
-			else {
-				if (i >= 4 && currentDepth - depth >= 2
-						&& !b1.inCheck(b1.toMove)
-						&& moves.get(i).capture == 0) {
-					eval = -alphaBeta(depth - 2, -alpha - 1, -alpha, locLine,
-							false, true,b1,currentDepth + 2);
-					if (eval > alpha){
-						eval = -alphaBeta(depth - 1, -beta, -alpha, locLine,
-								false, true, b1, currentDepth + 1);
-					}
-				} else{
-					eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false,
-							true, b1,currentDepth + 1);
-				}
-			}
-			b1.undoMove(moves.get(i));
-			if (eval == -1234567890)
-				return new Integer(1234567890); // ***
-
-			if (eval >= beta) {
-				return new Integer(beta);
-			}
-
-			if (eval > alpha) {
-				alpha = eval;
-				line.subList(initialLineSize, line.size()).clear();
-				line.add(moves.get(i));
-				line.addAll(locLine);
-			}
-
-			// set best line
-			if (root
-					&& (eval > bestLineEval || eval == bestLineEval
-					&& depth > bestLineDepth)
-					&& initialAlpha == -1000000) {
-				updateBestLine(line, depth, eval);
+			DoParallelLoop d = new  DoParallelLoop(threads, atomicAlpha, atomicBeta, atomicEval, b1, moves, i, 
+					depth, currentDepth, root, line, line.size(),initialAlpha);
+			Thread t = new Thread(d);
+			threads.add(t);
+			t.start();
+//			locLine.clear();
+//			int eval;
+//
+//			b1.doMove(moves.get(i));
+//			if (b1.isRepetition())
+//				eval = -50;
+//			else if (b1.isDraw50Move())
+//				eval = -50;
+//			else {
+//				if (i >= 4 && currentDepth - depth >= 2
+//						&& !b1.inCheck(b1.toMove)
+//						&& moves.get(i).capture == 0) {
+//					eval = -alphaBeta(depth - 2, -alpha - 1, -alpha, locLine,
+//							false, true,b1,currentDepth + 2);
+//					if (eval > alpha){
+//						eval = -alphaBeta(depth - 1, -beta, -alpha, locLine,
+//								false, true, b1, currentDepth + 1);
+//					}
+//				} else{
+//					eval = -alphaBeta(depth - 1, -beta, -alpha, locLine, false,
+//							true, b1,currentDepth + 1);
+//				}
+//			}
+//			b1.undoMove(moves.get(i));
+//			if (eval == -1234567890)
+//				return new Integer(1234567890); // ***
+//
+//			if (eval >= beta) {
+//				return new Integer(beta);
+//			}
+//
+//			if (eval > alpha) {
+//				synchronized (this) {
+//					alpha = eval;					
+//					line.subList(initialLineSize, line.size()).clear();
+//					line.add(moves.get(i));
+//					line.addAll(locLine);
+//				}
+//
+//			}
+//
+//			// set best line
+//			if (root
+//					&& (eval > bestLineEval || eval == bestLineEval
+//					&& depth > bestLineDepth)
+//					&& initialAlpha == -1000000) {
+//				updateBestLine(line, depth, eval);
+//			}
+		}
+		for (Thread t : threads){
+			try{
+				t.join();
+			}catch(InterruptedException e ){
+				e.printStackTrace();
 			}
 		}
 
-		if (root && alpha > initialAlpha) {
-			updateBestLine(line, depth, alpha);
+		if (root && atomicAlpha.get() > initialAlpha) {
+			updateBestLine(line, depth, atomicAlpha.get());
 		}
 
-		return new Integer(alpha);
+		return new Integer(atomicAlpha.get());
 	}
 	// -----------------------------------------------------------------------------------------------------------
 
@@ -407,6 +431,103 @@ public class Engine {
 				int piecePrice = PIECE_PRICES[Math.abs(move.piece)];
 				return capturePrice - piecePrice + 2000;
 			}
+		}
+	}
+
+	private class DoParallelLoop implements Runnable{
+		ArrayList<Thread> otherThreads;
+		AtomicInteger alpha;
+		AtomicInteger beta;
+		AtomicInteger result;
+		Board b1;
+		ArrayList<Move> locLine;
+		ArrayList<Move> moves;
+		int index;
+		int depth;
+		int currentDepth;
+		ArrayList<Move> line;
+		int initialLineSize;
+		boolean root;
+		int initialAlpha;
+		private DoParallelLoop(ArrayList<Thread> otherThreads, AtomicInteger alpha, AtomicInteger beta, AtomicInteger eval, 
+				Board board,ArrayList<Move> moves, int index, int depth, int currentDepth, 
+				boolean root, ArrayList<Move> line, int intialLineSize, int initialAlpha){
+			this.otherThreads = otherThreads;
+			this.alpha = alpha;
+			this.beta = beta;
+			this.result = eval;
+			this.b1 = board;
+			this.locLine = new ArrayList<Move>();
+			this.moves = moves;
+			this.index = index;
+			this.depth = depth;
+			this.currentDepth = currentDepth;
+			this.root = root;
+			this.line = line;
+			this.initialLineSize = intialLineSize;
+			this.initialAlpha = initialAlpha;
+		}
+		public void run(){
+			locLine.clear();
+			int eval;
+
+			b1.doMove(moves.get(index));
+			if (b1.isRepetition())
+				eval = -50;
+			else if (b1.isDraw50Move())
+				eval = -50;
+			else {
+				if (index >= 4 && currentDepth - depth >= 2
+						&& !b1.inCheck(b1.toMove)
+						&& moves.get(index).capture == 0) {
+					eval = -alphaBeta(depth - 2, -alpha.get() - 1, -alpha.get(), locLine,
+							false, true,new Board(b1),currentDepth + 2);
+					if (eval > alpha.get()){
+						eval = -alphaBeta(depth - 1, -beta.get(), -alpha.get(), locLine,
+								false, true, new Board(b1), currentDepth + 1);
+					}
+				} else{
+					eval = -alphaBeta(depth - 1, -beta.get(), -alpha.get(), locLine, false,
+							true, new Board(b1),currentDepth + 1);
+				}
+			}
+			b1.undoMove(moves.get(index));
+			if (eval == -1234567890)
+				//return new Integer(1234567890); // ***
+				result.set(1234567890);
+				stop();
+				//stop all the other threads
+
+			if (eval >= beta.get()) {
+				//stop all the other threads
+				result.set(1234567890);
+				stop();
+				//stop all the other threads
+				//return new Integer(beta);
+			}
+
+			if (eval > alpha.get()) {
+					alpha.set( eval);					
+					line.subList(initialLineSize, line.size()).clear();
+					line.add(moves.get(index));
+					line.addAll(locLine);
+
+			}
+
+			// set best line
+			if (root
+					&& (eval > bestLineEval || eval == bestLineEval
+					&& depth > bestLineDepth)
+					&& initialAlpha == -1000000) {
+				updateBestLine(line, depth, eval);
+			}
+			result.set(alpha.get());
+		}
+		
+		private void stop(){
+//			for (Thread d : otherThreads){
+//				d.interrupt();
+//			}
 		}
 	}
 }

@@ -281,7 +281,7 @@ public class Engine {//####[35]####
             ArrayList<Move> moves = board.generateAllMoves();//####[362]####
             bestLine.add(moves.get(0));//####[363]####
         }//####[364]####
-        System.out.println("ENGINE" + " : " + "Depth = " + currentDepth + " , Nodes = " + nodeCounter);//####[366]####
+        Log.d("ENGINE", "Depth = " + currentDepth + " , Nodes = " + nodeCounter);//####[366]####
         return bestLine.get(0);//####[367]####
     }//####[368]####
 //####[372]####
@@ -299,7 +299,7 @@ public class Engine {//####[35]####
             s += bestLine.get(i).toString() + " ";//####[383]####
         }//####[384]####
         s += " : " + (System.currentTimeMillis() - bestMoveStart) + " : " + bestLineEval;//####[385]####
-        System.out.println(TAG + " : " + s);//####[387]####
+        Log.d(TAG, s);//####[387]####
     }//####[388]####
 //####[392]####
     private class MoveComparator implements Comparator<Move> {//####[392]####
