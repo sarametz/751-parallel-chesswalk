@@ -23,16 +23,11 @@ package cz.hejl.chesswalk;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Currency;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import pt.runtime.CurrentTask;
 import pt.runtime.TaskID;
 import pt.runtime.TaskIDGroup;
-import android.os.AsyncTask;
-import android.util.Log;
-import java.util.*;
 
 public class Engine {
 	public AtomicInteger nodeCounter = new AtomicInteger(0);
@@ -245,7 +240,7 @@ public class Engine {
 					depth, currentDepth, root, line, line.size(),initialAlpha);
 			TaskID<Void> id = runParallelLoop(d);;
 			g.add(id);
-		}
+		}  
 		try{
 			g.waitTillFinished();
 		}catch(InterruptedException e){
