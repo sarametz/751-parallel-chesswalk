@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Franti��ek Hejl
+ * Copyright (C) 2010 Franti������������������������������������������������������ek Hejl
  *
  * This file is part of Chesswalk.
  *
@@ -362,18 +362,6 @@ public class Engine {
 					return 100000;
 			}
 
-			/*
-			 * if(primaryKillers[ply - 1] != null) if(move.from ==
-			 * primaryKillers[ply - 1].from && move.to == primaryKillers[ply -
-			 * 1].to && move.piece == primaryKillers[ply - 1].piece) return
-			 * 90000;
-			 * 
-			 * if(secondaryKillers[ply - 1] != null) if(move.from ==
-			 * secondaryKillers[ply - 1].from && move.to == secondaryKillers[ply
-			 * - 1].to && move.piece == secondaryKillers[ply - 1].piece) return
-			 * 80000;
-			 */
-
 			if (move.capture == 0)
 				return 0;
 			else {
@@ -472,11 +460,11 @@ public class Engine {
 			}
 			result.set(alpha.get());
 		}
-		
+
 		private void stop(){
-//			for (Thread d : otherThreads){
-//				d.interrupt();
-//			}
+			//			for (Thread d : otherThreads){
+			//				d.interrupt();
+			//			}
 		}
 	}
 }
