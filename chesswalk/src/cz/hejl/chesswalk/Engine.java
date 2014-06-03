@@ -43,7 +43,7 @@ public class Engine {//####[35]####
 //####[43]####
     private boolean allowNullGlobal = true;//####[43]####
 //####[44]####
-    private int bestLineDepth;//####[44]####
+    public int bestLineDepth;//####[44]####
 //####[45]####
     private int bestLineEval;//####[45]####
 //####[46]####
@@ -285,7 +285,7 @@ public class Engine {//####[35]####
         return bestLine.get(0);//####[367]####
     }//####[368]####
 //####[372]####
-    private void updateBestLine(ArrayList<Move> line, int depth, int eval) {//####[372]####
+    private synchronized void updateBestLine(ArrayList<Move> line, int depth, int eval) {//####[372]####
         if (depth == bestLineDepth && eval == bestLineEval) //####[373]####
         return;//####[374]####
         bestLineDepth = depth;//####[375]####

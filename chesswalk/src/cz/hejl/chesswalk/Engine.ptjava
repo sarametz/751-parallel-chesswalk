@@ -41,7 +41,7 @@ public class Engine {
 	private static final String TAG = "Engine";
 
 	private boolean allowNullGlobal = true;
-	private int bestLineDepth;
+	public int bestLineDepth;
 	private int bestLineEval;
 	private int bestMoveTimeLimit;
 	private long bestMoveStart;
@@ -369,7 +369,7 @@ public class Engine {
 
 	// -----------------------------------------------------------------------------------------------------------
 
-	private void updateBestLine(ArrayList<Move> line, int depth, int eval) {
+	private synchronized void updateBestLine(ArrayList<Move> line, int depth, int eval) {
 		if (depth == bestLineDepth && eval == bestLineEval)
 			return;
 		bestLineDepth = depth;

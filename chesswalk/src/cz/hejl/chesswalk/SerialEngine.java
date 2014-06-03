@@ -35,7 +35,7 @@ public class SerialEngine {
     private static final String TAG = "Engine";
 
     private boolean allowNullGlobal = true;
-    private int bestLineDepth;
+    public int bestLineDepth;
     private int bestLineEval;
     private int bestMoveTimeLimit;
     private int currentDepth;

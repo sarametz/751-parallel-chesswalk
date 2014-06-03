@@ -14,6 +14,14 @@ public class TestParallelization extends TestCase {
 	Engine engine;
 	SerialEngine serialEngine;
 	
+	double averageAlphaBetaParallelDepth = 0;
+	double averageSerialDepth = 0;
+	double averageGenerateMovesParallelDepth = 0;
+	
+	double averageAlphaBetaParallelNodes = 0;
+	double averageSerialNodes = 0;
+	double averageGenerateMovesParallelNodes = 0;
+	
 	public TestParallelization(String name) {
 		super(name);
 	}
@@ -33,7 +41,7 @@ public class TestParallelization extends TestCase {
 		assertNotNull("Serial Engine is null",serialEngine);
 	}
 
-	public void testParallelComputerStarting10Secs(){
+	public void getParallelComputerStarting10Secs(){
 		ArrayList<Integer> nodes = new ArrayList<Integer>();
 		for(int i = 0; i < 10; i++){
 			Move move = engine.bestMove(Board.STARTING_FEN, 10, 10000);
@@ -46,11 +54,11 @@ public class TestParallelization extends TestCase {
 		for (Integer n : nodes) {
 			avgN += n;
 		}
-		double averageNodes = avgN.doubleValue() / nodes.size();
-		System.out.print("Parallel Average nodes = "+averageNodes);
+		averageAlphaBetaParallelNodes = avgN.doubleValue() / nodes.size();
+		averageAlphaBetaParallelDepth = engine.bestLineDepth;
 	}
 	
-	public void testSerialComputerStarting10Secs(){
+	public void getSerialComputerStarting10Secs(){
 		serialEngine.board = new Board(Board.STARTING_FEN);
 		ArrayList<Integer> nodes = new ArrayList<Integer>();
 		for(int i = 0; i < 10; i++){
@@ -64,11 +72,11 @@ public class TestParallelization extends TestCase {
 		for (Integer n : nodes) {
 			avgN += n;
 		}
-		double averageNodes = avgN.doubleValue() / nodes.size();
-		System.out.print("Serial Average nodes = "+averageNodes);
+		averageSerialNodes = avgN.doubleValue() / nodes.size();
+		averageSerialDepth = serialEngine.bestLineDepth;
 	}
 	
-	public void testSerialEngineWithParallelBoardComputerStarting10Secs(){
+	public void getSerialEngineWithParallelBoardComputerStarting10Secs(){
 		serialEngine.board = new ParallelBoard(Board.STARTING_FEN);
 		ArrayList<Integer> nodes = new ArrayList<Integer>();
 		for(int i = 0; i < 10; i++){
@@ -82,8 +90,26 @@ public class TestParallelization extends TestCase {
 		for (Integer n : nodes) {
 			avgN += n;
 		}
-		double averageNodes = avgN.doubleValue() / nodes.size();
-		System.out.print("Serial Parallel Board Average nodes = "+averageNodes);
+		averageGenerateMovesParallelNodes = avgN.doubleValue() / nodes.size();
+		averageGenerateMovesParallelDepth = serialEngine.bestLineDepth;
+	}
+	
+	public void testParallelComparison(){
+		long start = System.currentTimeMillis();
+		getSerialComputerStarting10Secs();
+		long serialTime = System.currentTimeMillis() - start;
+		start = System.currentTimeMillis();
+		getSerialEngineWithParallelBoardComputerStarting10Secs();
+		long generateMovesTime = System.currentTimeMillis() - start;
+		start = System.currentTimeMillis();
+		getParallelComputerStarting10Secs();
+		long alphaBetaTime = System.currentTimeMillis() - start;
+		//results
+		System.out.println("Average depth and nodes\n"+
+							"Serial       :\t" + averageSerialDepth + "\tNodes: \t" + averageSerialNodes +"\t time:"+serialTime+"\n" +
+							"GenerateMoves:\t" + averageGenerateMovesParallelDepth + "\tNodes: \t" + averageGenerateMovesParallelNodes +"\t time:"+generateMovesTime+"\n" +
+							"AlphaBeta    :\t" + averageAlphaBetaParallelDepth + "\tNodes: \t" + averageAlphaBetaParallelNodes +"\t time:"+alphaBetaTime+"\n"
+							);
 	}
 	
 }
