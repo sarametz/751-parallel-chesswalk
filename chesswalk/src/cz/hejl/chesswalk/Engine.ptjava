@@ -200,14 +200,14 @@ public class Engine {
 		board.doMove(moves.get(0));
 		locLine.clear();
 		int evalOne;
-		
+
 		if (board.isRepetition())
 			evalOne = -50;
 		else if (board.isDraw50Move())
 			evalOne = -50;
 		else {
-				evalOne = -PVSplit(depth - 1, -beta, -alpha, locLine, false,
-						true,board,currentDepth + 1);
+			evalOne = -PVSplit(depth - 1, -beta, -alpha, locLine, false,
+					true,board,currentDepth + 1);
 		}
 		board.undoMove(moves.get(0));
 		if (evalOne == -1234567890)
@@ -252,7 +252,7 @@ public class Engine {
 			e.printStackTrace();
 		}
 
-		
+
 		if (root && atomicAlpha.get() > initialAlpha) {
 			updateBestLine(line, depth, atomicAlpha.get());
 		}
@@ -388,7 +388,6 @@ public class Engine {
 		l.run();
 	}
 	private class DoParallelLoop {
-		//ArrayList<Thread> otherThreads;
 		AtomicInteger alpha;
 		AtomicInteger beta;
 		AtomicInteger result;
@@ -405,7 +404,6 @@ public class Engine {
 		private DoParallelLoop( AtomicInteger alpha, AtomicInteger beta, AtomicInteger eval, 
 				Board board,ArrayList<Move> moves, int index, int depth, int currentDepth, 
 				boolean root, ArrayList<Move> line, int intialLineSize, int initialAlpha){
-			//this.otherThreads = otherThreads;
 			this.alpha = alpha;
 			this.beta = beta;
 			this.result = eval;
@@ -448,22 +446,20 @@ public class Engine {
 			if (eval == -1234567890)
 				//return new Integer(1234567890); // ***
 				result.set(1234567890);
-				stop();
-				//stop all the other threads
+			stop();
+			//stop all the other threads
 
 			if (eval >= beta.get()) {
 				//stop all the other threads
 				result.set(1234567890);
-				stop();
-				//stop all the other threads
-				//return new Integer(beta);
+				stop();  				//stop all the other threads
 			}
 
 			if (eval > alpha.get()) {
-					alpha.set( eval);					
-					line.subList(initialLineSize, line.size()).clear();
-					line.add(moves.get(index));
-					line.addAll(locLine);
+				alpha.set( eval);					
+				line.subList(initialLineSize, line.size()).clear();
+				line.add(moves.get(index));
+				line.addAll(locLine);
 
 			}
 
