@@ -47,13 +47,11 @@ public class Engine {
 	private int bestMoveTimeLimit;
 	private long bestMoveStart;
 	private ArrayList<Move> bestLine;
-	//private MoveComparator moveComparator = new MoveComparator();
-
+	
 	// -----------------------------------------------------------------------------------------------------------
 
 	private Integer alphaBeta(int depth, int alpha, int beta, ArrayList<Move> line,
 			boolean root, boolean allowNull, Board board, int currentDepth) {
-		//		//Log.d("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
 		MoveComparator moveComparator = new MoveComparator();
 		if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit
 				&& !root)
@@ -140,7 +138,7 @@ public class Engine {
 
 			if (eval > alpha) {
 				alpha = eval;
-				
+
 				line.subList(initialLineSize, line.size()).clear();
 				line.add(moves.get(i));
 				line.addAll(locLine);
@@ -165,8 +163,7 @@ public class Engine {
 
 	private Integer PVSplit(int depth, int alpha, int beta, ArrayList<Move> line,
 			boolean root, boolean allowNull, Board board, int currentDepth) {
-		//Log.d("ALPHABETA","In task = "+ CurrentTask.insideTask() + " id is "+CurrentTask.globalID());
-		 MoveComparator moveComparator = new MoveComparator();
+		MoveComparator moveComparator = new MoveComparator();
 		if (System.currentTimeMillis() - bestMoveStart > bestMoveTimeLimit
 				&& !root)
 			return new Integer(1234567890);// ***
