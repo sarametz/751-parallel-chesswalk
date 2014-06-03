@@ -583,7 +583,7 @@ public class Board {
      * by - if caller is asking whether the square is attacked by white(1) or
      * black(-1)
      */
-    private boolean squareAttacked(int square, int by) {
+    protected boolean squareAttacked(int square, int by) {
         // check for attacking knight
         for (int i = 0; i < knightDeltas.length; i++) {
             int square2 = square + knightDeltas[i];
@@ -752,7 +752,7 @@ public class Board {
             castlingRights[i] = move.castlingRights[i];
     }
 
-    private boolean validSquare(int square) {
+    protected boolean validSquare(int square) {
         if ((square & 0x88) == 0)
             return true;
         else

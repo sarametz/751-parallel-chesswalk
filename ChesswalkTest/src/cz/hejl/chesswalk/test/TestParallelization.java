@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import cz.hejl.chesswalk.Board;
 import cz.hejl.chesswalk.Engine;
 import cz.hejl.chesswalk.Move;
+import cz.hejl.chesswalk.ParallelBoard;
 import cz.hejl.chesswalk.SerialEngine;
 import junit.framework.TestCase;
 
@@ -50,6 +51,7 @@ public class TestParallelization extends TestCase {
 	}
 	
 	public void testSerialComputerStarting10Secs(){
+		serialEngine.board = new Board(Board.STARTING_FEN);
 		ArrayList<Integer> nodes = new ArrayList<Integer>();
 		for(int i = 0; i < 10; i++){
 			Move move = serialEngine.bestMove(10, 10000);
@@ -65,4 +67,23 @@ public class TestParallelization extends TestCase {
 		double averageNodes = avgN.doubleValue() / nodes.size();
 		System.out.print("Serial Average nodes = "+averageNodes);
 	}
+	
+	public void testSerialEngineWithParallelBoardComputerStarting10Secs(){
+		serialEngine.board = new ParallelBoard(Board.STARTING_FEN);
+		ArrayList<Integer> nodes = new ArrayList<Integer>();
+		for(int i = 0; i < 10; i++){
+			Move move = serialEngine.bestMove(10, 10000);
+			int nodeCount = serialEngine.nodeCounter;
+			nodes.add(Integer.valueOf(nodeCount));
+		}
+
+		//Look at the average values
+		Integer avgN = 0;
+		for (Integer n : nodes) {
+			avgN += n;
+		}
+		double averageNodes = avgN.doubleValue() / nodes.size();
+		System.out.print("Serial Parallel Board Average nodes = "+averageNodes);
+	}
+	
 }
