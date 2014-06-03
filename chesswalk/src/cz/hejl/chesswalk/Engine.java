@@ -212,7 +212,7 @@ public class Engine {//####[37]####
         for (int i = 1; i < moves.size(); i++) //####[242]####
         {//####[242]####
             Board b1 = new Board(board);//####[243]####
-            DoParallelLoop d = new DoParallelLoop(atomicAlpha, atomicBeta, atomicEval, b1, moves, i, depth, currentDepth, root, line, line.size(), initialAlpha, g);//####[244]####
+            DoParallelLoop d = new DoParallelLoop(atomicAlpha, atomicBeta, atomicEval, b1, moves, i, depth, currentDepth, root, line, line.size(), initialAlpha);//####[244]####
             TaskID<Void> id = runParallelLoop(d);//####[246]####
             ;//####[246]####
             g.add(id);//####[247]####
@@ -441,63 +441,60 @@ public class Engine {//####[37]####
         boolean root;//####[392]####
 //####[393]####
         int initialAlpha;//####[393]####
-//####[394]####
-        TaskIDGroup<Void> g;//####[394]####
-//####[396]####
-        private DoParallelLoop(AtomicInteger alpha, AtomicInteger beta, AtomicInteger eval, Board board, ArrayList<Move> moves, int index, int depth, int currentDepth, boolean root, ArrayList<Move> line, int intialLineSize, int initialAlpha, TaskIDGroup<Void> g) {//####[398]####
-            this.g = g;//####[399]####
-            this.alpha = alpha;//####[400]####
-            this.beta = beta;//####[401]####
-            this.result = eval;//####[402]####
-            this.b1 = board;//####[403]####
-            this.locLine = new ArrayList<Move>();//####[404]####
-            this.moves = moves;//####[405]####
-            this.index = index;//####[406]####
-            this.depth = depth;//####[407]####
-            this.currentDepth = currentDepth;//####[408]####
-            this.root = root;//####[409]####
-            this.line = line;//####[410]####
-            this.initialLineSize = intialLineSize;//####[411]####
-            this.initialAlpha = initialAlpha;//####[412]####
-        }//####[413]####
-//####[414]####
-        public void run() {//####[414]####
-            locLine.clear();//####[415]####
-            int eval;//####[416]####
-            b1.doMove(moves.get(index));//####[418]####
-            if (b1.isRepetition()) //####[419]####
-            eval = -50; else if (b1.isDraw50Move()) //####[421]####
-            eval = -50; else {//####[423]####
-                if (index >= 4 && currentDepth - depth >= 2 && !b1.inCheck(b1.toMove) && moves.get(index).capture == 0) //####[424]####
-                {//####[426]####
-                    eval = -alphaBeta(depth - 2, -alpha.get() - 1, -alpha.get(), locLine, false, true, new Board(b1), currentDepth + 2);//####[427]####
-                    if (eval > alpha.get()) //####[429]####
-                    {//####[429]####
-                        eval = -alphaBeta(depth - 1, -beta.get(), -alpha.get(), locLine, false, true, new Board(b1), currentDepth + 1);//####[430]####
-                    }//####[432]####
-                } else {//####[433]####
-                    eval = -alphaBeta(depth - 1, -beta.get(), -alpha.get(), locLine, false, true, new Board(b1), currentDepth + 1);//####[434]####
-                }//####[436]####
-            }//####[437]####
-            b1.undoMove(moves.get(index));//####[438]####
-            if (eval == -1234567890) //####[439]####
-            result.set(1234567890);//####[441]####
-            if (eval >= beta.get()) //####[443]####
-            {//####[443]####
-                result.set(1234567890);//####[445]####
-            }//####[446]####
-            if (eval > alpha.get()) //####[448]####
-            {//####[448]####
-                alpha.set(eval);//####[449]####
-                line.subList(initialLineSize, line.size()).clear();//####[450]####
-                line.add(moves.get(index));//####[451]####
-                line.addAll(locLine);//####[452]####
-            }//####[454]####
-            if (root && (eval > bestLineEval || eval == bestLineEval && depth > bestLineDepth) && initialAlpha == -1000000) //####[457]####
-            {//####[460]####
-                updateBestLine(line, depth, eval);//####[461]####
-            }//####[462]####
-            result.set(alpha.get());//####[463]####
-        }//####[464]####
-    }//####[464]####
-}//####[464]####
+//####[395]####
+        private DoParallelLoop(AtomicInteger alpha, AtomicInteger beta, AtomicInteger eval, Board board, ArrayList<Move> moves, int index, int depth, int currentDepth, boolean root, ArrayList<Move> line, int intialLineSize, int initialAlpha) {//####[397]####
+            this.alpha = alpha;//####[398]####
+            this.beta = beta;//####[399]####
+            this.result = eval;//####[400]####
+            this.b1 = board;//####[401]####
+            this.locLine = new ArrayList<Move>();//####[402]####
+            this.moves = moves;//####[403]####
+            this.index = index;//####[404]####
+            this.depth = depth;//####[405]####
+            this.currentDepth = currentDepth;//####[406]####
+            this.root = root;//####[407]####
+            this.line = line;//####[408]####
+            this.initialLineSize = intialLineSize;//####[409]####
+            this.initialAlpha = initialAlpha;//####[410]####
+        }//####[411]####
+//####[412]####
+        public void run() {//####[412]####
+            locLine.clear();//####[413]####
+            int eval;//####[414]####
+            b1.doMove(moves.get(index));//####[416]####
+            if (b1.isRepetition()) //####[417]####
+            eval = -50; else if (b1.isDraw50Move()) //####[419]####
+            eval = -50; else {//####[421]####
+                if (index >= 4 && currentDepth - depth >= 2 && !b1.inCheck(b1.toMove) && moves.get(index).capture == 0) //####[422]####
+                {//####[424]####
+                    eval = -alphaBeta(depth - 2, -alpha.get() - 1, -alpha.get(), locLine, false, true, new Board(b1), currentDepth + 2);//####[425]####
+                    if (eval > alpha.get()) //####[427]####
+                    {//####[427]####
+                        eval = -alphaBeta(depth - 1, -beta.get(), -alpha.get(), locLine, false, true, new Board(b1), currentDepth + 1);//####[428]####
+                    }//####[430]####
+                } else {//####[431]####
+                    eval = -alphaBeta(depth - 1, -beta.get(), -alpha.get(), locLine, false, true, new Board(b1), currentDepth + 1);//####[432]####
+                }//####[434]####
+            }//####[435]####
+            b1.undoMove(moves.get(index));//####[436]####
+            if (eval == -1234567890) //####[437]####
+            result.set(1234567890);//####[439]####
+            if (eval >= beta.get()) //####[441]####
+            {//####[441]####
+                result.set(1234567890);//####[443]####
+            }//####[444]####
+            if (eval > alpha.get()) //####[446]####
+            {//####[446]####
+                alpha.set(eval);//####[447]####
+                line.subList(initialLineSize, line.size()).clear();//####[448]####
+                line.add(moves.get(index));//####[449]####
+                line.addAll(locLine);//####[450]####
+            }//####[452]####
+            if (root && (eval > bestLineEval || eval == bestLineEval && depth > bestLineDepth) && initialAlpha == -1000000) //####[455]####
+            {//####[458]####
+                updateBestLine(line, depth, eval);//####[459]####
+            }//####[460]####
+            result.set(alpha.get());//####[461]####
+        }//####[462]####
+    }//####[462]####
+}//####[462]####

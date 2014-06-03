@@ -242,7 +242,7 @@ public class Engine {
 		for (int i = 1; i < moves.size(); i++) {
 			Board b1 = new Board(board);
 			DoParallelLoop d = new  DoParallelLoop(atomicAlpha, atomicBeta, atomicEval, b1, moves, i, 
-					depth, currentDepth, root, line, line.size(),initialAlpha,g);
+					depth, currentDepth, root, line, line.size(),initialAlpha);
 			TaskID<Void> id = runParallelLoop(d);;
 			g.add(id);
 		}
@@ -391,12 +391,10 @@ public class Engine {
 		int initialLineSize;
 		boolean root;
 		int initialAlpha;
-		TaskIDGroup<Void> g;
 		
 		private DoParallelLoop( AtomicInteger alpha, AtomicInteger beta, AtomicInteger eval, 
 				Board board,ArrayList<Move> moves, int index, int depth, int currentDepth, 
-				boolean root, ArrayList<Move> line, int intialLineSize, int initialAlpha, TaskIDGroup<Void> g){
-			this.g = g;
+				boolean root, ArrayList<Move> line, int intialLineSize, int initialAlpha){
 			this.alpha = alpha;
 			this.beta = beta;
 			this.result = eval;
