@@ -466,12 +466,11 @@ public class Engine {
 			result.set(alpha.get());
 		}
 
-		private void stop(){
+		private synchronized void stop(){
 			if (!g.hasCompleted()){
-				Iterator<TaskID<Void>> grp = g.groupMembers();
-				while(grp.hasNext())
+				while(g.groupMembers().hasNext())
 				{
-					grp.next();
+					g.groupMembers().next().cancelAttempt();
 				}
 			}
 		}
